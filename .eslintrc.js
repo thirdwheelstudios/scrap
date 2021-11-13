@@ -4,7 +4,7 @@ module.exports = {
         'defineProps': 'readonly'
     },
     'env': {
-        'browser': true,
+        'node': true,
         'es2021': true
     },
     'extends': [
