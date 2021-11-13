@@ -1,4 +1,5 @@
 module.exports = {
+    'parser': 'vue-eslint-parser',
     'env': {
         'browser': true,
         'es2021': true
@@ -33,6 +34,7 @@ module.exports = {
         'semi': [
             'error',
             'never'
-        ]
+        ],
+        'vue/no-multiple-template-root': 'off'
     }
 }
