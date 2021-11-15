@@ -1,7 +1,25 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+import { computed } from '@vue/reactivity'
+import { useStore } from 'vuex'
+
+export default {
+    setup() {
+        const store = useStore()
+
+        const isRecording = computed(() => store.getters['isCapturing'])
+
+        return {
+            onRecordClick: () => {
+                if (!isRecording.value) store.dispatch('startCapture')
+            },
+            isRecording
+        }
+    }
+}
+</script>
 
 <template>
-  <button title="Start a recording">
+  <button title="Start a recording" @click="onRecordClick" :class="{ recording: isRecording }">
     <font-awesome-icon icon="desktop" />
   </button>
 </template>
