@@ -10,13 +10,13 @@
 button {
   box-shadow: 5px 10px 18px #888888;
   background-image: linear-gradient(140deg, #d5433e 40%, #ad2b26 60%);
-  border-color: #292b2c;
-  color: #292b2c;
+  color: #323232;
   border-radius: 50%;
-  border-width: 0.1rem;
+  border-width: 0;
   padding: 2rem;
   font-size: 4rem;
   cursor: pointer;
+  transition: border-radius 0.5s;
 }
 
 button:hover {
@@ -27,5 +27,10 @@ button:hover {
     #d5433e 30%,
     #ad2b26 55%
   );
+  transform: translate(0.1rem, 0.1rem);
+}
+
+button.recording {
+  border-radius: 15%;
 }
 </style>
