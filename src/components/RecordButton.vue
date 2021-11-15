@@ -27,7 +27,7 @@ button:hover {
     #d5433e 30%,
     #ad2b26 55%
   );
-  transform: translate(0.1rem, 0.1rem);
+  transform: translate(0.025rem, 0.025rem);
 }
 
 button.recording {
