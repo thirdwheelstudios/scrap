@@ -6,20 +6,21 @@ export default {
     setup() {
         const store = useStore()
 
-        const isRecording = computed(() => store.getters['isCapturing'])
+        const isCapturing = computed(() => store.getters['isCapturing'])
 
         return {
-            onRecordClick: () => {
-                if (!isRecording.value) store.dispatch('startCapture')
+            onCaptureClick: () => {
+                const action = isCapturing.value ? 'stopCapture' : 'startCapture'
+                store.dispatch(action)
             },
-            isRecording
+            isCapturing
         }
     }
 }
 </script>
 
 <template>
-  <button title="Start a recording" @click="onRecordClick" :class="{ recording: isRecording }">
+  <button title="Start a recording" @click="onCaptureClick" :class="{ recording: isCapturing }">
     <font-awesome-icon icon="desktop" />
   </button>
 </template>
