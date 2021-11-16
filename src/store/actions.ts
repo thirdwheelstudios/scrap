@@ -1,28 +1,55 @@
 export default {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async startCapture(context: any) {
-        try {
-            const isCapturing: boolean = context.getters['isCapturing']
-            if (isCapturing) return
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async startRecording(context: any) {
+    try {
+      const isCapturing: boolean = context.getters['isCapturing']
+      if (isCapturing) return
 
-            const capture = await navigator.mediaDevices.getDisplayMedia()
-            context.commit('currentCapture', capture)
-        } catch (err) {
-            console.error('Unable to start capture', err)
+      const constraints = {
+        video: true,
+        audio: false,
+      } as DisplayMediaStreamConstraints
+      const capture = await navigator.mediaDevices.getDisplayMedia(constraints)
+
+      const options = {
+        mimeType: 'video/webm',
+      } as MediaRecorderOptions
+      const recorder = new MediaRecorder(capture, options)
+
+      const chunks: BlobPart[] | undefined = []
+
+      recorder.ondataavailable = function (e) {
+        chunks.push(e.data)
+      }
+
+      recorder.onstop = function () {
+        const blob = new Blob(chunks, { type: 'video/webm' })
+
+        const reader = new FileReader()
+        reader.onload = function () {
+          console.log(this.result)
         }
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async stopCapture(context: any) {
-        const isCapturing: boolean = context.getters['isCapturing']
-        if (!isCapturing) return
 
-        const currentCapture: MediaStream = context.getters['currentCapture']
-        const tracks = currentCapture.getTracks()
+        reader.readAsDataURL(blob)
 
-        tracks.forEach(track => track.stop())
+        context.commit('setRecorder', null)
+        console.log('recording stopped', URL.createObjectURL(blob))
+      }
 
-        // TODO Save capture
+      context.commit('setRecorder', recorder)
 
-        context.commit('currentCapture', null)
-    },
+      recorder.start()
+    } catch (err) {
+      console.error('Unable to start capture', err)
+    }
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async stopRecording(context: any) {
+    const isRecording: boolean = context.getters['isRecording']
+    if (!isRecording) return
+
+    const recorder: MediaRecorder = context.getters['recorder']
+
+    recorder.stop()
+  },
 }

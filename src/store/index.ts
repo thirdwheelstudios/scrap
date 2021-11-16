@@ -4,12 +4,12 @@ import actions from './actions'
 import getters from './getters'
 
 export default createStore({
-    state() {
-        return {
-            currentCapture: null
-        }
-    },
-    mutations,
-    actions,
-    getters
+  state() {
+    return {
+      recorder: null
+    }
+  },
+  mutations,
+  actions,
+  getters,
 })

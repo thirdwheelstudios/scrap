@@ -1,10 +1,10 @@
 export default {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    isCapturing(state: any) {
-        return state.currentCapture !== null
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    currentCapture(state: any): MediaStream {
-        return state.currentCapture
-    }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  isRecording(state: any) {
+    return state.recorder !== null
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  recorder(state: any): MediaRecorder {
+    return state.recorder
+  },
 }

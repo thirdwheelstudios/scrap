@@ -3,24 +3,28 @@ import { computed } from '@vue/reactivity'
 import { useStore } from 'vuex'
 
 export default {
-    setup() {
-        const store = useStore()
+  setup() {
+    const store = useStore()
 
-        const isCapturing = computed(() => store.getters['isCapturing'])
+    const isRecording = computed(() => store.getters['isRecording'])
 
-        return {
-            onCaptureClick: () => {
-                const action = isCapturing.value ? 'stopCapture' : 'startCapture'
-                store.dispatch(action)
-            },
-            isCapturing
-        }
+    return {
+      onRecordClick: () => {
+        const action = isRecording.value ? 'stopRecording' : 'startRecording'
+        store.dispatch(action)
+      },
+      isRecording,
     }
+  },
 }
 </script>
 
 <template>
-  <button title="Start a recording" @click="onCaptureClick" :class="{ recording: isCapturing }">
+  <button
+    title="Start a recording"
+    @click="onRecordClick"
+    :class="{ recording: isRecording }"
+  >
     <font-awesome-icon icon="desktop" />
   </button>
 </template>

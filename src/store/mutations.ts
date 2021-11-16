@@ -1,6 +1,6 @@
 export default {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    currentCapture(state: any, capture: MediaStream) {
-        state.currentCapture = capture
-    }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setRecorder(state: any, recorder: MediaRecorder | null) {
+    state.recorder = recorder
+  }
 }

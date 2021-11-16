@@ -8,6 +8,6 @@ import { faDesktop, faStop } from '@fortawesome/free-solid-svg-icons'
 library.add(faDesktop, faStop)
 
 createApp(App)
-    .component('font-awesome-icon', FontAwesomeIcon)
-    .use(Store)
-    .mount('#app')
+  .component('font-awesome-icon', FontAwesomeIcon)
+  .use(Store)
+  .mount('#app')
