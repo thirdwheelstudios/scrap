@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <div>Recordings go here 😃</div>
+  <h2>My Scrapbook</h2>
   <ul>
     <li v-if="isRecording">
       <InProgressRecording :media-stream="mediaStream" />
@@ -33,7 +33,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-div {
-  padding: 5rem;
+ul {
+  list-style: none;
 }
 </style>
