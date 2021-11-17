@@ -1,13 +1,31 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 import RecordingItem from './RecordingItem.vue'
+import InProgressRecording from './InProgressRecording.vue'
 
-const recordings = ref()
+export default {
+  setup() {
+    const store = useStore()
+    const isRecording = computed(() => store.getters['isRecording'])
+    const mediaStream = computed(() => store.getters['mediaStream'])
+    const recordings = ref()
+    return {
+      recordings,
+      isRecording,
+      mediaStream,
+    }
+  },
+  components: { InProgressRecording, RecordingItem },
+}
 </script>
 
 <template>
   <div>Recordings go here 😃</div>
   <ul>
+    <li v-if="isRecording">
+      <InProgressRecording :media-stream="mediaStream" />
+    </li>
     <li v-for="recording of recordings" :key="recording.id">
       <RecordingItem />
     </li>

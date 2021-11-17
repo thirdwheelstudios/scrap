@@ -6,7 +6,8 @@ import getters from './getters'
 export default createStore({
   state() {
     return {
-      recorder: null
+      recorder: null,
+      mediaStream: null,
     }
   },
   mutations,

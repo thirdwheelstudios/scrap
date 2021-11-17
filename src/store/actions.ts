@@ -33,10 +33,12 @@ export default {
         reader.readAsDataURL(blob)
 
         context.commit('setRecorder', null)
+        context.commit('setMediaStream', null)
         console.log('recording stopped', URL.createObjectURL(blob))
       }
 
       context.commit('setRecorder', recorder)
+      context.commit('setMediaStream', capture)
 
       recorder.start()
     } catch (err) {
