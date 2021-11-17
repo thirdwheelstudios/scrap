@@ -7,6 +7,9 @@ export default {
     const store = useStore()
 
     const isRecording = computed(() => store.getters['isRecording'])
+    const recordButtonTitle = computed(() =>
+      isRecording.value ? 'Stop recording' : 'start a recording'
+    )
 
     return {
       onRecordClick: () => {
@@ -14,6 +17,7 @@ export default {
         store.dispatch(action)
       },
       isRecording,
+      recordButtonTitle,
     }
   },
 }
@@ -21,7 +25,7 @@ export default {
 
 <template>
   <button
-    title="Start a recording"
+    :title="recordButtonTitle"
     @click="onRecordClick"
     :class="{ recording: isRecording }"
   >
