@@ -24,7 +24,7 @@ export default {
   <h2>My Scrapbook</h2>
   <ul>
     <li v-if="isRecording">
-      <InProgressRecording :media-stream="mediaStream" />
+      <InProgressRecording />
     </li>
     <li v-for="recording of recordings" :key="recording.id">
       <RecordingItem />
