@@ -7,6 +7,10 @@ export default {
     const store = useStore()
 
     const isRecording = computed(() => store.getters['isRecording'])
+    const mediaStream = computed(() => store.getters['mediaStream'])
+    const tooltipText = computed(() =>
+      isRecording.value ? 'Stop recording' : 'Start a recording'
+    )
 
     return {
       onRecordClick: () => {
@@ -14,46 +18,119 @@ export default {
         store.dispatch(action)
       },
       isRecording,
+      mediaStream,
+      tooltipText,
     }
   },
 }
 </script>
 
 <template>
-  <button
-    title="Start a recording"
-    @click="onRecordClick"
-    :class="{ recording: isRecording }"
-  >
-    <font-awesome-icon icon="desktop" />
+  <button :title="tooltipText" @click="onRecordClick">
+    <div class="monitor">
+      <div class="body" :class="{ recording: isRecording }">
+        <div class="screen">
+          <div class="content">
+            <video
+              v-if="mediaStream"
+              :src-object.prop.camel="mediaStream"
+              autoplay="true"
+            ></video>
+            <div class="recording-status"></div>
+          </div>
+        </div>
+        <div class="power"></div>
+      </div>
+      <div class="stand" />
+    </div>
   </button>
 </template>
 
 <style scoped lang="scss">
 button {
-  box-shadow: 5px 10px 18px #888888;
-  background-image: linear-gradient(140deg, #d5433e 40%, #ad2b26 60%);
-  color: #323232;
-  border-radius: 50%;
-  border-width: 0;
-  padding: 2rem;
-  font-size: 4rem;
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: border-radius 0.5s;
 }
 
-button:hover {
-  box-shadow: 5px 8px 12px #888888;
-  background-image: linear-gradient(
-    140deg,
-    #d8514c 15%,
-    #d5433e 30%,
-    #ad2b26 55%
-  );
-  transform: translate(0.025rem, 0.025rem);
-}
+.monitor {
+  width: 16rem;
+  margin: 2rem auto;
 
-button.recording {
-  border-radius: 15%;
+  .body {
+    height: 10rem;
+    background: #ddd;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset -0.05rem -0.1rem 0 #bebebe;
+
+    .screen {
+      height: 7rem;
+      border: 10px solid #000;
+      background: #101010;
+      overflow: hidden;
+      transition: background 0.5s;
+      border-radius: 5px 5px 0 0;
+
+      .content {
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(155deg, #ebebeb 60%, #e7e7e7 40%);
+
+        video {
+          width: 100%;
+        }
+
+        .recording-status {
+          position: absolute;
+          left: 50%;
+          top: 20%;
+          transform: translate(-50%, 0);
+          background-image: linear-gradient(155deg, #d5433e 40%, #ad2b26 60%);
+          height: 4rem;
+          width: 4rem;
+          border-radius: 50%;
+          transition: all ease-in 0.4s;
+          box-shadow: 0.1rem 0.1rem 0.1rem #606060;
+        }
+      }
+    }
+
+    .power {
+      background: #606060;
+      width: 0.3rem;
+      height: 0.15rem;
+      float: right;
+      margin-right: 0.5rem;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+  }
+
+  .body.recording {
+    .content .recording-status {
+      border-radius: 10%;
+      box-shadow: none;
+    }
+    .power {
+      background: #67da63;
+      box-shadow: 0 0 10px 1px #67da63;
+    }
+  }
+
+  .stand {
+    width: 3rem;
+    height: 1.5rem;
+    background: #aeaeae;
+    border: 1.5rem solid #afacac;
+    border-top: 0;
+    border-left: 1.5rem solid #fff;
+    border-right: 1.5rem solid #fff;
+    border-bottom: 1.5rem solid #c5c5c5;
+    border-radius: 0.3rem;
+    box-shadow: inset 0 -0.1rem 0 #bebebe;
+    margin: 0 auto;
+  }
 }
 </style>
