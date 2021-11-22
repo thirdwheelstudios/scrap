@@ -7,7 +7,10 @@ export default {
     const store = useStore()
 
     const isRecording = computed(() => store.getters['isRecording'])
-    const tooltipText = computed(() => isRecording.value ? 'Stop recording' : 'Start a recording')
+    const mediaStream = computed(() => store.getters['mediaStream'])
+    const tooltipText = computed(() =>
+      isRecording.value ? 'Stop recording' : 'Start a recording'
+    )
 
     return {
       onRecordClick: () => {
@@ -15,7 +18,8 @@ export default {
         store.dispatch(action)
       },
       isRecording,
-      tooltipText
+      mediaStream,
+      tooltipText,
     }
   },
 }
@@ -26,8 +30,14 @@ export default {
     <div class="monitor">
       <div class="body" :class="{ recording: isRecording }">
         <div class="screen">
-          <div class="content"></div>
-          <div class="recording-status"></div>
+          <div class="content">
+            <video
+              v-if="mediaStream"
+              :src-object.prop.camel="mediaStream"
+              autoplay="true"
+            ></video>
+            <div class="recording-status"></div>
+          </div>
         </div>
         <div class="power"></div>
       </div>
@@ -67,17 +77,23 @@ button {
         width: 100%;
         height: 100%;
         background-image: linear-gradient(155deg, #ebebeb 60%, #e7e7e7 40%);
-      }
 
-      .recording-status {
-        position: absolute;
-        top: 0;
-        margin: 2rem 5.5rem;
-        background-image: linear-gradient(140deg, #d5433e 40%, #ad2b26 60%);
-        height: 4rem;
-        width: 4rem;
-        border-radius: 50%;
-        transition: border-radius 0.2s;
+        video {
+          width: 100%;
+        }
+
+        .recording-status {
+          position: absolute;
+          left: 50%;
+          top: 20%;
+          transform: translate(-50%, 0);
+          background-image: linear-gradient(155deg, #d5433e 40%, #ad2b26 60%);
+          height: 4rem;
+          width: 4rem;
+          border-radius: 50%;
+          transition: all ease-in 0.4s;
+          box-shadow: 0.1rem 0.1rem 0.1rem #606060;
+        }
       }
     }
 
@@ -93,9 +109,9 @@ button {
   }
 
   .body.recording {
-    .screen .recording-status {
-      background-image: linear-gradient(140deg, #414141 40%, #313131 60%);
+    .content .recording-status {
       border-radius: 10%;
+      box-shadow: none;
     }
     .power {
       background: #67da63;
