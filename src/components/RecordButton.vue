@@ -63,7 +63,7 @@ button {
     border-radius: 0.4rem;
     overflow: hidden;
     position: relative;
-    box-shadow: inset 0 -0.1rem 0 #bebebe;
+    box-shadow: inset -0.05rem -0.1rem 0 #bebebe;
 
     .screen {
       height: 7rem;
