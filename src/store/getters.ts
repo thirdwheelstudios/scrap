@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+import { Recording } from '../models/Recording'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default {
@@ -14,4 +15,7 @@ export default {
   recordingStartTime(state: any): DateTime | null {
     return state.recordingStartTime
   },
+  recordings(state: any): Recording[] | null {
+    return state.recordings
+  }
 }
