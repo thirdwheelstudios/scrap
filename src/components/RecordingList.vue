@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import RecordingItem from './RecordingItem.vue'
-import InProgressRecording from './InProgressRecording.vue'
 
 export default {
   setup() {
@@ -16,16 +15,13 @@ export default {
       mediaStream,
     }
   },
-  components: { InProgressRecording, RecordingItem },
+  components: { RecordingItem },
 }
 </script>
 
 <template>
-  <div>Recordings go here 😃</div>
+  <h2>My Scrapbook</h2>
   <ul>
-    <li v-if="isRecording">
-      <InProgressRecording :media-stream="mediaStream" />
-    </li>
     <li v-for="recording of recordings" :key="recording.id">
       <RecordingItem />
     </li>
@@ -33,7 +29,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-div {
-  padding: 5rem;
+ul {
+  list-style: none;
 }
 </style>
