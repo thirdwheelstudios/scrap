@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed } from '@vue/reactivity'
 import { useStore } from 'vuex'
+import StopwatchTimer from './StopwatchTimer.vue'
 
 export default {
   setup() {
@@ -8,6 +9,7 @@ export default {
 
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
+    const recordingStartTime = computed(() => store.getters['recordingStartTime'])
     const tooltipText = computed(() =>
       isRecording.value ? 'Stop recording' : 'Start a recording'
     )
@@ -19,9 +21,11 @@ export default {
       },
       isRecording,
       mediaStream,
+      recordingStartTime,
       tooltipText,
     }
   },
+  components: { StopwatchTimer },
 }
 </script>
 
@@ -39,6 +43,7 @@ export default {
             <div class="recording-status"></div>
           </div>
         </div>
+        <StopwatchTimer v-if="recordingStartTime" class="timer" :date="recordingStartTime" />
         <div class="power"></div>
       </div>
       <div class="stand" />
@@ -64,6 +69,7 @@ button {
     overflow: hidden;
     position: relative;
     box-shadow: inset -0.05rem -0.1rem 0 #bebebe;
+    text-align: left;
 
     .screen {
       height: 7rem;
@@ -95,6 +101,11 @@ button {
           box-shadow: 0.1rem 0.1rem 0.1rem #606060;
         }
       }
+    }
+
+    .timer {
+      margin-left: 0.4rem;
+      margin-top: 0.4rem;
     }
 
     .power {

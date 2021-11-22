@@ -3,9 +3,9 @@ import App from './App.vue'
 import Store from './store'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faDesktop, faStop } from '@fortawesome/free-solid-svg-icons'
+import { faDesktop, faStopwatch } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faDesktop, faStop)
+library.add(faDesktop, faStopwatch)
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
