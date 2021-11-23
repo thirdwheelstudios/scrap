@@ -80,6 +80,10 @@ export default {
 
     const blobUrl = window.URL.createObjectURL(recording.blob)
 
-    window.location.assign(blobUrl)
+    const a = document.createElement('a')
+    document.body.appendChild(a)
+    a.href = blobUrl
+    a.setAttribute('download', recording.description)
+    a.click()
   },
 }
