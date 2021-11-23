@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import RecordingItem from './RecordingItem.vue'
 
@@ -8,7 +8,10 @@ export default {
     const store = useStore()
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
-    const recordings = ref()
+    const recordings = computed(() => store.getters['recordings'])
+
+    store.dispatch('getRecordings')
+
     return {
       recordings,
       isRecording,

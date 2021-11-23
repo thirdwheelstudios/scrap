@@ -9,6 +9,7 @@ export default createStore({
       recorder: null,
       mediaStream: null,
       recordingStartTime: null,
+      recordings: [],
     }
   },
   mutations,

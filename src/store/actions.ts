@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { DateTime } from 'luxon'
+import { Recording } from '../models/Recording'
+import { db } from '../persistence/db'
+
 export default {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async startRecording(context: any) {
     try {
       const isCapturing: boolean = context.getters['isCapturing']
@@ -22,19 +26,23 @@ export default {
         chunks.push(e.data)
       }
 
-      recorder.onstop = function () {
+      recorder.onstop = async function () {
         const blob = new Blob(chunks, { type: 'video/webm' })
+        const startDateTime: DateTime = context.getters['recordingStartTime']
+        const finishDateTime = DateTime.now()
 
-        const reader = new FileReader()
-        reader.onload = function () {
-          console.log(this.result)
-        }
+        const recording = {
+          description: 'New Recording',
+          blob,
+          startDateTime: startDateTime.toJSDate(),
+          finishDateTime: finishDateTime.toJSDate(),
+        } as Recording
 
-        reader.readAsDataURL(blob)
+        await db.recordings.add(recording)
 
         context.commit('setRecorder', null)
         context.commit('setMediaStream', null)
-        console.log('recording stopped', URL.createObjectURL(blob))
+        context.commit('addRecording', recording)
       }
 
       context.commit('setRecorder', recorder)
@@ -45,7 +53,6 @@ export default {
       console.error('Unable to start capture', err)
     }
   },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async stopRecording(context: any) {
     const isRecording: boolean = context.getters['isRecording']
     if (!isRecording) return
@@ -53,5 +60,10 @@ export default {
     const recorder: MediaRecorder = context.getters['recorder']
 
     recorder.stop()
+  },
+  async getRecordings(context: any) {
+    const recordings = await db.recordings.toArray()
+
+    context.commit('setRecordings', recordings)
   },
 }
