@@ -68,4 +68,9 @@ export default {
 
     context.commit('setRecordings', recordings)
   },
+  async deleteRecording(context: any, id: number) {
+    await db.recordings.where('id').equals(id).delete()
+
+    context.commit('deleteRecording', { id })
+  },
 }

@@ -4,6 +4,7 @@ import { computed } from '@vue/reactivity'
 import { DateTime } from 'luxon'
 import { Recording } from '../models/Recording'
 import RecordingItemActionButton from './RecordingItemActionButton.vue'
+import { useStore } from 'vuex'
 
 export default {
   props: {
@@ -14,6 +15,7 @@ export default {
   },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setup(props: any) {
+    const store = useStore()
     const duration = computed(() => {
       const startDateTime = DateTime.fromJSDate(props.recording.startDateTime)
       const finishDateTime = DateTime.fromJSDate(props.recording.finishDateTime)
@@ -32,7 +34,7 @@ export default {
         console.log('download clicked')
       },
       onDeleteClick: () => {
-        console.log('delete clicked')
+        store.dispatch('deleteRecording', props.recording.id)
       },
       duration,
       recordingDate,
