@@ -1,7 +1,93 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+import { PropType, ref } from 'vue'
+import { computed } from '@vue/reactivity'
+import { DateTime } from 'luxon'
+import { Recording } from '../models/Recording'
+import RecordingItemActionButton from './RecordingItemActionButton.vue'
+
+export default {
+  props: {
+    recording: {
+      type: Object as PropType<Recording>,
+      required: true,
+    },
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setup(props: any) {
+    const duration = computed(() => {
+      const startDateTime = DateTime.fromJSDate(props.recording.startDateTime)
+      const finishDateTime = DateTime.fromJSDate(props.recording.finishDateTime)
+      return finishDateTime.diff(startDateTime).toFormat('hh:mm:ss')
+    })
+
+    const recordingDate = computed(() => {
+      const startDateTime = DateTime.fromJSDate(props.recording.startDateTime)
+      return startDateTime.toLocaleString(DateTime.DATETIME_SHORT)
+    })
+
+    const description = ref(props.recording.description)
+
+    return {
+      onDownloadClick: () => {
+        console.log('download clicked')
+      },
+      onDeleteClick: () => {
+        console.log('delete clicked')
+      },
+      duration,
+      recordingDate,
+      description,
+    }
+  },
+  components: { RecordingItemActionButton },
+}
+</script>
 
 <template>
-  <div></div>
+  <div class="content">
+    <span><input type="text" v-model="description" /></span>
+    <span><font-awesome-icon icon="calendar" /> {{ recordingDate }}</span>
+    <ul>
+      <li>
+        <RecordingItemActionButton icon="file-download" @click="onDownloadClick"
+          >Download</RecordingItemActionButton
+        >
+      </li>
+      <li>
+        <RecordingItemActionButton icon="trash-alt" @click="onDeleteClick"
+          >Delete</RecordingItemActionButton
+        >
+      </li>
+    </ul>
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.content {
+  text-align: left;
+
+  * {
+    margin-top: 0.25rem;
+  }
+}
+
+span {
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+  display: inline-flex;
+
+  li {
+    margin-right: 0.5rem;
+  }
+}
+
+input {
+  border: 0;
+  font-size: 1.5em;
+}
+</style>

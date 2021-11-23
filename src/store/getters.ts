@@ -16,6 +16,6 @@ export default {
     return state.recordingStartTime
   },
   recordings(state: any): Recording[] | null {
-    return state.recordings
-  }
+    return state.recordings ?? []
+  },
 }

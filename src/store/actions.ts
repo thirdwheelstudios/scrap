@@ -31,8 +31,10 @@ export default {
         const startDateTime: DateTime = context.getters['recordingStartTime']
         const finishDateTime = DateTime.now()
 
+        const count: number = context.getters['recordings'].length
+
         const recording = {
-          description: 'New Recording',
+          description: `Scrap #${count + 1}`,
           blob,
           startDateTime: startDateTime.toJSDate(),
           finishDateTime: finishDateTime.toJSDate(),

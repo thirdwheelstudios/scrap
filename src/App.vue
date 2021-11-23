@@ -9,12 +9,13 @@ import RecordingList from './components/RecordingList.vue'
 </template>
 
 <style>
-#app {
+body {
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  margin: 0;
+  background-color: #f5f7fb;
   color: #2c3e50;
-  margin-top: 60px;
+  text-align: center;
 }
 </style>
