@@ -15,5 +15,9 @@ export default {
   },
   addRecording(state: any, recording: Recording) {
     state.recordings.push(recording)
+  },
+  deleteRecording(state: any, recording: Recording) {
+    const newRecordings = state.recordings.filter((x: Recording) => x.id !== recording.id)
+    state.recordings = [...newRecordings]
   }
 }
