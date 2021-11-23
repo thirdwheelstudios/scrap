@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { Recording } from '../models/Recording'
 import RecordingItem from './RecordingItem.vue'
 
 export default {
@@ -8,7 +9,11 @@ export default {
     const store = useStore()
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
-    const recordings = computed(() => store.getters['recordings'])
+    const recordings = computed(() => {
+      const recordings: Recording[] = store.getters['recordings'] ?? []
+
+      return recordings.sort((a, b) => a.startDateTime > b.startDateTime ? -1 : 1)
+    })
 
     store.dispatch('getRecordings')
 
@@ -26,7 +31,7 @@ export default {
   <h2>My Scrapbook</h2>
   <ul>
     <li v-for="recording of recordings" :key="recording.id">
-      <RecordingItem />
+      <RecordingItem :recording="recording" />
     </li>
   </ul>
 </template>
@@ -34,5 +39,6 @@ export default {
 <style scoped lang="scss">
 ul {
   list-style: none;
+  padding-left: 0;
 }
 </style>
