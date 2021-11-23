@@ -51,12 +51,12 @@ export default {
     <span><font-awesome-icon icon="calendar" /> {{ recordingDate }}</span>
     <ul>
       <li>
-        <RecordingItemActionButton icon="file-download" @click="onDownloadClick"
+        <RecordingItemActionButton icon="file-download" @click="onDownloadClick" title="Download this recording"
           >Download</RecordingItemActionButton
         >
       </li>
       <li>
-        <RecordingItemActionButton icon="trash-alt" @click="onDeleteClick"
+        <RecordingItemActionButton icon="trash-alt" @click="onDeleteClick" title="Delete this recording"
           >Delete</RecordingItemActionButton
         >
       </li>
