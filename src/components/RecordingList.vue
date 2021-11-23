@@ -53,6 +53,10 @@ export default {
   box-shadow: 0.1rem 0.1rem 0.5rem #dbe2f0;
 }
 
+h2 {
+  margin: 0.5rem 0;
+}
+
 ul {
   list-style: none;
   padding-left: 0;

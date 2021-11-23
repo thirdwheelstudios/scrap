@@ -31,7 +31,7 @@ export default {
 
     return {
       onDownloadClick: () => {
-        console.log('download clicked')
+        store.dispatch('downloadRecording', props.recording.id)
       },
       onDeleteClick: () => {
         store.dispatch('deleteRecording', props.recording.id)

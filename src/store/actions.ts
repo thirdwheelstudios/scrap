@@ -73,4 +73,17 @@ export default {
 
     context.commit('deleteRecording', { id })
   },
+  async downloadRecording(context: any, id: number) {
+    const recording = await db.recordings.where('id').equals(id).first()
+
+    if (!recording) return
+
+    const blobUrl = window.URL.createObjectURL(recording.blob)
+
+    const a = document.createElement('a')
+    document.body.appendChild(a)
+    a.href = blobUrl
+    a.setAttribute('download', recording.description)
+    a.click()
+  },
 }
