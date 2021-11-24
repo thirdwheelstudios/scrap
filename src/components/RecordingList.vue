@@ -48,7 +48,9 @@ export default {
   background-color: #fff;
   border-radius: 1rem;
   padding: 1rem;
-  margin: 2rem 15%;
+  width: 90%;
+  max-width: 60rem;
+  margin: 2rem auto;
   text-align: left;
   box-shadow: 0.1rem 0.1rem 0.5rem #dbe2f0;
 }
@@ -63,6 +65,18 @@ ul {
 
   li {
     padding-top: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 50%;
   }
 }
 </style>
