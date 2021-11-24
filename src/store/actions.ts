@@ -17,6 +17,7 @@ export default {
 
       const options = {
         mimeType: 'video/webm',
+        videoBitsPerSecond: 480000,
       } as MediaRecorderOptions
       const recorder = new MediaRecorder(capture, options)
 
