@@ -31,11 +31,9 @@ export default {
         const startDateTime: DateTime = context.getters['recordingStartTime']
         const finishDateTime = DateTime.now()
 
-        const count: number = context.getters['recordings'].length
         const thumbnailBlob: Blob = context.getters['thumbnailBlob']
 
         const recording = {
-          description: `Scrap #${count + 1}`,
           blob,
           thumbnailBlob,
           startDateTime: startDateTime.toJSDate(),
@@ -80,12 +78,12 @@ export default {
 
     if (!recording) return
 
-    const blobUrl = window.URL.createObjectURL(recording.blob)
-
     const a = document.createElement('a')
     document.body.appendChild(a)
-    a.href = blobUrl
-    a.setAttribute('download', recording.description)
+
+    a.href = window.URL.createObjectURL(recording.blob)
+    const name = recording.description ?? `Scrap #${recording.id}`
+    a.setAttribute('download', name)
     a.click()
   },
   setThumbnail(context: any, blob: Blob) {
