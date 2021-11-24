@@ -52,7 +52,10 @@ export default {
 
 <template>
   <div class="recording-item">
-    <img :src="imageSrc" :alt="`Sreen recording from ${recordingDate}`" />
+    <div class="thumbnail">
+      <img :src="imageSrc" :alt="`Sreen recording from ${recordingDate}`" />
+      <small>{{ duration }}</small>
+    </div>
     <div class="content">
       <span><input type="text" v-model="description" /></span>
       <span><font-awesome-icon icon="calendar" /> {{ recordingDate }}</span>
@@ -82,18 +85,30 @@ export default {
 .recording-item {
   display: inline-flex;
 
-  img {
-    width: 10rem;
-    border-radius: 0.1rem;
+  .thumbnail {
+    position: relative;
+
+    small {
+      position: absolute;
+      border-radius: 0.5rem;
+      background-color: #2c3e50;
+      color: #f5f7fb;
+      bottom: 0;
+      left: 0;
+      margin-left: 0.25rem;
+      margin-bottom: 0.25rem;
+      padding: 0.125rem 0.25rem;
+    }
+
+    img {
+      width: 10rem;
+      border-radius: 0.1rem;
+    }
   }
 
   .content {
     text-align: left;
     margin-left: 0.5rem;
-
-    * {
-      margin-top: 0.25rem;
-    }
 
     span {
       display: block;
