@@ -31,7 +31,9 @@ export default {
       URL.createObjectURL(props.recording.thumbnailBlob)
     )
 
-    const description = ref(props.recording.description)
+    const description = computed(() => {
+      return props.recording.description ?? `Scrap #${props.recording.id}`
+    })
 
     return {
       onDownloadClick: () => {
