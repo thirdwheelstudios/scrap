@@ -1,4 +1,5 @@
 <script lang="ts">
+import { ref, watchEffect } from 'vue'
 import { computed } from '@vue/reactivity'
 import { useStore } from 'vuex'
 import StopwatchTimer from './StopwatchTimer.vue'
@@ -9,9 +10,38 @@ export default {
 
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
-    const recordingStartTime = computed(() => store.getters['recordingStartTime'])
+    const recordingStartTime = computed(
+      () => store.getters['recordingStartTime']
+    )
     const tooltipText = computed(() =>
       isRecording.value ? 'Stop recording' : 'Start a recording'
+    )
+
+    const videoEle = ref(null)
+    const canvasEle = ref(null)
+
+    watchEffect(
+      () => {
+        if (!videoEle.value || !canvasEle.value) return
+
+        const canvas: HTMLCanvasElement = canvasEle.value
+        const video: HTMLVideoElement = videoEle.value
+
+        setTimeout(() => {
+          canvas.width = video.clientWidth
+          canvas.height = video.clientHeight
+
+          const context = canvas.getContext('2d')
+          if (!context) return
+
+          context.drawImage(video, 0, 0, canvas.width, canvas.height)
+
+          canvas.toBlob((blob) => {
+            store.dispatch('setThumbnail', blob)
+          })
+        }, 250)
+      },
+      { flush: 'post' }
     )
 
     return {
@@ -23,6 +53,8 @@ export default {
       mediaStream,
       recordingStartTime,
       tooltipText,
+      videoEle,
+      canvasEle,
     }
   },
   components: { StopwatchTimer },
@@ -37,13 +69,19 @@ export default {
           <div class="content">
             <video
               v-if="mediaStream"
+              ref="videoEle"
               :src-object.prop.camel="mediaStream"
               autoplay="true"
-            ></video>
-            <div class="recording-status"></div>
+            />
+            <canvas v-if="mediaStream" ref="canvasEle" />
+            <div class="recording-status" />
           </div>
         </div>
-        <StopwatchTimer v-if="recordingStartTime" class="timer" :date="recordingStartTime" />
+        <StopwatchTimer
+          v-if="recordingStartTime"
+          class="timer"
+          :date="recordingStartTime"
+        />
         <div class="power"></div>
       </div>
       <div class="stand" />
@@ -86,6 +124,11 @@ button {
 
         video {
           width: 100%;
+        }
+
+        canvas {
+          width: 100%;
+          display: none;
         }
 
         .recording-status {

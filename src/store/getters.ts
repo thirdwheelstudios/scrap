@@ -18,4 +18,7 @@ export default {
   recordings(state: any): Recording[] | null {
     return state.recordings ?? []
   },
+  thumbnailBlob(state: any): Blob {
+    return state.thumbnailBlob
+  },
 }

@@ -32,10 +32,12 @@ export default {
         const finishDateTime = DateTime.now()
 
         const count: number = context.getters['recordings'].length
+        const thumbnailBlob: Blob = context.getters['thumbnailBlob']
 
         const recording = {
           description: `Scrap #${count + 1}`,
           blob,
+          thumbnailBlob,
           startDateTime: startDateTime.toJSDate(),
           finishDateTime: finishDateTime.toJSDate(),
         } as Recording
@@ -85,5 +87,8 @@ export default {
     a.href = blobUrl
     a.setAttribute('download', recording.description)
     a.click()
+  },
+  setThumbnail(context: any, blob: Blob) {
+    context.commit('setThumbnail', blob)
   },
 }

@@ -10,6 +10,7 @@ export default createStore({
       mediaStream: null,
       recordingStartTime: null,
       recordings: [],
+      thumbnailBlob: null,
     }
   },
   mutations,
