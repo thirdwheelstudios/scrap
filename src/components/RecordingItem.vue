@@ -53,7 +53,7 @@ export default {
 <template>
   <div class="recording-item">
     <div class="thumbnail">
-      <img :src="imageSrc" :alt="`Sreen recording from ${recordingDate}`" />
+      <img :src="imageSrc" :alt="`Screen recording from ${recordingDate}`" />
       <small>{{ duration }}</small>
     </div>
     <div class="content">
