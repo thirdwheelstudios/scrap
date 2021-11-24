@@ -48,7 +48,7 @@ export default {
   background-color: #fff;
   border-radius: 1rem;
   padding: 1rem;
-  margin: 2rem 25%;
+  margin: 2rem 15%;
   text-align: left;
   box-shadow: 0.1rem 0.1rem 0.5rem #dbe2f0;
 }

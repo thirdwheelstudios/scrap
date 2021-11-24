@@ -17,7 +17,12 @@ export default {
     state.recordings.push(recording)
   },
   deleteRecording(state: any, recording: Recording) {
-    const newRecordings = state.recordings.filter((x: Recording) => x.id !== recording.id)
+    const newRecordings = state.recordings.filter(
+      (x: Recording) => x.id !== recording.id
+    )
     state.recordings = [...newRecordings]
-  }
+  },
+  setThumbnail(state: any, blob: Blob) {
+    state.thumbnailBlob = blob
+  },
 }

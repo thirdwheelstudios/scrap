@@ -27,6 +27,10 @@ export default {
       return startDateTime.toLocaleString(DateTime.DATETIME_SHORT)
     })
 
+    const imageSrc = computed(() =>
+      URL.createObjectURL(props.recording.thumbnailBlob)
+    )
+
     const description = ref(props.recording.description)
 
     return {
@@ -39,6 +43,7 @@ export default {
       duration,
       recordingDate,
       description,
+      imageSrc,
     }
   },
   components: { RecordingItemActionButton },
@@ -46,50 +51,84 @@ export default {
 </script>
 
 <template>
-  <div class="content">
-    <span><input type="text" v-model="description" /></span>
-    <span><font-awesome-icon icon="calendar" /> {{ recordingDate }}</span>
-    <ul>
-      <li>
-        <RecordingItemActionButton icon="file-download" @click="onDownloadClick" title="Download this recording"
-          >Download</RecordingItemActionButton
-        >
-      </li>
-      <li>
-        <RecordingItemActionButton icon="trash-alt" @click="onDeleteClick" title="Delete this recording"
-          >Delete</RecordingItemActionButton
-        >
-      </li>
-    </ul>
+  <div class="recording-item">
+    <div class="thumbnail">
+      <img :src="imageSrc" :alt="`Screen recording from ${recordingDate}`" />
+      <small>{{ duration }}</small>
+    </div>
+    <div class="content">
+      <span><input type="text" v-model="description" /></span>
+      <span><font-awesome-icon icon="calendar" /> {{ recordingDate }}</span>
+      <ul>
+        <li>
+          <RecordingItemActionButton
+            icon="file-download"
+            @click="onDownloadClick"
+            title="Download this recording"
+            >Download</RecordingItemActionButton
+          >
+        </li>
+        <li>
+          <RecordingItemActionButton
+            icon="trash-alt"
+            @click="onDeleteClick"
+            title="Delete this recording"
+            >Delete</RecordingItemActionButton
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.content {
-  text-align: left;
-
-  * {
-    margin-top: 0.25rem;
-  }
-}
-
-span {
-  display: block;
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 1rem;
+.recording-item {
   display: inline-flex;
 
-  li {
-    margin-right: 0.5rem;
-  }
-}
+  .thumbnail {
+    position: relative;
 
-input {
-  border: 0;
-  font-size: 1.5em;
+    small {
+      position: absolute;
+      border-radius: 0.5rem;
+      background-color: #2c3e50;
+      color: #f5f7fb;
+      bottom: 0;
+      left: 0;
+      margin-left: 0.25rem;
+      margin-bottom: 0.25rem;
+      padding: 0.125rem 0.25rem;
+    }
+
+    img {
+      width: 10rem;
+      border-radius: 0.1rem;
+    }
+  }
+
+  .content {
+    text-align: left;
+    margin-left: 0.5rem;
+
+    span {
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+      display: inline-flex;
+
+      li {
+        margin-right: 0.5rem;
+      }
+    }
+
+    input {
+      border: 0;
+      font-size: 1.5em;
+    }
+  }
 }
 </style>
