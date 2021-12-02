@@ -111,7 +111,7 @@ button {
 
     .screen {
       height: 7rem;
-      border: 10px solid #000;
+      border: 0.6rem solid #000;
       background: #101010;
       overflow: hidden;
       transition: background 0.5s;
@@ -120,7 +120,7 @@ button {
       .content {
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(155deg, #ebebeb 60%, #e7e7e7 40%);
+        background-image: linear-gradient(155deg, #404040 60%, #333333 40%);
 
         video {
           width: 100%;
@@ -141,7 +141,7 @@ button {
           width: 4rem;
           border-radius: 50%;
           transition: all ease-in 0.4s;
-          box-shadow: 0.1rem 0.1rem 0.1rem #606060;
+          box-shadow: 0 0 0.25rem #d5433e;
         }
       }
     }
@@ -165,7 +165,7 @@ button {
   .body.recording {
     .content .recording-status {
       border-radius: 10%;
-      box-shadow: none;
+      box-shadow: 0 0 0.3rem #d5433e;
     }
     .power {
       background: #67da63;
