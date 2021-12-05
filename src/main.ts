@@ -11,6 +11,7 @@ import {
   faPencilAlt,
   faTimes,
   faCheck,
+  faCog,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -20,7 +21,8 @@ library.add(
   faTrashAlt,
   faPencilAlt,
   faTimes,
-  faCheck
+  faCheck,
+  faCog
 )
 
 createApp(App)
