@@ -31,9 +31,11 @@ export default {
       URL.createObjectURL(props.recording.thumbnailBlob)
     )
 
-    const description = computed(() => {
-      return props.recording.description ?? `Scrap #${props.recording.id}`
-    })
+    const originalDescription = computed(
+      () => props.recording.description ?? `Scrap #${props.recording.id}`
+    )
+
+    const description = ref(originalDescription.value)
 
     const isInEditMode = ref(false)
     const descriptionEle = ref(null)
@@ -50,10 +52,22 @@ export default {
           element.focus()
         }
       },
-      onEditSaveClick: () => {
-        isInEditMode.value = false
-      },
-      onEditCancelClick: () => {
+      onProcessEditClick: (save: boolean) => {
+        if (save) {
+          const payload = {
+            id: props.recording.id,
+            description: description.value,
+          } as Recording
+          store.dispatch('updateDescription', payload)
+        } else {
+          description.value = originalDescription.value
+        }
+
+        if (descriptionEle.value) {
+          const element: HTMLInputElement = descriptionEle.value
+          element.focus()
+          element.setSelectionRange(0, 0)
+        }
         isInEditMode.value = false
       },
       onDeleteClick: () => {
@@ -90,7 +104,7 @@ export default {
         <li v-if="isInEditMode">
           <RecordingItemActionButton
             icon="check"
-            @click="onEditSaveClick"
+            @click="onProcessEditClick(true)"
             title="Save changes"
             >Save</RecordingItemActionButton
           >
@@ -98,7 +112,7 @@ export default {
         <li v-if="isInEditMode">
           <RecordingItemActionButton
             icon="times"
-            @click="onEditCancelClick"
+            @click="onProcessEditClick(false)"
             title="Cancel changes"
             >Cancel</RecordingItemActionButton
           >
@@ -163,13 +177,21 @@ export default {
 
     span {
       display: block;
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+    }
+
+    span:first-of-type {
+      margin: 0;
+      height: 2.5rem;
     }
 
     ul {
       list-style: none;
       padding-left: 0;
-      margin-top: 1rem;
       display: inline-flex;
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
 
       li {
         margin-right: 0.5rem;
@@ -177,8 +199,14 @@ export default {
     }
 
     input {
-      border: 0;
+      border: 0.1rem solid #d1d1d1;
+      border-radius: 0.25rem;
       font-size: 1.5em;
+      padding: 0.25rem;
+    }
+
+    input[readonly] {
+      border: 0;
     }
 
     input[readonly]:focus {
