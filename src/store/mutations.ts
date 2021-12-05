@@ -25,4 +25,11 @@ export default {
   setThumbnail(state: any, blob: Blob) {
     state.thumbnailBlob = blob
   },
+  updateDescription(state: any, recording: Recording) {
+    const recordingToUpdate: Recording = state.recordings.find(
+      (x: Recording) => x.id === recording.id
+    )
+
+    if (recordingToUpdate) recordingToUpdate.description = recording.description
+  },
 }

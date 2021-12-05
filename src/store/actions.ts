@@ -90,4 +90,11 @@ export default {
   setThumbnail(context: any, blob: Blob) {
     context.commit('setThumbnail', blob)
   },
+  async updateDescription(context: any, recording: Recording) {
+    if (!recording.id) return
+
+    await db.recordings.update(recording.id, { description: recording.description })
+
+    context.commit('updateDescription', recording)
+  },
 }
