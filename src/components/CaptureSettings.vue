@@ -82,6 +82,7 @@ export default {
       name="videoBitsPerSecond"
       min="500000"
       max="5000000"
+      step="1000"
     />
     <label for="audioBitsPerSecond"
       >Audio Quality -
@@ -95,6 +96,7 @@ export default {
       name="audioBitsPerSecond"
       min="64000"
       max="320000"
+      step="1000"
     />
     <button @click="onSaveClick"><font-awesome-icon icon="save" /> Save</button>
   </div>
