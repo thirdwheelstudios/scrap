@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DateTime } from 'luxon'
+import { CaptureSettings } from '../models/CaptureSettings'
 import { Recording } from '../models/Recording'
 import { db } from '../persistence/db'
 
@@ -8,16 +9,17 @@ export default {
     try {
       const isCapturing: boolean = context.getters['isCapturing']
       if (isCapturing) return
+      const settings: CaptureSettings = context.getters['captureSettings']
 
       const constraints = {
-        video: true,
-        audio: false,
+        video: settings.captureVideo,
+        audio: settings.captureAudio,
       } as DisplayMediaStreamConstraints
       const capture = await navigator.mediaDevices.getDisplayMedia(constraints)
 
       const options = {
-        mimeType: 'video/webm',
-        videoBitsPerSecond: 480000,
+        mimeType: settings.mimeType,
+        bitsPerSecond: settings.bitsPerSecond,
       } as MediaRecorderOptions
       const recorder = new MediaRecorder(capture, options)
 
@@ -28,7 +30,7 @@ export default {
       }
 
       recorder.onstop = async function () {
-        const blob = new Blob(chunks, { type: 'video/webm' })
+        const blob = new Blob(chunks, { type: settings.mimeType })
         const startDateTime: DateTime = context.getters['recordingStartTime']
         const finishDateTime = DateTime.now()
 
