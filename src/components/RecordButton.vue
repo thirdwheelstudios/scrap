@@ -50,7 +50,7 @@ export default {
         store.dispatch(action)
       },
       onSettingsClick: () => {
-        console.log('settings clicked')
+        store.dispatch('setModalComponent', 'CaptureSettings')
       },
       isRecording,
       mediaStream,
