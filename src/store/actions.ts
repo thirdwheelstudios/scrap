@@ -105,4 +105,11 @@ export default {
   setModalComponent(context: any, modalComponentName: string | null) {
     context.commit('setModalComponent', modalComponentName)
   },
+  updateCaptureSettings(context: any, settings: CaptureSettings) {
+    const settingsJson = JSON.stringify(settings)
+
+    localStorage.setItem('captureSettings', settingsJson)
+
+    context.commit('updateCaptureSettings', settings)
+  }
 }

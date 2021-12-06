@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DateTime } from 'luxon'
+import { CaptureSettings } from '../models/CaptureSettings'
 import { Recording } from '../models/Recording'
 
 export default {
@@ -34,5 +35,8 @@ export default {
   },
   setModalComponent(state: any, modalComponentName: string | null) {
     state.currentModalComponentName = modalComponentName
-  }
+  },
+  updateCaptureSettings(state: any, settings: CaptureSettings) {
+    state.captureSettings = settings
+  },
 }

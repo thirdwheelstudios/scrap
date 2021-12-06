@@ -27,5 +27,5 @@ export default {
   },
   currentModalComponentName(state: any): string {
     return state.currentModalComponentName
-  }
+  },
 }

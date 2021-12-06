@@ -4,6 +4,22 @@ import actions from './actions'
 import getters from './getters'
 import { CaptureSettings } from '../models/CaptureSettings'
 
+function getCaptureSettings() {
+  const settingsJson = localStorage.getItem('captureSettings')
+
+  if (settingsJson) {
+    return JSON.parse(settingsJson)
+  }
+
+  return {
+    mimeType: 'video/webm',
+    captureAudio: true,
+    captureVideo: true,
+    audioBitsPerSecond: 128000,
+    videoBitsPerSecond: 1250000,
+  } as CaptureSettings
+}
+
 export default createStore({
   state() {
     return {
@@ -12,13 +28,7 @@ export default createStore({
       recordingStartTime: null,
       recordings: [],
       thumbnailBlob: null,
-      captureSettings: {
-        mimeType: 'video/webm',
-        captureAudio: true,
-        captureVideo: true,
-        audioBitsPerSecond: 128000,
-        videoBitsPerSecond: 1250000,
-      } as CaptureSettings,
+      captureSettings: getCaptureSettings(),
       currentModalComponentName: null
     }
   },
