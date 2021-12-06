@@ -24,16 +24,18 @@ export default {
 </script>
 
 <template>
-  <div
-    v-if="currentModalComponent"
-    class="modal-container"
-    @click.self="onCloseClick"
-  >
-    <button @click="onCloseClick">
-      <font-awesome-icon icon="times"></font-awesome-icon>
-    </button>
-    <component class="modal-content" :is="currentModalComponent" />
-  </div>
+  <transition name="fade">
+    <div
+      v-if="currentModalComponent"
+      class="modal-container"
+      @click.self="onCloseClick"
+    >
+      <button @click="onCloseClick">
+        <font-awesome-icon icon="times"></font-awesome-icon>
+      </button>
+      <component class="modal-content" :is="currentModalComponent" />
+    </div>
+  </transition>
 </template>
 
 <style scoped lang="scss">
@@ -64,5 +66,15 @@ export default {
     border-radius: 0.5rem;
     box-shadow: 0 0 0.5rem #7f7f7f;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
