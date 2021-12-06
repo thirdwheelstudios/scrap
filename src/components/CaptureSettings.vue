@@ -26,7 +26,9 @@ export default {
       return 'Lowest'
     })
 
-    const videoBitRateInKiloBytes = computed(() => `${Math.round(videoBitsPerSecond.value / 1000)}Kbps`)
+    const videoBitRateInKiloBytes = computed(
+      () => `${Math.round(videoBitsPerSecond.value / 1000)}Kbps`
+    )
 
     const audioBitRateDescription = computed(() => {
       const bitRate = audioBitsPerSecond.value
@@ -39,11 +41,20 @@ export default {
       return 'Lowest'
     })
 
-    const audioBitRateInKiloBytes = computed(() => `${Math.round(audioBitsPerSecond.value / 1000)}Kbps`)
+    const audioBitRateInKiloBytes = computed(
+      () => `${Math.round(audioBitsPerSecond.value / 1000)}Kbps`
+    )
 
     return {
       onSaveClick: () => {
-        console.log('Save Clicked')
+        const newSettings = {
+          ...settings.value,
+          videoBitsPerSecond: videoBitsPerSecond.value,
+          audioBitsPerSecond: audioBitsPerSecond.value,
+        } as CaptureSettings
+
+        store.dispatch('updateCaptureSettings', newSettings)
+        store.dispatch('setModalComponent', null)
       },
       videoBitsPerSecond,
       audioBitsPerSecond,
