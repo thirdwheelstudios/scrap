@@ -19,6 +19,7 @@ export default createStore({
         audioBitsPerSecond: 960000,
         videoBitsPerSecond: 960000,
       } as CaptureSettings,
+      currentModalComponentName: null
     }
   },
   mutations,

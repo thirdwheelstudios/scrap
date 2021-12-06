@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import RecordButton from './components/RecordButton.vue'
 import RecordingList from './components/RecordingList.vue'
+import ModalContainer from './components/ModalContainer.vue'
 </script>
 
 <template>
   <RecordButton />
   <RecordingList />
+  <ModalContainer />
 </template>
 
 <style>

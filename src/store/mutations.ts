@@ -32,4 +32,7 @@ export default {
 
     if (recordingToUpdate) recordingToUpdate.description = recording.description
   },
+  setModalComponent(state: any, modalComponentName: string | null) {
+    state.currentModalComponentName = modalComponentName
+  }
 }

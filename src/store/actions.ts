@@ -96,8 +96,13 @@ export default {
   async updateDescription(context: any, recording: Recording) {
     if (!recording.id) return
 
-    await db.recordings.update(recording.id, { description: recording.description })
+    await db.recordings.update(recording.id, {
+      description: recording.description,
+    })
 
     context.commit('updateDescription', recording)
+  },
+  setModalComponent(context: any, modalComponentName: string | null) {
+    context.commit('setModalComponent', modalComponentName)
   },
 }

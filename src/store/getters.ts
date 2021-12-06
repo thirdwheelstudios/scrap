@@ -25,4 +25,7 @@ export default {
   captureSettings(state: any): CaptureSettings {
     return state.captureSettings
   },
+  currentModalComponentName(state: any): string {
+    return state.currentModalComponentName
+  }
 }
