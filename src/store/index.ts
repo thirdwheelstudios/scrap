@@ -16,7 +16,8 @@ export default createStore({
         mimeType: 'video/webm',
         captureAudio: true,
         captureVideo: true,
-        bitsPerSecond: 960000,
+        audioBitsPerSecond: 960000,
+        videoBitsPerSecond: 960000,
       } as CaptureSettings,
     }
   },

@@ -19,7 +19,8 @@ export default {
 
       const options = {
         mimeType: settings.mimeType,
-        bitsPerSecond: settings.bitsPerSecond,
+        audioBitsPerSecond: settings.audioBitsPerSecond,
+        videoBitsPerSecond: settings.videoBitsPerSecond,
       } as MediaRecorderOptions
       const recorder = new MediaRecorder(capture, options)
 
