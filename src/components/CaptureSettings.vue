@@ -84,6 +84,7 @@ export default {
       max="5000000"
       step="1000"
     />
+    <small>{{ videoBitRateInKiloBytes }}</small>
     <label for="audioBitsPerSecond"
       >Audio Quality -
       <small :title="audioBitRateInKiloBytes">{{
@@ -98,6 +99,7 @@ export default {
       max="320000"
       step="1000"
     />
+    <small>{{ audioBitRateInKiloBytes }}</small>
     <button @click="onSaveClick"><font-awesome-icon icon="save" /> Save</button>
   </div>
 </template>
@@ -108,6 +110,11 @@ div {
   flex-direction: column;
 
   label {
+    margin-top: 0.5rem;
+  }
+
+  label,
+  small {
     text-align: left;
   }
 
