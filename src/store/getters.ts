@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+import { CaptureSettings } from '../models/CaptureSettings'
 import { Recording } from '../models/Recording'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -20,5 +21,11 @@ export default {
   },
   thumbnailBlob(state: any): Blob {
     return state.thumbnailBlob
+  },
+  captureSettings(state: any): CaptureSettings {
+    return state.captureSettings
+  },
+  currentModalComponentName(state: any): string {
+    return state.currentModalComponentName
   },
 }

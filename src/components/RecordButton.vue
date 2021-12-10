@@ -49,6 +49,9 @@ export default {
         const action = isRecording.value ? 'stopRecording' : 'startRecording'
         store.dispatch(action)
       },
+      onSettingsClick: () => {
+        store.dispatch('setModalComponent', 'CaptureSettings')
+      },
       isRecording,
       mediaStream,
       recordingStartTime,
@@ -75,6 +78,9 @@ export default {
             />
             <canvas v-if="mediaStream" ref="canvasEle" />
             <div class="recording-status" />
+            <button v-if="!isRecording" @click.stop="onSettingsClick">
+              <font-awesome-icon icon="cog" />
+            </button>
           </div>
         </div>
         <StopwatchTimer
@@ -142,6 +148,19 @@ button {
           border-radius: 50%;
           transition: all ease-in 0.4s;
           box-shadow: 0 0 0.25rem #d5433e;
+        }
+
+        button {
+          position: absolute;
+          right: 0;
+          margin-right: 0.5rem;
+          margin-top: 0.25rem;
+          font-size: 1.5rem;
+          color: #bcbcbc;
+
+          :hover {
+            color: #ddd;
+          }
         }
       }
     }
