@@ -1,12 +1,19 @@
 <script lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { Recording } from '../models/Recording'
 import RecordingItem from './RecordingItem.vue'
+import { screenRecording } from '../composables/screenRecording'
 
 export default {
   setup() {
     const store = useStore()
+    const { isSupported } = screenRecording()
+
+    const titleText = ref(
+      isSupported.value ? 'My Scrapbook' : 'Unsupported Browser'
+    )
+
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
     const recordings = computed(() => {
@@ -23,6 +30,8 @@ export default {
       recordings,
       isRecording,
       mediaStream,
+      isSupported,
+      titleText,
     }
   },
   components: { RecordingItem },
@@ -31,9 +40,13 @@ export default {
 
 <template>
   <div class="container">
-    <h2>My Scrapbook</h2>
+    <h2>{{ titleText }}</h2>
     <ul>
-      <li v-if="!recordings.length">
+      <li v-if="!isSupported">
+        Your browser doesn't appear to support screen recording. Scrap is
+        designed to work with Chrome, Edge, Firefox & Safari.
+      </li>
+      <li v-else-if="!recordings.length">
         It's looking quiet here, make a recording to get started!
       </li>
       <li v-else v-for="recording of recordings" :key="recording.id">
