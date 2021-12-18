@@ -56,7 +56,7 @@ export default {
 
       recorder.start()
     } catch (err) {
-      console.error('Unable to start capture', err)
+      console.error('Unable to start recording', err)
     }
   },
   async stopRecording(context: any) {

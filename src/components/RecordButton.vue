@@ -3,19 +3,23 @@ import { ref, watchEffect } from 'vue'
 import { computed } from '@vue/reactivity'
 import { useStore } from 'vuex'
 import StopwatchTimer from './StopwatchTimer.vue'
+import { screenRecording } from '../composables/screenRecording'
 
 export default {
   setup() {
     const store = useStore()
+    const { isSupported } = screenRecording()
 
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
     const recordingStartTime = computed(
       () => store.getters['recordingStartTime']
     )
-    const tooltipText = computed(() =>
-      isRecording.value ? 'Stop recording' : 'Start a recording'
-    )
+    const tooltipText = computed(() => {
+      if (!isSupported.value) return 'Unsupported browser'
+
+      return isRecording.value ? 'Stop recording' : 'Start a recording'
+    })
 
     const videoEle = ref(null)
     const canvasEle = ref(null)
@@ -58,6 +62,7 @@ export default {
       tooltipText,
       videoEle,
       canvasEle,
+      isSupported,
     }
   },
   components: { StopwatchTimer },
@@ -65,7 +70,7 @@ export default {
 </script>
 
 <template>
-  <button :title="tooltipText" @click="onRecordClick">
+  <button :title="tooltipText" @click="onRecordClick" :disabled="!isSupported">
     <div class="monitor">
       <div class="body" :class="{ recording: isRecording }">
         <div class="screen">
@@ -77,8 +82,14 @@ export default {
               autoplay="true"
             />
             <canvas v-if="mediaStream" ref="canvasEle" />
-            <div class="recording-status" />
-            <button v-if="!isRecording" @click.stop="onSettingsClick">
+            <div v-if="isSupported" class="recording-status" />
+            <div v-else class="not-supported">
+              <font-awesome-icon icon="times-circle" />
+            </div>
+            <button
+              v-if="!isRecording && isSupported"
+              @click.stop="onSettingsClick"
+            >
               <font-awesome-icon icon="cog" />
             </button>
           </div>
@@ -100,6 +111,10 @@ button {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
 }
 
 .monitor {
@@ -148,6 +163,20 @@ button {
           border-radius: 50%;
           transition: all ease-in 0.4s;
           box-shadow: 0 0 0.25rem #d5433e;
+        }
+
+        .not-supported {
+          color: #a72925;
+          font-size: 4rem;
+          margin: auto;
+          position: relative;
+
+          * {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 1.25rem;
+          }
         }
 
         button {

@@ -5,7 +5,7 @@ import { Recording } from '../models/Recording'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default {
   isRecording(state: any) {
-    return state.recorder !== null && state.mediStream !== null
+    return state.recorder !== null && state.mediaStream !== null
   },
   recorder(state: any): MediaRecorder {
     return state.recorder
