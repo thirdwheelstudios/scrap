@@ -24,6 +24,7 @@ export default {
 .orb-container {
   display: flex;
   flex-direction: row;
+  margin: auto;
   width: fit-content;
 
   .orb {
