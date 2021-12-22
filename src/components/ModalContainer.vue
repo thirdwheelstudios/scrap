@@ -55,7 +55,7 @@ export default {
     border-radius: 0.5rem;
     border: 0;
     background-color: #7f7f7f;
-    color: #f5f7fb;
+    color: $background;
     cursor: pointer;
   }
 

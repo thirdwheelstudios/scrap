@@ -157,7 +157,7 @@ export default {
       position: absolute;
       border-radius: 0.5rem;
       background-color: #2c3e50;
-      color: #f5f7fb;
+      color: $background;
       bottom: 0;
       left: 0;
       margin-left: 0.25rem;
