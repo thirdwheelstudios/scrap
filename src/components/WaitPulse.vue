@@ -49,7 +49,7 @@ export default {
       box-shadow: 0 0 0 (0.0225rem * $index) #d5433e;
     }
     #{(6% * $index)} {
-      box-shadow: 0 0 0 0.18rem #d5433e;
+      box-shadow: 0 0 0 (0.018rem * $index) #d5433e;
     }
     70% {
       box-shadow: 0 0 0 0.1rem #d5433e;
