@@ -107,7 +107,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
-$power-button: #67da63;
+$power-button-off: #606060;
+$power-button-on: #67da63;
 $content-gradient-start: #404040;
 $content-gradient-end: #333333;
 
@@ -168,7 +169,7 @@ button[disabled] {
           background-image: linear-gradient(
             155deg,
             $primary-color 40%,
-            #ad2b26 60%
+            $primary-color-dark 60%
           );
           height: 4rem;
           width: 4rem;
@@ -178,7 +179,7 @@ button[disabled] {
         }
 
         .not-supported {
-          color: #a72925;
+          color: $danger-color;
           font-size: 4rem;
           margin: auto;
           position: relative;
@@ -212,7 +213,7 @@ button[disabled] {
     }
 
     .power {
-      background: #606060;
+      background: $power-button-off;
       width: 0.3rem;
       height: 0.15rem;
       float: right;
@@ -228,8 +229,8 @@ button[disabled] {
       box-shadow: 0 0 0.3rem $primary-color;
     }
     .power {
-      background: $power-button;
-      box-shadow: 0 0 10px 1px $power-button;
+      background: $power-button-on;
+      box-shadow: 0 0 10px 1px $power-button-on;
     }
   }
 
