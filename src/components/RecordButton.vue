@@ -179,7 +179,7 @@ button[disabled] {
         }
 
         .not-supported {
-          color: $danger-color;
+          color: $primary-color-dark;
           font-size: 4rem;
           margin: auto;
           position: relative;
