@@ -100,7 +100,9 @@ export default {
       step="1000"
     />
     <small>{{ audioBitRateInKiloBytes }}</small>
-    <button @click="onSaveClick"><font-awesome-icon icon="save" /> Save</button>
+    <button class="btn" @click="onSaveClick">
+      <font-awesome-icon icon="save" /> Save
+    </button>
   </div>
 </template>
 
@@ -120,27 +122,6 @@ div {
 
   button {
     margin: 1.5rem 0;
-    background-color: #f52891;
-    color: #fee7f3;
-    padding: 0.5rem;
-    border: 0;
-    border-radius: 1rem;
-    box-shadow: 0 0 0.5rem #f86db5;
-    cursor: pointer;
-    transition: all ease-in 0.4s;
-  }
-
-  button:hover {
-    background-color: #f755a8;
-    color: #fff;
-    transform: scale(1.005);
-  }
-
-  button[disabled] {
-    background-color: #4d1933;
-    color: #df9fbf;
-    box-shadow: 0 0 0.5rem #cc6699;
-    cursor: not-allowed;
   }
 }
 </style>
