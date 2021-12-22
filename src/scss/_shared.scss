@@ -1,0 +1,25 @@
+@import './src/scss/_color-variables';
+
+button.btn {
+  background-color: #f52891;
+  color: #fee7f3;
+  padding: 0.25rem 1rem;
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem #f86db5;
+  cursor: pointer;
+  transition: all ease-in 0.2s;
+}
+
+button.btn:hover {
+  background-color: #f755a8;
+  color: #fff;
+  transform: scale(1.015);
+}
+
+button.btn[disabled] {
+  background-color: #4d1933;
+  color: #df9fbf;
+  box-shadow: 0 0 0.5rem #cc6699;
+  cursor: not-allowed;
+}

@@ -156,8 +156,8 @@ export default {
     small {
       position: absolute;
       border-radius: 0.5rem;
-      background-color: #2c3e50;
-      color: #f5f7fb;
+      background-color: $text-color;
+      color: $primary-background-color;
       bottom: 0;
       left: 0;
       margin-left: 0.25rem;

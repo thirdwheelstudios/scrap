@@ -19,17 +19,16 @@ export default {
 </script>
 
 <template>
-  <button @click="onClick">
+  <button class="btn" @click="onClick">
     <font-awesome-icon :icon="icon" /><slot></slot>
   </button>
 </template>
 
 <style scoped lang="scss">
-button {
+button.btn {
   background: none;
   border: none;
   padding: 0;
-  cursor: pointer;
 
   > * {
     font-size: 1.25em;
