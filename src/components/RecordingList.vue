@@ -57,8 +57,13 @@ export default {
         Your browser doesn't appear to support screen recording. Scrap is
         designed to work with Chrome, Edge, Firefox & Safari.
       </li>
-      <li v-else-if="isLoadingRecordings && hasFinishedLoading">
+      <li
+        v-else-if="isLoadingRecordings && hasFinishedLoading"
+        class="loading-item"
+      >
         <WaitPulse />
+        <br />
+        Loading recordings, please wait...
       </li>
       <li v-else-if="!isLoadingRecordings && !recordings.length">
         It's looking quiet here, make a recording to get started!
@@ -93,6 +98,10 @@ ul {
   li {
     padding-top: 0.5rem;
   }
+}
+
+.loading-item {
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
