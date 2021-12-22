@@ -31,7 +31,7 @@ export default {
     border-radius: 50%;
     min-width: 1em;
     min-height: 1em;
-    background-color: #d5433e;
+    background-color: $primary-color;
     margin: 0.25rem;
   }
 }
@@ -43,19 +43,19 @@ export default {
 
   @keyframes pulse-#{$index} {
     0% {
-      box-shadow: 0 0 0 0 #d5433e;
+      box-shadow: 0 0 0 0 $primary-color;
     }
     #{(4% * $index)} {
-      box-shadow: 0 0 0 (0.0225rem * $index) #d5433e;
+      box-shadow: 0 0 0 (0.0225rem * $index) $primary-color;
     }
     #{(6% * $index)} {
-      box-shadow: 0 0 0 (0.018rem * $index) #d5433e;
+      box-shadow: 0 0 0 (0.018rem * $index) $primary-color;
     }
     70% {
-      box-shadow: 0 0 0 0.1rem #d5433e;
+      box-shadow: 0 0 0 0.1rem $primary-color;
     }
     100% {
-      box-shadow: 0 0 0 0 #d5433e;
+      box-shadow: 0 0 0 0$primary-color;
     }
   }
 }

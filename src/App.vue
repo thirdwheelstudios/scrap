@@ -16,7 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
-  background-color: $primary-background;
+  background-color: $primary-background-color;
   color: $text-color;
   text-align: center;
 }

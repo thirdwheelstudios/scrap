@@ -107,6 +107,10 @@ export default {
 </template>
 
 <style scoped lang="scss">
+$power-button: #67da63;
+$content-gradient-start: #404040;
+$content-gradient-end: #333333;
+
 button {
   background: none;
   border: none;
@@ -141,7 +145,11 @@ button[disabled] {
       .content {
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(155deg, #404040 60%, #333333 40%);
+        background-image: linear-gradient(
+          155deg,
+          $content-gradient-start 60%,
+          $content-gradient-end 40%
+        );
 
         video {
           width: 100%;
@@ -157,12 +165,16 @@ button[disabled] {
           left: 50%;
           top: 20%;
           transform: translate(-50%, 0);
-          background-image: linear-gradient(155deg, #d5433e 40%, #ad2b26 60%);
+          background-image: linear-gradient(
+            155deg,
+            $primary-color 40%,
+            #ad2b26 60%
+          );
           height: 4rem;
           width: 4rem;
           border-radius: 50%;
           transition: all ease-in 0.4s;
-          box-shadow: 0 0 0.25rem #d5433e;
+          box-shadow: 0 0 0.25rem $primary-color;
         }
 
         .not-supported {
@@ -213,11 +225,11 @@ button[disabled] {
   .body.recording {
     .content .recording-status {
       border-radius: 10%;
-      box-shadow: 0 0 0.3rem #d5433e;
+      box-shadow: 0 0 0.3rem $primary-color;
     }
     .power {
-      background: #67da63;
-      box-shadow: 0 0 10px 1px #67da63;
+      background: $power-button;
+      box-shadow: 0 0 10px 1px $power-button;
     }
   }
 
@@ -227,8 +239,8 @@ button[disabled] {
     background: #aeaeae;
     border: 1.5rem solid #afacac;
     border-top: 0;
-    border-left: 1.5rem solid $primary-background;
-    border-right: 1.5rem solid $primary-background;
+    border-left: 1.5rem solid $primary-background-color;
+    border-right: 1.5rem solid $primary-background-color;
     border-bottom: 1.5rem solid #c5c5c5;
     border-radius: 0.3rem;
     box-shadow: inset 0 -0.1rem 0 #bebebe;
