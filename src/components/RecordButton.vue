@@ -227,8 +227,8 @@ button[disabled] {
     background: #aeaeae;
     border: 1.5rem solid #afacac;
     border-top: 0;
-    border-left: 1.5rem solid $background;
-    border-right: 1.5rem solid $background;
+    border-left: 1.5rem solid $primary-background;
+    border-right: 1.5rem solid $primary-background;
     border-bottom: 1.5rem solid #c5c5c5;
     border-radius: 0.3rem;
     box-shadow: inset 0 -0.1rem 0 #bebebe;
