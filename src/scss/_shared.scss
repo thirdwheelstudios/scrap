@@ -8,13 +8,13 @@ button.btn {
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem #f86db5;
   cursor: pointer;
-  transition: all ease-in 0.4s;
+  transition: all ease-in 0.2s;
 }
 
 button.btn:hover {
   background-color: #f755a8;
   color: #fff;
-  transform: scale(1.005);
+  transform: scale(1.015);
 }
 
 button.btn[disabled] {
