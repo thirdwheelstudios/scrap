@@ -4,6 +4,7 @@ import { useStore } from 'vuex'
 import { Recording } from '../models/Recording'
 import RecordingItem from './RecordingItem.vue'
 import { screenRecording } from '../composables/screenRecording'
+import WaitPulse from './WaitPulse.vue'
 
 export default {
   setup() {
@@ -14,8 +15,16 @@ export default {
       isSupported.value ? 'My Scrapbook' : 'Unsupported Browser'
     )
 
+    const hasFinished = ref(false)
+
+    setTimeout(() => (hasFinished.value = true), 1000)
+
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
+    const hasFinishedLoading = computed(() => hasFinished.value)
+    const isLoadingRecordings = computed(
+      () => store.getters['isLoadingRecordings']
+    )
     const recordings = computed(() => {
       const recordings: Recording[] = store.getters['recordings']
 
@@ -32,9 +41,11 @@ export default {
       mediaStream,
       isSupported,
       titleText,
+      isLoadingRecordings,
+      hasFinishedLoading,
     }
   },
-  components: { RecordingItem },
+  components: { RecordingItem, WaitPulse },
 }
 </script>
 
@@ -46,7 +57,15 @@ export default {
         Your browser doesn't appear to support screen recording. Scrap is
         designed to work with Chrome, Edge, Firefox & Safari.
       </li>
-      <li v-else-if="!recordings.length">
+      <li
+        v-else-if="isLoadingRecordings && hasFinishedLoading"
+        class="loading-item"
+      >
+        <WaitPulse />
+        <br />
+        Loading recordings, please wait...
+      </li>
+      <li v-else-if="!isLoadingRecordings && !recordings.length">
         It's looking quiet here, make a recording to get started!
       </li>
       <li v-else v-for="recording of recordings" :key="recording.id">
@@ -79,6 +98,10 @@ ul {
   li {
     padding-top: 0.5rem;
   }
+}
+
+.loading-item {
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {

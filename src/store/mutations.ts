@@ -39,4 +39,7 @@ export default {
   updateCaptureSettings(state: any, settings: CaptureSettings) {
     state.captureSettings = settings
   },
+  setIsLoadingRecordings(state: any, isLoading: boolean) {
+    state.isLoadingRecordings = isLoading
+  },
 }
