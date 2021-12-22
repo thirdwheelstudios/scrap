@@ -15,8 +15,13 @@ export default {
       isSupported.value ? 'My Scrapbook' : 'Unsupported Browser'
     )
 
+    const hasFinished = ref(false)
+
+    setTimeout(() => (hasFinished.value = true), 1000)
+
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
+    const hasFinishedLoading = computed(() => hasFinished.value)
     const isLoadingRecordings = computed(
       () => store.getters['isLoadingRecordings']
     )
@@ -37,6 +42,7 @@ export default {
       isSupported,
       titleText,
       isLoadingRecordings,
+      hasFinishedLoading,
     }
   },
   components: { RecordingItem, WaitPulse },
@@ -47,12 +53,14 @@ export default {
   <div class="container">
     <h2>{{ titleText }}</h2>
     <ul>
-      <li v-if="isLoadingRecordings"><WaitPulse /></li>
-      <li v-else-if="!isSupported">
+      <li v-if="!isSupported">
         Your browser doesn't appear to support screen recording. Scrap is
         designed to work with Chrome, Edge, Firefox & Safari.
       </li>
-      <li v-else-if="!recordings.length">
+      <li v-else-if="isLoadingRecordings && hasFinishedLoading">
+        <WaitPulse />
+      </li>
+      <li v-else-if="!isLoadingRecordings && !recordings.length">
         It's looking quiet here, make a recording to get started!
       </li>
       <li v-else v-for="recording of recordings" :key="recording.id">
