@@ -4,6 +4,7 @@ import { useStore } from 'vuex'
 import { Recording } from '../models/Recording'
 import RecordingItem from './RecordingItem.vue'
 import { screenRecording } from '../composables/screenRecording'
+import WaitPulse from './WaitPulse.vue'
 
 export default {
   setup() {
@@ -16,6 +17,9 @@ export default {
 
     const isRecording = computed(() => store.getters['isRecording'])
     const mediaStream = computed(() => store.getters['mediaStream'])
+    const isLoadingRecordings = computed(
+      () => store.getters['isLoadingRecordings']
+    )
     const recordings = computed(() => {
       const recordings: Recording[] = store.getters['recordings']
 
@@ -32,9 +36,10 @@ export default {
       mediaStream,
       isSupported,
       titleText,
+      isLoadingRecordings,
     }
   },
-  components: { RecordingItem },
+  components: { RecordingItem, WaitPulse },
 }
 </script>
 
@@ -42,7 +47,8 @@ export default {
   <div class="container">
     <h2>{{ titleText }}</h2>
     <ul>
-      <li v-if="!isSupported">
+      <li v-if="isLoadingRecordings"><WaitPulse /></li>
+      <li v-else-if="!isSupported">
         Your browser doesn't appear to support screen recording. Scrap is
         designed to work with Chrome, Edge, Firefox & Safari.
       </li>
