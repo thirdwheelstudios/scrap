@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { createSimpleExpression } from '@vue/compiler-core'
 import { DateTime } from 'luxon'
 import { CaptureSettings } from '../models/CaptureSettings'
 import { Recording } from '../models/Recording'
@@ -68,9 +69,11 @@ export default {
     recorder.stop()
   },
   async getRecordings(context: any) {
+    context.commit('setIsLoadingRecordings', true)
     const recordings = await db.recordings.toArray()
 
     context.commit('setRecordings', recordings)
+    context.commit('setIsLoadingRecordings', false)
   },
   async deleteRecording(context: any, id: number) {
     await db.recordings.where('id').equals(id).delete()
@@ -111,5 +114,5 @@ export default {
     localStorage.setItem('captureSettings', settingsJson)
 
     context.commit('updateCaptureSettings', settings)
-  }
+  },
 }

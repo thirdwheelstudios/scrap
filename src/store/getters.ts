@@ -19,6 +19,9 @@ export default {
   recordings(state: any): Recording[] | null {
     return state.recordings ?? []
   },
+  isLoadingRecordings(state: any): boolean {
+    return state.isLoadingRecordings
+  },
   thumbnailBlob(state: any): Blob {
     return state.thumbnailBlob
   },

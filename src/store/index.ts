@@ -27,6 +27,7 @@ export default createStore({
       mediaStream: null,
       recordingStartTime: null,
       recordings: [],
+      isLoadingRecordings: false,
       thumbnailBlob: null,
       captureSettings: getCaptureSettings(),
       currentModalComponentName: null
