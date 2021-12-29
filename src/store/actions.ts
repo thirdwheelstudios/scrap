@@ -108,7 +108,10 @@ export default {
     context.commit('setModalComponent', modalComponentName)
   },
   updateCaptureSettings(context: any, settings: CaptureSettings) {
-    const settingsJson = JSON.stringify(settings)
+    const settingsJson = JSON.stringify({
+      audioBitsPerSecond: settings.audioBitsPerSecond,
+      videoBitsPerSecond: settings.videoBitsPerSecond,
+    })
 
     localStorage.setItem('captureSettings', settingsJson)
 
