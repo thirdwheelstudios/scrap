@@ -3,6 +3,7 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 import { CaptureSettings } from '../models/CaptureSettings'
+import { screenRecording } from '../composables/screenRecording'
 
 function getCaptureSettings() {
   const settingsJson = localStorage.getItem('captureSettings')
@@ -11,8 +12,10 @@ function getCaptureSettings() {
     return JSON.parse(settingsJson)
   }
 
+  const { supportedMimeType } = screenRecording()
+
   return {
-    mimeType: 'video/mp4',
+    mimeType: supportedMimeType.value(),
     captureAudio: true,
     captureVideo: true,
     audioBitsPerSecond: 128000,
