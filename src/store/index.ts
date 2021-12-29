@@ -12,7 +12,7 @@ function getCaptureSettings() {
   }
 
   return {
-    mimeType: 'video/webm',
+    mimeType: 'video/mp4',
     captureAudio: true,
     captureVideo: true,
     audioBitsPerSecond: 128000,
