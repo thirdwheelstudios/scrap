@@ -3,20 +3,23 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 import { CaptureSettings } from '../models/CaptureSettings'
+import { screenRecording } from '../composables/screenRecording'
 
 function getCaptureSettings() {
   const settingsJson = localStorage.getItem('captureSettings')
 
-  if (settingsJson) {
-    return JSON.parse(settingsJson)
-  }
+  const bitsSettings = settingsJson
+    ? JSON.parse(settingsJson)
+    : { audioBitsPerSecond: 128000, videoBitsPerSecond: 1250000 }
+
+  const { supportedMimeType } = screenRecording()
 
   return {
-    mimeType: 'video/webm',
+    mimeType: supportedMimeType.value(),
     captureAudio: true,
     captureVideo: true,
-    audioBitsPerSecond: 128000,
-    videoBitsPerSecond: 1250000,
+    audioBitsPerSecond: bitsSettings.audioBitsPerSecond,
+    videoBitsPerSecond: bitsSettings.videoBitsPerSecond,
   } as CaptureSettings
 }
 
@@ -30,7 +33,7 @@ export default createStore({
       isLoadingRecordings: false,
       thumbnailBlob: null,
       captureSettings: getCaptureSettings(),
-      currentModalComponentName: null
+      currentModalComponentName: null,
     }
   },
   mutations,
