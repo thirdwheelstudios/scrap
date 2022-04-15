@@ -9,16 +9,6 @@
 </template>
 
 <style lang="scss">
-html {
-  body {
-    margin: 0;
-  }
-
-  background-color: $bg-color;
-  color: $primary-color;
-  transition: background-color 0.2s ease-in, color 0.2s ease-in;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
