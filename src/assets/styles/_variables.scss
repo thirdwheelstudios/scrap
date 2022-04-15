@@ -1,9 +1,11 @@
 :root {
-    --bg-canvas: #242424;
+    --bg-color: #242424;
+    --primary-color: #e6e6e6;
     --bg-primary-gradient-start: #262626;
     --bg-primary-gradient-end: #0d0d0d;
   }
   
-  $bg-canvas: var(--bg-canvas);
+  $bg-color: var(--bg-color);
+  $primary-color: var(--primary-color);
   $bg-primary-gradient-start: var(--bg-primary-gradient-start);
   $bg-primary-gradient-end: var(--bg-primary-gradient-end);

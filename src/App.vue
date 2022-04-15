@@ -8,15 +8,15 @@
   <router-view />
 </template>
 
-<style type="scss">
-@import './assets/styles/_variables.scss';
-
-html body {
-  margin: 0;
-}
-
+<style lang="scss">
 html {
-  background-color: var(--bg-canvas);
+  body {
+    margin: 0;
+  }
+
+  background-color: $bg-color;
+  color: $primary-color;
+  transition: background-color 0.2s ease-in, color 0.2s ease-in;
 }
 
 #app {
@@ -24,7 +24,6 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin: 0;
 }
 </style>
