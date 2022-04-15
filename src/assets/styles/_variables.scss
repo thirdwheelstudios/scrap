@@ -1,11 +1,13 @@
 :root {
     --bg-color: #242424;
     --primary-color: #e6e6e6;
-    --bg-primary-gradient-start: #262626;
-    --bg-primary-gradient-end: #0d0d0d;
+    --primary-shadow: #6f6f6f;
+    --bg-primary-gradient-start: #414141;
+    --bg-primary-gradient-end: #383838;
   }
   
   $bg-color: var(--bg-color);
   $primary-color: var(--primary-color);
+  $primary-shadow: var(--primary-shadow);
   $bg-primary-gradient-start: var(--bg-primary-gradient-start);
   $bg-primary-gradient-end: var(--bg-primary-gradient-end);
