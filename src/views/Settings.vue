@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import SettingGroup from '../components/settings/SettingGroup.vue'
 import { useSettingsStore } from '../store'
 
+const router = useRouter()
 const settings = useSettingsStore()
 
 const appTheme = ref(settings.theme)
+
+const onBackToScrap = () => {
+  router.push({ name: 'home' })
+}
 
 watch(
   () => appTheme.value,
@@ -17,7 +23,10 @@ watch(
 
 <template>
   <div class="settings-container">
-    <h1>Settings</h1>
+    <div>
+      <h1>Settings</h1>
+      <button type="button" @click="onBackToScrap">⬅ Back to Scrap</button>
+    </div>
     <SettingGroup group-title="Theme">
       <form>
         <div>
@@ -41,6 +50,16 @@ watch(
 .settings-container {
   margin: auto;
   max-width: 800px;
+
+  div {
+    display: flex;
+    margin: 1rem 0;
+
+    h1 {
+      flex-grow: 1;
+      margin: 0;
+    }
+  }
 
   form {
     display: grid;
