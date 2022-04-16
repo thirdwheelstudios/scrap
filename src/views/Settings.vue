@@ -1,9 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import SettingGroup from '../components/settings/SettingGroup.vue'
-import { AppTheme } from '../enums'
+import { useSettingsStore } from '../store'
 
-const appTheme = ref(AppTheme.auto)
+const settings = useSettingsStore()
+
+const appTheme = ref(settings.theme)
+
+watch(
+  () => appTheme.value,
+  (theme) => {
+    settings.setTheme(theme)
+  }
+)
 </script>
 
 <template>
