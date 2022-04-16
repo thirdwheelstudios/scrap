@@ -23,7 +23,7 @@ watch(
 
 <template>
   <div class="settings-container">
-    <div>
+    <div class="title">
       <h1>Settings</h1>
       <button type="button" @click="onBackToScrap">⬅ Back to Scrap</button>
     </div>
@@ -51,7 +51,7 @@ watch(
   margin: auto;
   max-width: 800px;
 
-  div {
+  .title {
     display: flex;
     margin: 1rem 0;
 
