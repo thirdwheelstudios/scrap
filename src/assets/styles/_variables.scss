@@ -5,6 +5,11 @@
     --bg-primary-gradient-start: #414141;
     --bg-primary-gradient-end: #383838;
     --border-color: #1d1d1d;
+
+    --button-gradient-1: #6a5acd;
+    --button-gradient-2: #8a2be2;
+    --button-gradient-3: #ba55d3;
+    --button-gradient-4: #da70d6;
   }
   
   $bg-color: var(--bg-color);
@@ -13,3 +18,8 @@
   $bg-primary-gradient-start: var(--bg-primary-gradient-start);
   $bg-primary-gradient-end: var(--bg-primary-gradient-end);
   $border-color: var(--border-color);
+
+  $button-gradient-1: var(--button-gradient-1);
+  $button-gradient-2: var(--button-gradient-2);
+  $button-gradient-3: var(--button-gradient-3);
+  $button-gradient-4: var(--button-gradient-4);
