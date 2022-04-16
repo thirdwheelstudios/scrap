@@ -4,6 +4,7 @@
     --primary-shadow: #6f6f6f;
     --bg-primary-gradient-start: #414141;
     --bg-primary-gradient-end: #383838;
+    --border-color: #1d1d1d;
   }
   
   $bg-color: var(--bg-color);
@@ -11,3 +12,4 @@
   $primary-shadow: var(--primary-shadow);
   $bg-primary-gradient-start: var(--bg-primary-gradient-start);
   $bg-primary-gradient-end: var(--bg-primary-gradient-end);
+  $border-color: var(--border-color);
