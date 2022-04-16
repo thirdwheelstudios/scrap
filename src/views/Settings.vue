@@ -11,18 +11,18 @@ const appTheme = ref(AppTheme.auto)
     <h1>Settings</h1>
     <SettingGroup group-title="Theme">
       <form>
-        <span>
+        <div>
           <input type="radio" id="autoTheme" v-model="appTheme" value="0" />
           <label for="autoTheme">Auto (System)</label>
-        </span>
-        <span>
+        </div>
+        <div>
           <input type="radio" id="darkTheme" v-model="appTheme" value="1" />
           <label for="darkTheme">Dark Theme</label>
-        </span>
-        <span>
+        </div>
+        <div>
           <input type="radio" id="lightTheme" v-model="appTheme" value="2" />
           <label for="lightTheme">Light Theme</label>
-        </span>
+        </div>
       </form>
     </SettingGroup>
   </div>
@@ -37,7 +37,7 @@ const appTheme = ref(AppTheme.auto)
     display: grid;
     margin-top: 1rem;
 
-    span {
+    div {
       margin: 0.1rem;
     }
   }
