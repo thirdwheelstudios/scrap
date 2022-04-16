@@ -17,7 +17,7 @@ div {
 
   border-radius: 0.5rem;
   border: 1px solid $border-color;
-  box-shadow: 3px 3px 10px $border-color;
+  box-shadow: 3px 3px 5px $border-color;
   background: linear-gradient(
     140deg,
     $bg-primary-gradient-start,
