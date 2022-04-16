@@ -30,15 +30,15 @@ watch(
     <SettingGroup group-title="Theme">
       <form>
         <div>
-          <input type="radio" id="autoTheme" v-model="appTheme" value="0" />
+          <input type="radio" id="autoTheme" v-model="appTheme" :value="0" />
           <label for="autoTheme">Auto (System)</label>
         </div>
         <div>
-          <input type="radio" id="darkTheme" v-model="appTheme" value="1" />
+          <input type="radio" id="darkTheme" v-model="appTheme" :value="1" />
           <label for="darkTheme">Dark Theme</label>
         </div>
         <div>
-          <input type="radio" id="lightTheme" v-model="appTheme" value="2" />
+          <input type="radio" id="lightTheme" v-model="appTheme" :value="2" />
           <label for="lightTheme">Light Theme</label>
         </div>
       </form>

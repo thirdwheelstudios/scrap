@@ -1,6 +1,6 @@
-export function getValue<T>(key: string, defaultValue: T) {
+export function getValue<T>(key: string) {
   const json = localStorage.getItem(key)
-  if (!json) return defaultValue
+  if (!json) return null
 
   const parsed: T = JSON.parse(json)
 

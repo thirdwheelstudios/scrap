@@ -4,7 +4,9 @@ import { getValue, setValue } from '../../utils/localStorage'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => {
-    return { appTheme: getValue('theme', AppTheme.auto) }
+    const appTheme = getValue<AppTheme>('theme') ?? AppTheme.auto
+
+    return { appTheme }
   },
   getters: {
     theme(state) {
