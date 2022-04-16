@@ -63,7 +63,7 @@ watch(
 
   form {
     display: grid;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 
     div {
       margin: 0.1rem;
