@@ -29,15 +29,15 @@ watch(
     </div>
     <SettingGroup group-title="Theme">
       <form>
-        <div>
+        <div class="radio-button">
           <input type="radio" id="autoTheme" v-model="appTheme" :value="0" />
           <label for="autoTheme">Auto (System)</label>
         </div>
-        <div>
+        <div class="radio-button">
           <input type="radio" id="darkTheme" v-model="appTheme" :value="1" />
           <label for="darkTheme">Dark Theme</label>
         </div>
-        <div>
+        <div class="radio-button">
           <input type="radio" id="lightTheme" v-model="appTheme" :value="2" />
           <label for="lightTheme">Light Theme</label>
         </div>
@@ -64,6 +64,13 @@ watch(
   form {
     display: grid;
     margin-top: 0.5rem;
+
+    .radio-button {
+      input,
+      label {
+        cursor: pointer;
+      }
+    }
 
     div {
       margin: 0.1rem;
