@@ -27,6 +27,8 @@ $power-button-off: #606060;
 $power-button-on: #67da63;
 $content-gradient-start: #404040;
 $content-gradient-end: #333333;
+$body-color: #ddd;
+$stand-color: #aeaeae;
 
 .monitor {
   width: 16rem;
@@ -34,7 +36,7 @@ $content-gradient-end: #333333;
 
   .body {
     height: 10rem;
-    background: #ddd;
+    background: $body-color;
     border-radius: 0.4rem;
     overflow: hidden;
     position: relative;
@@ -79,15 +81,16 @@ $content-gradient-end: #333333;
   .stand {
     width: 3rem;
     height: 1.5rem;
-    background: #aeaeae;
-    border: 1.5rem solid #afacac;
-    border-top: 0;
+    background: $stand-color;
     border-left: 1.5rem solid $bg-color;
     border-right: 1.5rem solid $bg-color;
-    border-bottom: 1.5rem solid #c5c5c5;
+    border-bottom: 1.5rem solid #9b9b9b;
     border-radius: 0.3rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     box-shadow: inset 0 -0.1rem 0 #bebebe;
     margin: 0 auto;
+    transition: border-left 0.2s ease-in, border-right 0.2s ease-in;
   }
 }
 </style>
