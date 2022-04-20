@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MonitorContainer from '../components/MonitorContainer.vue'
-import { screenRecording } from '../composables/screenRecording'
 import BrowserNotSupported from '../components/BrowserNotSupported.vue'
+import { screenRecording } from '../composables/screenRecording'
 
 const { isSupported } = screenRecording()
 </script>
