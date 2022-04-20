@@ -3,6 +3,7 @@ import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import SettingGroup from '../components/settings/SettingGroup.vue'
 import { useSettingsStore } from '../store'
+import GroupContainer from '../components/GroupContainer.vue'
 
 const router = useRouter()
 const settings = useSettingsStore()
@@ -22,11 +23,12 @@ watch(
 </script>
 
 <template>
-  <div class="settings-container">
-    <div class="title">
-      <h1>Settings</h1>
-      <button type="button" @click="onBackToScrap">⬅ Back to Scrap</button>
-    </div>
+  <GroupContainer title="Settings">
+    <template v-slot:title-content
+      ><button type="button" @click="onBackToScrap">
+        ⬅ Back to Scrap
+      </button></template
+    >
     <SettingGroup group-title="Theme">
       <form>
         <div class="radio-button">
@@ -43,38 +45,23 @@ watch(
         </div>
       </form>
     </SettingGroup>
-  </div>
+  </GroupContainer>
 </template>
 
 <style scoped lang="scss">
-.settings-container {
-  margin: auto;
-  max-width: 800px;
+form {
+  display: grid;
+  margin-top: 0.5rem;
 
-  .title {
-    display: flex;
-    margin: 1rem 0;
-
-    h1 {
-      flex-grow: 1;
-      margin: 0;
+  .radio-button {
+    input,
+    label {
+      cursor: pointer;
     }
   }
 
-  form {
-    display: grid;
-    margin-top: 0.5rem;
-
-    .radio-button {
-      input,
-      label {
-        cursor: pointer;
-      }
-    }
-
-    div {
-      margin: 0.1rem;
-    }
+  div {
+    margin: 0.1rem;
   }
 }
 </style>
