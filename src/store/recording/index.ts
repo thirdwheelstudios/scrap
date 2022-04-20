@@ -5,12 +5,16 @@ import { screenRecording } from '../../composables/screenRecording'
 export const useRecordingStore = defineStore('recording', {
   state: () => {
     let recorder: MediaRecorder | undefined
+    let recorderStartTime: Date | undefined
 
-    return { recorder }
+    return { recorder, recorderStartTime }
   },
   getters: {
     isRecording(state) {
       return state.recorder !== undefined
+    },
+    startTime(state) {
+      return state.recorderStartTime
     },
   },
   actions: {
@@ -38,6 +42,7 @@ export const useRecordingStore = defineStore('recording', {
 
       const stopRecording = () => {
         this.recorder = undefined
+        this.recorderStartTime = undefined
       }
 
       mediaRecorder.onstop = async function () {
@@ -57,10 +62,12 @@ export const useRecordingStore = defineStore('recording', {
 
       mediaRecorder.start()
       this.recorder = mediaRecorder
+      this.recorderStartTime = DateTime.utc().toJSDate()
     },
     stopRecording() {
       this.recorder?.stop
       this.recorder = undefined
+      this.recorderStartTime = undefined
     },
   },
 })
