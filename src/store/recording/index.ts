@@ -1,13 +1,22 @@
 import { DateTime } from 'luxon'
 import { defineStore } from 'pinia'
 import { screenRecording } from '../../composables/screenRecording'
+import { Recording } from '../../models'
+import { db } from '../../persistence'
 
 export const useRecordingStore = defineStore('recording', {
   state: () => {
     let recorder: MediaRecorder | undefined
     let recorderStartTime: Date | undefined
+    let recorderThumbnailBlob: Blob | undefined
+    let recorderMediaStream: MediaStream | undefined
 
-    return { recorder, recorderStartTime }
+    return {
+      recorder,
+      recorderStartTime,
+      recorderThumbnailBlob,
+      recorderMediaStream,
+    }
   },
   getters: {
     isRecording(state) {
@@ -15,6 +24,12 @@ export const useRecordingStore = defineStore('recording', {
     },
     startTime(state) {
       return state.recorderStartTime
+    },
+    thumbnailBlob(state) {
+      return state.recorderThumbnailBlob
+    },
+    mediaStream(state) {
+      return state.recorderMediaStream
     },
   },
   actions: {
@@ -45,29 +60,36 @@ export const useRecordingStore = defineStore('recording', {
         this.recorderStartTime = undefined
       }
 
+      const startTime = DateTime.utc().toJSDate()
+      const thumbnailBlob = this.thumbnailBlob
+
       mediaRecorder.onstop = async function () {
-        // const blob = new Blob(chunks, { type: options.mimeType })
-        // const startDateTime: DateTime = context.getters['recordingStartTime']
-        // const finishDateTime = DateTime.now()
-        // const thumbnailBlob: Blob = context.getters['thumbnailBlob']
-        // const recording = {
-        //   blob,
-        //   thumbnailBlob,
-        //   startDateTime: startDateTime.toJSDate(),
-        //   finishDateTime: finishDateTime.toJSDate(),
-        // } as Recording
-        // await db.recordings.add(recording)
+        const blob = new Blob(chunks, { type: options.mimeType })
+
+        const recording = {
+          blob,
+          thumbnailBlob,
+          startDateTime: startTime,
+          finishDateTime: DateTime.utc().toJSDate(),
+        } as Recording
+
+        await db.recordings.add(recording)
+
         stopRecording()
       }
 
       mediaRecorder.start()
       this.recorder = mediaRecorder
-      this.recorderStartTime = DateTime.utc().toJSDate()
+      this.recorderStartTime = startTime
+      this.recorderMediaStream = capture
     },
     stopRecording() {
       this.recorder?.stop
       this.recorder = undefined
       this.recorderStartTime = undefined
+    },
+    setThumbnail(thumbnailBlob: Blob) {
+      this.recorderThumbnailBlob = thumbnailBlob
     },
   },
 })
