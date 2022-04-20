@@ -1,16 +1,22 @@
 <script setup lang="ts">
-defineProps<{ groupTitle: string }>()
+interface Props {
+  groupTitle?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  groupTitle: undefined,
+})
 </script>
 
 <template>
-  <div>
-    <h3>{{ groupTitle }}</h3>
+  <div class="group">
+    <h3 v-if="groupTitle">{{ groupTitle }}</h3>
     <slot></slot>
   </div>
 </template>
 
 <style scoped lang="scss">
-div {
+.group {
   h3 {
     margin: 0;
   }

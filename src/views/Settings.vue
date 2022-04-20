@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import SettingGroup from '../components/settings/SettingGroup.vue'
+import ContentContainer from '../components/ContentContainer.vue'
+import Group from '../components/Group.vue'
 import { useSettingsStore } from '../store'
-import GroupContainer from '../components/GroupContainer.vue'
 
 const router = useRouter()
 const settings = useSettingsStore()
@@ -23,13 +23,13 @@ watch(
 </script>
 
 <template>
-  <GroupContainer title="Settings">
+  <ContentContainer title="Settings">
     <template v-slot:title-content
       ><button type="button" @click="onBackToScrap">
         ⬅ Back to Scrap
       </button></template
     >
-    <SettingGroup group-title="Theme">
+    <Group group-title="Theme">
       <form>
         <div class="radio-button">
           <input type="radio" id="autoTheme" v-model="appTheme" :value="0" />
@@ -44,8 +44,8 @@ watch(
           <label for="lightTheme">Light Theme</label>
         </div>
       </form>
-    </SettingGroup>
-  </GroupContainer>
+    </Group>
+  </ContentContainer>
 </template>
 
 <style scoped lang="scss">

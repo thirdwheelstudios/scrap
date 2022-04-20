@@ -1,15 +1,9 @@
 <script setup lang="ts">
-interface Props {
-  title?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  title: '',
-})
+defineProps<{ title: string }>()
 </script>
 
 <template>
-  <div class="group-container">
+  <div class="container">
     <div class="title">
       <h1>{{ title }}</h1>
       <slot name="title-content"></slot>
@@ -19,13 +13,13 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped lang="scss">
-.group-container {
+.container {
   margin: auto;
   max-width: 800px;
 
   .title {
     display: flex;
-    margin: 1rem 0;
+    margin: 1rem 0.5rem;
 
     h1 {
       flex-grow: 1;
