@@ -58,17 +58,18 @@ export const useRecordingStore = defineStore('recording', {
       const stopRecording = () => {
         this.recorder = undefined
         this.recorderStartTime = undefined
+        this.recorderMediaStream = undefined
       }
 
       const startTime = DateTime.utc().toJSDate()
-      const thumbnailBlob = this.thumbnailBlob
+      const piniaContext = this
 
       mediaRecorder.onstop = async function () {
         const blob = new Blob(chunks, { type: options.mimeType })
 
         const recording = {
           blob,
-          thumbnailBlob,
+          thumbnailBlob: piniaContext.thumbnailBlob,
           startDateTime: startTime,
           finishDateTime: DateTime.utc().toJSDate(),
         } as Recording
@@ -85,8 +86,6 @@ export const useRecordingStore = defineStore('recording', {
     },
     stopRecording() {
       this.recorder?.stop
-      this.recorder = undefined
-      this.recorderStartTime = undefined
     },
     setThumbnail(thumbnailBlob: Blob) {
       this.recorderThumbnailBlob = thumbnailBlob
