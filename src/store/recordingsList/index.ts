@@ -18,5 +18,18 @@ export const useRecordingsListStore = defineStore('recordingsList', {
 
       this.savedRecordings = recordings
     },
+    async deleteById(id: number) {
+      await db.recordings.delete(id)
+
+      const newRecordings = this.recordings.filter(
+        (x: Recording) => x.id !== id
+      )
+      this.savedRecordings = [...newRecordings]
+    },
+    async deleteAll() {
+      const collection = db.recordings.toCollection()
+
+      await collection.delete()
+    },
   },
 })
