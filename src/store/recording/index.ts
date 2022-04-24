@@ -56,9 +56,10 @@ export const useRecordingStore = defineStore('recording', {
       }
 
       const stopRecording = () => {
-        this.recorder = undefined
-        this.recorderStartTime = undefined
+        this.recorderMediaStream?.getTracks().forEach((track) => track.stop())
         this.recorderMediaStream = undefined
+        this.recorderStartTime = undefined
+        this.recorder = undefined
       }
 
       const startTime = DateTime.utc().toJSDate()
@@ -85,7 +86,7 @@ export const useRecordingStore = defineStore('recording', {
       this.recorderMediaStream = capture
     },
     stopRecording() {
-      this.recorder?.stop
+      this.recorder?.stop()
     },
     setThumbnail(thumbnailBlob: Blob) {
       this.recorderThumbnailBlob = thumbnailBlob
