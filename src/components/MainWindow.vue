@@ -37,7 +37,7 @@ const onToggleRecording = async () => {
       ></button>
     </div>
   </MonitorContainer>
-  <ContentContainer title="My Recordings">
+  <ContentContainer title="My Screen Recordings">
     <template v-slot:title-content>
       <button type="button" @click="onSettings">Go to Settings</button>
     </template>
