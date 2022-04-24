@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import ContentContainer from '../components/ContentContainer.vue'
-import MonitorContainer from '../components/MonitorContainer.vue'
-import RecordingPreview from '../components/RecordingPreview.vue'
-import Group from '../components/Group.vue'
+import ContentContainer from './ContentContainer.vue'
+import MonitorContainer from './MonitorContainer.vue'
+import RecordingPreview from './RecordingPreview.vue'
+import RecordingsList from './RecordingsList.vue'
+import Group from './Group.vue'
 import { useRecordingStore } from '../store'
 
 const router = useRouter()
@@ -41,7 +42,7 @@ const onToggleRecording = async () => {
     <template v-slot:title-content>
       <button type="button" @click="onSettings">Go to Settings</button>
     </template>
-    <Group></Group>
+    <Group><RecordingsList /></Group>
   </ContentContainer>
 </template>
 
