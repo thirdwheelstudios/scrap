@@ -19,6 +19,7 @@ html {
         padding: 0 1rem;
         transition: background-image 1s, box-shadow 0.2s;
         cursor: pointer;
+        min-height: 38px;
       }
 
       button:hover {
