@@ -3,15 +3,22 @@ import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import ContentContainer from '../components/ContentContainer.vue'
 import Group from '../components/Group.vue'
-import { useSettingsStore } from '../store'
+import { useRecordingsListStore, useSettingsStore } from '../store'
 
 const router = useRouter()
 const settings = useSettingsStore()
+const recordingsList = useRecordingsListStore()
 
 const appTheme = ref(settings.theme)
+const recordingsCount = ref(recordingsList.count)
 
 const onBackToScrap = () => {
   router.push({ name: 'home' })
+}
+
+const onDeleteRecordings = async () => {
+  await recordingsList.deleteAll()
+  recordingsCount.value = 0
 }
 
 watch(
@@ -45,12 +52,23 @@ watch(
         </div>
       </form>
     </Group>
+    <Group group-title="Recordings">
+      <form>
+        <p>{{ recordingsCount }} screen recordings</p>
+        <button
+          type="button"
+          :disabled="recordingsCount === 0"
+          @click="onDeleteRecordings"
+        >
+          Delete all recordings
+        </button>
+      </form>
+    </Group>
   </ContentContainer>
 </template>
 
 <style scoped lang="scss">
 form {
-  display: grid;
   margin-top: 0.5rem;
 
   .radio-button {
