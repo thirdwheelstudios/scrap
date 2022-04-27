@@ -31,5 +31,6 @@ const props = withDefaults(defineProps<Props>(), {
   );
   padding: 1rem;
   margin: 0;
+  margin-bottom: 1rem;
 }
 </style>
