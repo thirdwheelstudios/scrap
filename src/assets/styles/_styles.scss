@@ -5,7 +5,7 @@ html {
       color: $primary-color;
       transition: background-color 0.4s ease-in, color 0.4s ease-in;
 
-      h1, h2, h3, h4, h5, h6 {
+      h1, h2, h3, h4, h5, h6, p {
         text-shadow: 0 0 5px $primary-shadow;
       }
 
