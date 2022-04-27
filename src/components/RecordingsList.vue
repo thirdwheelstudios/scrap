@@ -2,9 +2,11 @@
 import { computed, onMounted } from 'vue'
 import { Recording } from '../models'
 import { useRecordingsListStore } from '../store'
+import RecordingItem from './RecordingItem.vue'
 
 const recordingsList = useRecordingsListStore()
 
+const hasRecordings = computed(() => recordingsList.recordings?.length > 0)
 const recordings = computed(() => {
   const result = recordingsList.recordings ?? ([] as Recording[])
 
@@ -18,8 +20,22 @@ onMounted(async () => {
 
 <template>
   <ul>
-    <li v-for="recording of recordings" :key="recording.id">
-      Recording {{ recording.id }}
+    <li v-if="!hasRecordings">
+      <p>Your screen recordings will appear here</p>
+    </li>
+    <li v-else v-for="recording of recordings" :key="recording.id">
+      <RecordingItem :recording="recording"></RecordingItem>
     </li>
   </ul>
 </template>
+
+<style scoped lang="scss">
+ul {
+  padding-left: 0;
+  margin: 0;
+
+  li {
+    list-style: none;
+  }
+}
+</style>
