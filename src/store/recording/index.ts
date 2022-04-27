@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { screenRecording } from '../../composables/screenRecording'
 import { Recording } from '../../models'
 import { db } from '../../persistence'
+import { useRecordingsListStore } from '../recordingsList'
 
 export const useRecordingStore = defineStore('recording', {
   state: () => {
@@ -75,7 +76,9 @@ export const useRecordingStore = defineStore('recording', {
           finishDateTime: DateTime.utc().toJSDate(),
         } as Recording
 
-        await db.recordings.add(recording)
+        const recordingsList = useRecordingsListStore()
+
+        await recordingsList.add(recording)
 
         stopRecording()
       }

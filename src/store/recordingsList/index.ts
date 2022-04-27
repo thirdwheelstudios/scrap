@@ -21,6 +21,11 @@ export const useRecordingsListStore = defineStore('recordingsList', {
 
       this.savedRecordings = recordings
     },
+    async add(recording: Recording) {
+      await db.recordings.add(recording)
+
+      this.savedRecordings.push(recording)
+    },
     async deleteById(id: number) {
       await db.recordings.delete(id)
 
