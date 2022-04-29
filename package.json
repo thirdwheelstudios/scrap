@@ -12,7 +12,8 @@
     "luxon": "^2.3.2",
     "pinia": "^2.0.13",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "webm-duration-fix": "^1.0.4"
   },
   "devDependencies": {
     "@types/luxon": "^2.3.1",
