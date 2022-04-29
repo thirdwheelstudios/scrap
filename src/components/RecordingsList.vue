@@ -31,11 +31,12 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 ul {
-  padding-left: 0;
+  padding: 0;
   margin: 0;
 
   li {
     list-style: none;
+    margin: 1rem 0;
   }
 }
 </style>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Recording } from '../models'
+import ThumbnailPreview from './ThumbnailPreview.vue'
 
 interface Props {
   recording: Recording
@@ -14,7 +15,23 @@ const description = computed(
 </script>
 
 <template>
-  <div>{{ description }}</div>
+  <div>
+    <ThumbnailPreview
+      :thumbnail-blob="recording.thumbnailBlob"
+      :alt-text="`Screen recording from ${recording.startDateTime}`"
+    />
+    <div>
+      <p>{{ description }}</p>
+    </div>
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+div {
+  display: flex;
+
+  div {
+    flex-grow: 1;
+  }
+}
+</style>
