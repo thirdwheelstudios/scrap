@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Recording } from '../models'
+import { downloadFile } from '../utils/download'
 import ThumbnailPreview from './ThumbnailPreview.vue'
+import GradientContainer from './GradientContainer.vue'
 
 interface Props {
   recording: Recording
@@ -12,6 +14,12 @@ const props = defineProps<Props>()
 const description = computed(
   () => props.recording?.description ?? `Recording ${props.recording.id}`
 )
+
+const onDownload = () => {
+  const name = props.recording.description ?? `Scrap #${props.recording.id}`
+
+  downloadFile(props.recording.blob, name)
+}
 </script>
 
 <template>
@@ -20,8 +28,11 @@ const description = computed(
       :thumbnail-blob="recording.thumbnailBlob"
       :alt-text="`Screen recording from ${recording.startDateTime}`"
     />
-    <div>
+    <div class="details">
       <p>{{ description }}</p>
+      <GradientContainer>
+        <button type="button" @click="onDownload">🗄</button>
+      </GradientContainer>
     </div>
   </div>
 </template>
@@ -30,7 +41,10 @@ const description = computed(
 div {
   display: flex;
 
-  div {
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     flex-grow: 1;
   }
 }
