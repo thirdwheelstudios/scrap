@@ -15,5 +15,6 @@ div {
   );
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
 }
 </style>
