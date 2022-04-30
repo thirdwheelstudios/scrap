@@ -4,6 +4,7 @@ import { Recording } from '../models'
 import { downloadFile } from '../utils/download'
 import ThumbnailPreview from './ThumbnailPreview.vue'
 import GradientContainer from './GradientContainer.vue'
+import GradientIconButton from './GradientIconButton.vue'
 
 interface Props {
   recording: Recording
@@ -31,7 +32,11 @@ const onDownload = () => {
     <div class="details">
       <p>{{ description }}</p>
       <GradientContainer>
-        <button type="button" @click="onDownload">🗄</button>
+        <GradientIconButton
+          :icon="['fas', 'file-download']"
+          title="Download"
+          @click="onDownload"
+        />
       </GradientContainer>
     </div>
   </div>
