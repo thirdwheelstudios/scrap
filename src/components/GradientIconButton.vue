@@ -31,5 +31,12 @@ button.gradient-button {
   background-image: none;
   min-height: initial;
   padding: 0.25rem;
+  border-radius: 0;
+}
+
+button.gradient-button:hover {
+  box-shadow: none;
+  background-color: initial;
+  background-image: none;
 }
 </style>
