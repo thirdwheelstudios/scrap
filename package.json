@@ -1,35 +1,29 @@
 {
   "name": "scrap",
+  "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview",
-    "lint": "eslint src --ext .ts",
-    "lint:fix": "npm run lint -- --fix"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
-    "dexie": "^3.2.0",
-    "luxon": "^2.1.1",
-    "vue": "^3.2.16",
-    "vuex": "^4.0.2"
+    "dexie": "^3.2.1",
+    "luxon": "^2.3.2",
+    "pinia": "^2.0.13",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.14",
+    "webm-duration-fix": "^1.0.4"
   },
   "devDependencies": {
-    "@types/luxon": "^2.0.7",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
-    "@vitejs/plugin-vue": "^1.9.3",
-    "eslint": "^8.2.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "prettier": "^2.4.1",
-    "sass": "^1.43.4",
-    "typescript": "^4.4.3",
-    "vite": "^2.6.4",
-    "vue-tsc": "^0.3.0"
+    "@types/luxon": "^2.3.1",
+    "@vitejs/plugin-vue": "^2.3.0",
+    "sass": "^1.50.0",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.0",
+    "vue-tsc": "^0.29.8"
   }
 }

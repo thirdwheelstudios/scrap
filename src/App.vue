@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import RecordButton from './components/RecordButton.vue'
-import RecordingList from './components/RecordingList.vue'
-import ModalContainer from './components/ModalContainer.vue'
+import { watch, computed, onBeforeMount } from 'vue'
+import { useSettingsStore } from './store'
+import { setTheme } from './utils/theme'
+
+const settings = useSettingsStore()
+
+const appTheme = computed(() => settings.theme)
+
+watch(
+  () => appTheme.value,
+  (theme) => {
+    setTheme(theme)
+  }
+)
+
+onBeforeMount(() => setTheme(appTheme.value))
 </script>
 
 <template>
-  <RecordButton />
-  <RecordingList />
-  <ModalContainer />
+  <router-view />
 </template>
 
 <style lang="scss">
-body {
-  font-family: 'Raleway', sans-serif;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  background-color: $primary-background-color;
-  color: $text-color;
-  text-align: center;
+  padding: 2rem;
 }
 </style>

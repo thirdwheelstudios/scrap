@@ -1,0 +1,63 @@
+:root {
+    --bg-color: #242424;
+    --primary-color: #e6e6e6;
+    --primary-shadow: #6f6f6f;
+    --bg-primary-gradient-start: #414141;
+    --bg-primary-gradient-end: #383838;
+    --border-color: #1d1d1d;
+    --button-text-color: #e6e6e6;
+
+    --bg-color-dark: #242424;
+    --primary-color-dark: #e6e6e6;
+    --primary-shadow-dark: #6f6f6f;
+    --bg-primary-gradient-start-dark: #414141;
+    --bg-primary-gradient-end-dark: #383838;
+    --border-color-dark: #1d1d1d;
+    --button-text-color-dark: #e6e6e6;
+
+    --bg-color-light: #fefefe;
+    --primary-color-light: #454545;
+    --primary-shadow-light: #e6e6e6;
+    --bg-primary-gradient-start-light: #f3f3f3;
+    --bg-primary-gradient-end-light: #e6e6e6;
+    --border-color-light: #b8b8b8;
+    --button-text-color-light: #e6e6e6;
+
+    --button-gradient-1: #6a5acd;
+    --button-gradient-2: #8a2be2;
+    --button-gradient-3: #ba55d3;
+    --button-gradient-4: #da70d6;
+
+    --link-color: #6a5acd;
+  }
+  
+  $bg-color: var(--bg-color);
+  $primary-color: var(--primary-color);
+  $primary-shadow: var(--primary-shadow);
+  $bg-primary-gradient-start: var(--bg-primary-gradient-start);
+  $bg-primary-gradient-end: var(--bg-primary-gradient-end);
+  $border-color: var(--border-color);
+  $button-text-color: var(--button-text-color);
+
+  $bg-color-dark: var(--bg-color-dark);
+  $primary-color-dark: var(--primary-color-dark);
+  $primary-shadow-dark: var(--primary-shadow-dark);
+  $bg-primary-gradient-start-dark: var(--bg-primary-gradient-start-dark);
+  $bg-primary-gradient-end-dark: var(--bg-primary-gradient-end-dark);
+  $border-color-dark: var(--border-color-dark);
+  $button-text-color-dark: var(--button-text-color-dark);
+
+  $bg-color-light: var(--bg-color-light);
+  $primary-color-light: var(--primary-color-light);
+  $primary-shadow-light: var(--primary-shadow-light);
+  $bg-primary-gradient-start-light: var(--bg-primary-gradient-start-light);
+  $bg-primary-gradient-end-light: var(--bg-primary-gradient-end-light);
+  $border-color-light: var(--border-color-light);
+  $button-text-color-light: var(--button-text-color-light);
+
+  $button-gradient-1: var(--button-gradient-1);
+  $button-gradient-2: var(--button-gradient-2);
+  $button-gradient-3: var(--button-gradient-3);
+  $button-gradient-4: var(--button-gradient-4);
+
+  $link-color: var(--link-color);

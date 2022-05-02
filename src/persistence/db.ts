@@ -1,5 +1,5 @@
 import Dexie, { Table } from 'dexie'
-import { Recording } from '../models/Recording'
+import { Recording } from '../models'
 
 export class ScrapDexie extends Dexie {
   recordings!: Table<Recording>
