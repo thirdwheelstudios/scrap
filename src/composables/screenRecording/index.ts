@@ -4,7 +4,7 @@ const mimeTypes = ['video/webm', 'video/mp4']
 
 export function screenRecording() {
   const isSupported = ref(
-    navigator && navigator.mediaDevices.getDisplayMedia !== null
+    navigator && navigator.mediaDevices.getDisplayMedia !== undefined
   )
   const supportedMimeType = ref(
     mimeTypes
