@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import ContentContainer from '../components/ContentContainer.vue'
 import Group from '../components/Group.vue'
@@ -10,7 +10,7 @@ const settings = useSettingsStore()
 const recordingsList = useRecordingsListStore()
 
 const appTheme = ref(settings.theme)
-const recordingsCount = ref(recordingsList.count)
+const recordingsCount = ref(recordingsList.totalCount)
 
 const onBackToScrap = () => {
   router.push({ name: 'home' })
@@ -27,6 +27,10 @@ watch(
     settings.setTheme(theme)
   }
 )
+
+onMounted(async () => {
+  await recordingsList.load()
+})
 </script>
 
 <template>
@@ -54,7 +58,11 @@ watch(
     </Group>
     <Group group-title="Recordings">
       <form>
-        <p>{{ recordingsCount }} screen recordings</p>
+        <p>
+          {{ recordingsCount }} screen recording{{
+            recordingsCount === 1 ? '' : 's'
+          }}
+        </p>
         <button
           type="button"
           :disabled="recordingsCount === 0"
