@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useModalStore } from '../store'
 import { Recording } from '../models'
 import { downloadFile } from '../utils/download'
 import ThumbnailPreview from './ThumbnailPreview.vue'
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const modal = useModalStore()
 
 const description = computed(
   () => props.recording?.description ?? `Recording ${props.recording.id}`
@@ -20,6 +22,10 @@ const onDownload = () => {
   const name = props.recording.description ?? `Scrap #${props.recording.id}`
 
   downloadFile(props.recording.blob, name)
+}
+
+const onDelete = async () => {
+  modal.open('delete-recording-modal', { id: props.recording.id })
 }
 </script>
 
@@ -36,6 +42,11 @@ const onDownload = () => {
           :icon="['fas', 'file-download']"
           title="Download"
           @click="onDownload"
+        />
+        <GradientIconButton
+          :icon="['fas', 'trash']"
+          title="Delete"
+          @click="onDelete"
         />
       </GradientContainer>
     </div>

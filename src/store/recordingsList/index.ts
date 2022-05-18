@@ -11,7 +11,7 @@ export const useRecordingsListStore = defineStore('recordingsList', {
     recordings(state) {
       return state.savedRecordings
     },
-    count(state) {
+    totalCount(state) {
       return state.savedRecordings?.length ?? 0
     },
   },
