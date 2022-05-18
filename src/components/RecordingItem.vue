@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRecordingsListStore } from '../store'
+import { useModalStore } from '../store'
 import { Recording } from '../models'
 import { downloadFile } from '../utils/download'
 import ThumbnailPreview from './ThumbnailPreview.vue'
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const recordingsList = useRecordingsListStore()
+const modal = useModalStore()
 
 const description = computed(
   () => props.recording?.description ?? `Recording ${props.recording.id}`
@@ -25,7 +25,7 @@ const onDownload = () => {
 }
 
 const onDelete = async () => {
-  await recordingsList.deleteById(props.recording.id!)
+  modal.open('delete-recording-modal', { id: props.recording.id })
 }
 </script>
 
