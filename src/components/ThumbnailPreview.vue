@@ -22,5 +22,6 @@ img {
   border: 2px solid $bg-color;
   border-radius: 0.25rem;
   margin-right: 1rem;
+  max-width: 120px;
 }
 </style>
