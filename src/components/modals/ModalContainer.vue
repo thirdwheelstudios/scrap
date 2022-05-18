@@ -25,10 +25,11 @@ const onClose = () => modalStore.close()
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(50, 50, 50, 0.4);
+  background-color: rgba(50, 50, 50, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 
   .modal-content {
     background-color: $bg-color;
