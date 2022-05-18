@@ -2,6 +2,7 @@
 import { watch, computed, onBeforeMount } from 'vue'
 import { useSettingsStore } from './store'
 import { setTheme } from './utils/theme'
+import ModalContainer from './components/modals/ModalContainer.vue'
 
 const settings = useSettingsStore()
 
@@ -19,6 +20,7 @@ onBeforeMount(() => setTheme(appTheme.value))
 
 <template>
   <router-view />
+  <ModalContainer />
 </template>
 
 <style lang="scss">
