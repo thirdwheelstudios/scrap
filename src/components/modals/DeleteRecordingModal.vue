@@ -30,7 +30,13 @@ const onNoResponse = () => modal.close()
 </template>
 
 <style scoped lang="scss">
-div button {
-  margin: 0 0.5rem;
+div {
+  button {
+    margin: 0 0.5rem;
+  }
+
+  button:first-child {
+    margin-left: 0;
+  }
 }
 </style>
