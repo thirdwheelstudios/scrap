@@ -25,7 +25,7 @@ const onDownload = () => {
 }
 
 const onDelete = async () => {
-  modal.open('delete-recording-modal', { id: props.recording.id })
+  modal.open('delete-recording-modal', { recording: props.recording })
 }
 </script>
 

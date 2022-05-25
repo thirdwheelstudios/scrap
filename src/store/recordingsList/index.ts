@@ -38,6 +38,8 @@ export const useRecordingsListStore = defineStore('recordingsList', {
       const collection = db.recordings.toCollection()
 
       await collection.delete()
+
+      this.savedRecordings = [] as Recording[]
     },
     async getById(id: number) {
       const recording = await db.recordings.where('id').equals(id).first()

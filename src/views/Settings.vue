@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import ContentContainer from '../components/ContentContainer.vue'
 import Group from '../components/Group.vue'
-import { useRecordingsListStore, useSettingsStore } from '../store'
+import { useModalStore, useRecordingsListStore, useSettingsStore } from '../store'
 
 const router = useRouter()
+const modal = useModalStore()
 const settings = useSettingsStore()
 const recordingsList = useRecordingsListStore()
 
 const appTheme = ref(settings.theme)
-const recordingsCount = ref(recordingsList.totalCount)
+const recordingsCount = computed(() => recordingsList.totalCount)
 
 const onBackToScrap = () => {
   router.push({ name: 'home' })
 }
 
 const onDeleteRecordings = async () => {
-  await recordingsList.deleteAll()
-  recordingsCount.value = 0
+  modal.open('delete-all-recordings-modal')
 }
 
 watch(
