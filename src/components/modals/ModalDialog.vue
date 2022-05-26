@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineEmits } from 'vue'
-import GroupContainer from '../Group.vue'
+import GroupContainer from '../GroupContainer.vue'
 
 interface Props {   
   titleText?: string
