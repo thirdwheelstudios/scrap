@@ -19,9 +19,11 @@ const description = computed(
 )
 
 const onDownload = () => {
-  const name = props.recording.description ?? `Scrap #${props.recording.id}`
+  downloadFile(props.recording.blob, description.value)
+}
 
-  downloadFile(props.recording.blob, name)
+const onPlay = () => {
+  modal.open('play-recording-modal', { recording: props.recording })
 }
 
 const onDelete = async () => {
@@ -31,10 +33,15 @@ const onDelete = async () => {
 
 <template>
   <div>
-    <ThumbnailPreview
-      :thumbnail-blob="recording.thumbnailBlob"
-      :alt-text="`Screen recording from ${recording.startDateTime}`"
-    />
+    <div class="thumbnail" @click="onPlay">
+      <ThumbnailPreview
+        :thumbnail-blob="recording.thumbnailBlob"
+        :alt-text="`Screen recording from ${recording.startDateTime}`"
+      />
+      <div class="overlay">
+        <font-awesome-icon :icon="['fas', 'play']" size="3x" />
+      </div>
+    </div>
     <div class="details">
       <p>{{ description }}</p>
       <GradientContainer>
@@ -56,6 +63,30 @@ const onDelete = async () => {
 <style scoped lang="scss">
 div {
   display: flex;
+
+  .thumbnail {
+    position: relative;
+    cursor: pointer;
+
+    .overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.5;
+      transition: opacity 0.2s ease-in;
+    }
+  }
+
+  .thumbnail:hover {
+    .overlay {
+      opacity: 1;
+    }
+  }
 
   .details {
     display: flex;
