@@ -6,6 +6,7 @@ module.exports = {
   env: {
     node: true,
     es2021: true,
+    'vue/setup-compiler-macros': true,
   },
   extends: [
     '@vue/typescript/recommended',
