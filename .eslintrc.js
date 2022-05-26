@@ -8,9 +8,10 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    '@vue/typescript/recommended',
     'eslint:recommended',
-    'plugin:vue/essential',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 13,

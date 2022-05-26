@@ -16,7 +16,7 @@ export const useModalStore = defineStore('modal', {
     },
   },
   actions: {
-    open(modal: string, props: any) {
+    open(modal: string, props?: any) {
       this.currentModal = modal
       this.currentProps = props
     },
