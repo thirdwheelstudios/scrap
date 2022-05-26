@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Group from '../Group.vue'
+import { defineEmits } from 'vue'
+import GroupContainer from '../Group.vue'
 
 interface Props {   
   titleText?: string
@@ -13,14 +14,14 @@ defineEmits(['okay', 'cancel'])
 </script>
 
 <template>
-  <Group>
+  <GroupContainer>
     <h2 v-show="titleText">{{ titleText }}</h2>
     <p>{{ messageText }}</p>
     <div>
       <button type="button" @click="$emit('okay')">{{ okayText }}</button>
       <button type="button" @click="$emit('cancel')">{{ cancelText }}</button>
     </div>
-  </Group>
+  </GroupContainer>
 </template>
 
 <style scoped lang="scss">

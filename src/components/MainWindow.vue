@@ -5,7 +5,7 @@ import ContentContainer from './ContentContainer.vue'
 import MonitorContainer from './MonitorContainer.vue'
 import RecordingPreview from './RecordingPreview.vue'
 import RecordingsList from './RecordingsList.vue'
-import Group from './Group.vue'
+import GroupContainer from './GroupContainer.vue'
 import { useRecordingStore } from '../store'
 
 const router = useRouter()
@@ -42,7 +42,7 @@ const onToggleRecording = async () => {
     <template v-slot:title-content>
       <button type="button" @click="onSettings">Go to Settings</button>
     </template>
-    <Group><RecordingsList /></Group>
+    <GroupContainer><RecordingsList /></GroupContainer>
   </ContentContainer>
 </template>
 

@@ -2,7 +2,7 @@
 import { onMounted, ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import ContentContainer from '../components/ContentContainer.vue'
-import Group from '../components/Group.vue'
+import GroupContainer from '../components/GroupContainer.vue'
 import { useModalStore, useRecordingsListStore, useSettingsStore } from '../store'
 
 const router = useRouter()
@@ -35,28 +35,28 @@ onMounted(async () => {
 
 <template>
   <ContentContainer title="Settings">
-    <template v-slot:title-content
+    <template #title-content
       ><button type="button" @click="onBackToScrap">
         ⬅ Back to Scrap
       </button></template
     >
-    <Group group-title="Theme">
+    <GroupContainer group-title="Theme">
       <form>
         <div class="radio-button">
-          <input type="radio" id="autoTheme" v-model="appTheme" :value="0" />
+          <input id="autoTheme" v-model="appTheme" type="radio" :value="0" />
           <label for="autoTheme">Auto (System)</label>
         </div>
         <div class="radio-button">
-          <input type="radio" id="darkTheme" v-model="appTheme" :value="1" />
+          <input id="darkTheme" v-model="appTheme" type="radio" :value="1" />
           <label for="darkTheme">Dark Theme</label>
         </div>
         <div class="radio-button">
-          <input type="radio" id="lightTheme" v-model="appTheme" :value="2" />
+          <input id="lightTheme" v-model="appTheme" type="radio" :value="2" />
           <label for="lightTheme">Light Theme</label>
         </div>
       </form>
-    </Group>
-    <Group group-title="Recordings">
+    </GroupContainer>
+    <GroupContainer group-title="Recordings">
       <form>
         <p>
           {{ recordingsCount }} screen recording{{
@@ -71,7 +71,7 @@ onMounted(async () => {
           Delete all recordings
         </button>
       </form>
-    </Group>
+    </GroupContainer>
   </ContentContainer>
 </template>
 

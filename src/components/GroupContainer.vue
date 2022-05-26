@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { withDefaults } from 'vue'
+
 interface Props {
   groupTitle?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   groupTitle: undefined,
 })
 </script>
