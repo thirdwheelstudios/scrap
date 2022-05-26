@@ -33,7 +33,6 @@ const onClose = () => modalStore.close()
 
   .modal-content {
     background-color: $bg-color;
-    padding: 1rem 1.5rem;
     margin: 1rem;
     border-radius: 0.5rem;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);

@@ -13,7 +13,7 @@ defineEmits(['okay', 'cancel'])
 </script>
 
 <template>
-  <GroupContainer>
+  <GroupContainer class="group-container">
     <h2 v-show="titleText">{{ titleText }}</h2>
     <p>{{ messageText }}</p>
     <div>
@@ -24,6 +24,10 @@ defineEmits(['okay', 'cancel'])
 </template>
 
 <style scoped lang="scss">
+.group-container {
+  padding: 1rem 1.5rem;
+}
+
 div {
   button {
     margin: 0 0.5rem;
