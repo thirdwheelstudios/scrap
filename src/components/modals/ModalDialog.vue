@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineEmits } from 'vue'
 import GroupContainer from '../GroupContainer.vue'
 
 interface Props {   
