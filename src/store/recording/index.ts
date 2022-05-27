@@ -35,7 +35,7 @@ export const useRecordingStore = defineStore('recording', {
     },
   },
   actions: {
-    async startRecording() {
+    async startRecording(audioBitsPerSecond = 128000, videoBitsPerSecond = 1250000) {
       const constraints = {
         video: true,
         audio: true,
@@ -46,8 +46,8 @@ export const useRecordingStore = defineStore('recording', {
 
       const options = {
         mimeType: supportedMimeType.value,
-        audioBitsPerSecond: 128000,
-        videoBitsPerSecond: 1250000,
+        audioBitsPerSecond,
+        videoBitsPerSecond,
       } as MediaRecorderOptions
       const mediaRecorder = new MediaRecorder(capture, options)
 

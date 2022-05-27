@@ -6,10 +6,11 @@ import MonitorContainer from './MonitorContainer.vue'
 import RecordingPreview from './RecordingPreview.vue'
 import RecordingsList from './RecordingsList.vue'
 import GroupContainer from './GroupContainer.vue'
-import { useRecordingStore } from '../store'
+import { useRecordingStore, useSettingsStore } from '../store'
 
 const router = useRouter()
 const recording = useRecordingStore()
+const settings = useSettingsStore()
 
 const isRecording = computed(() => recording.isRecording)
 
@@ -21,7 +22,7 @@ const onToggleRecording = async () => {
   if (isRecording.value) {
     recording.stopRecording()
   } else {
-    await recording.startRecording()
+    await recording.startRecording(settings.audioBitsPerSecond, settings.videoBitsPerSecond)
   }
 }
 </script>
@@ -32,14 +33,14 @@ const onToggleRecording = async () => {
       <RecordingPreview />
       <button
         type="button"
-        @click="onToggleRecording"
         :title="`${isRecording ? 'Stop' : 'Start'} Recording`"
         :class="{ 'is-recording': isRecording }"
+        @click="onToggleRecording"
       ></button>
     </div>
   </MonitorContainer>
   <ContentContainer title="My Screen Recordings">
-    <template v-slot:title-content>
+    <template #title-content>
       <button type="button" @click="onSettings">Go to Settings</button>
     </template>
     <GroupContainer><RecordingsList /></GroupContainer>
