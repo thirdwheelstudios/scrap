@@ -11,7 +11,11 @@ const settings = useSettingsStore()
 const recordingsList = useRecordingsListStore()
 
 const appTheme = ref(settings.theme)
+const videoBitsPerSecond = ref(settings.videoBitsPerSecond)
+const audioBitsPerSecond = ref(settings.audioBitsPerSecond)
 const recordingsCount = computed(() => recordingsList.totalCount)
+
+const videoSettings = ref([{value: 1250000, name: 'Medium'}])
 
 const onBackToScrap = () => {
   router.push({ name: 'home' })
@@ -70,6 +74,14 @@ onMounted(async () => {
         >
           Delete all recordings
         </button>
+      </form>
+    </GroupContainer>
+    <GroupContainer group-title="Recording Quality">
+      <form>
+        <label for="videoBitsPerSecond">Video </label>
+        <select id="videoBitsPerSecond" v-model="videoBitsPerSecond" name="videoBitsPerSecond">
+          <option v-for="setting of videoSettings" :key="setting.value" :value="setting.value">{{ setting.name }}</option>
+        </select>
       </form>
     </GroupContainer>
   </ContentContainer>
