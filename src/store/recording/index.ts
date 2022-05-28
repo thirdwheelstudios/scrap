@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 import fixWebmDuration from 'webm-duration-fix'
 import { screenRecording } from '../../composables/screenRecording'
 import { Recording } from '../../models'
-import { db } from '../../persistence'
 import { useRecordingsListStore } from '../recordingsList'
 
 export const useRecordingStore = defineStore('recording', {
@@ -35,7 +34,7 @@ export const useRecordingStore = defineStore('recording', {
     },
   },
   actions: {
-    async startRecording() {
+    async startRecording(audioBitsPerSecond = 128000, videoBitsPerSecond = 1250000) {
       const constraints = {
         video: true,
         audio: true,
@@ -46,8 +45,8 @@ export const useRecordingStore = defineStore('recording', {
 
       const options = {
         mimeType: supportedMimeType.value,
-        audioBitsPerSecond: 128000,
-        videoBitsPerSecond: 1250000,
+        audioBitsPerSecond,
+        videoBitsPerSecond,
       } as MediaRecorderOptions
       const mediaRecorder = new MediaRecorder(capture, options)
 
