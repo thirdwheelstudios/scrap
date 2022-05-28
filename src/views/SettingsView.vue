@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { AppTheme } from '../enums'
 import ContentContainer from '../components/ContentContainer.vue'
 import GroupContainer from '../components/GroupContainer.vue'
 import { useModalStore, useRecordingsListStore, useSettingsStore } from '../store'
@@ -25,9 +26,9 @@ const videoSettings = ref([
 ])
 
 const audioSettings = ref([ 
-  {value: 96000, name: 'Low'},
-  {value: 128000, name: 'Medium'},
-  {value: 160000, name: 'High'}
+  {value: 96000, name: 'Low - 96kbps'},
+  {value: 128000, name: 'Medium - 128kbps'},
+  {value: 160000, name: 'High - 160kbps'}
 ])
 
 const onBackToScrap = () => {
@@ -72,15 +73,15 @@ onMounted(async () => {
     <GroupContainer group-title="Theme">
       <form>
         <div class="radio-button">
-          <input id="autoTheme" v-model="appTheme" type="radio" :value="0" />
+          <input id="autoTheme" v-model="appTheme" type="radio" :value="AppTheme.auto" />
           <label for="autoTheme">Auto (System)</label>
         </div>
         <div class="radio-button">
-          <input id="darkTheme" v-model="appTheme" type="radio" :value="1" />
+          <input id="darkTheme" v-model="appTheme" type="radio" :value="AppTheme.dark" />
           <label for="darkTheme">Dark Theme</label>
         </div>
         <div class="radio-button">
-          <input id="lightTheme" v-model="appTheme" type="radio" :value="2" />
+          <input id="lightTheme" v-model="appTheme" type="radio" :value="AppTheme.light" />
           <label for="lightTheme">Light Theme</label>
         </div>
       </form>
