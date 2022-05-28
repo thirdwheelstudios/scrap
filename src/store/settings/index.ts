@@ -6,7 +6,7 @@ export const useSettingsStore = defineStore('settings', {
   state: () => {
     const appTheme = getValue<AppTheme>('theme') ?? AppTheme.auto
     const audioBitsPerSecondSetting = getValue<number>('audioBitsPerSecond') ?? 128000
-    const videoBitsPerSecondSetting = getValue<number>('videoBitsPerSecond') ?? 1250000
+    const videoBitsPerSecondSetting = getValue<number>('videoBitsPerSecond') ?? 2500000
 
     return { appTheme, audioBitsPerSecondSetting, videoBitsPerSecondSetting }
   },

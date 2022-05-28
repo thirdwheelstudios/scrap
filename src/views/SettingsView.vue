@@ -15,7 +15,20 @@ const videoBitsPerSecond = ref(settings.videoBitsPerSecond)
 const audioBitsPerSecond = ref(settings.audioBitsPerSecond)
 const recordingsCount = computed(() => recordingsList.totalCount)
 
-const videoSettings = ref([{value: 1250000, name: 'Medium'}])
+const videoSettings = ref([
+  {value: 1000000, name: '360p'},
+  {value: 2500000, name: '480p'},
+  {value: 5000000, name: '720p'},
+  {value: 8000000, name: '1080p'},
+  {value: 16000000, name: '2k'},
+  {value: 40000000, name: '4k'},
+])
+
+const audioSettings = ref([ 
+  {value: 96000, name: 'Low'},
+  {value: 128000, name: 'Medium'},
+  {value: 160000, name: 'High'}
+])
 
 const onBackToScrap = () => {
   router.push({ name: 'home' })
@@ -31,6 +44,18 @@ watch(
     settings.setTheme(theme)
   }
 )
+
+watch(
+  () => videoBitsPerSecond.value, 
+  (bitsPerSecond) => {
+    settings.setVideoBitsPerSecond(bitsPerSecond)
+  })
+
+watch(
+  () => audioBitsPerSecond.value, 
+  (bitsPerSecond) => {
+    settings.setAudioBitsPerSecond(bitsPerSecond)
+  })
 
 onMounted(async () => {
   await recordingsList.load()
@@ -78,10 +103,18 @@ onMounted(async () => {
     </GroupContainer>
     <GroupContainer group-title="Recording Quality">
       <form>
-        <label for="videoBitsPerSecond">Video </label>
-        <select id="videoBitsPerSecond" v-model="videoBitsPerSecond" name="videoBitsPerSecond">
-          <option v-for="setting of videoSettings" :key="setting.value" :value="setting.value">{{ setting.name }}</option>
-        </select>
+        <div>
+          <label for="videoBitsPerSecond">Video </label>
+          <select id="videoBitsPerSecond" v-model="videoBitsPerSecond" name="videoBitsPerSecond">
+            <option v-for="setting of videoSettings" :key="setting.value" :value="setting.value">{{ setting.name }}</option>
+          </select>
+        </div>
+        <div>
+          <label for="audioBitsPerSecond">Audio </label>
+          <select id="audioBitsPerSecond" v-model="audioBitsPerSecond" name="audioBitsPerSecond">
+            <option v-for="setting of audioSettings" :key="setting.value" :value="setting.value">{{ setting.name }}</option>
+          </select>
+        </div>
       </form>
     </GroupContainer>
   </ContentContainer>
@@ -99,7 +132,7 @@ form {
   }
 
   div {
-    margin: 0.1rem;
+    margin: 0.25rem;
   }
 }
 </style>
