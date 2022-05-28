@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 import fixWebmDuration from 'webm-duration-fix'
 import { screenRecording } from '../../composables/screenRecording'
 import { Recording } from '../../models'
-import { db } from '../../persistence'
 import { useRecordingsListStore } from '../recordingsList'
 
 export const useRecordingStore = defineStore('recording', {
