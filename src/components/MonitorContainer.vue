@@ -3,7 +3,7 @@ interface Props {
   powerOn?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   powerOn: false,
 })
 </script>
