@@ -18,6 +18,8 @@ const description = computed(
   () => props.recording?.description ?? `Recording ${props.recording.id}`
 )
 
+const duration = computed(() => '00:00:00')
+
 const onDownload = () => {
   downloadFile(props.recording.blob, description.value)
 }
@@ -48,6 +50,8 @@ const onRename = async () => {
     </div>
     <div class="details">
       <p>{{ description }}</p>
+      <p><font-awesome-icon :icon="['fas', 'calendar-day']" /> {{ recording.finishDateTime }}</p>
+      <p><font-awesome-icon :icon="['fas', 'stopwatch']" /> {{ duration }}</p>
       <GradientContainer class="actions">
         <GradientIconButton
           :icon="['fas', 'file-download']"
@@ -110,13 +114,15 @@ const onRename = async () => {
     .details {
 
         p {
-            margin: 0.5rem;
+          margin: 0.5rem;
         }
 
         .actions {
-            border-radius: 0;
-            border-bottom-left-radius: 0.4rem;
-            border-bottom-right-radius: 0.4rem;
+          border-radius: 0;
+          border-bottom-left-radius: 0.4rem;
+          border-bottom-right-radius: 0.4rem;
+          padding: 0.25rem;
+          margin-top: 1rem;
         }
     }
   }
