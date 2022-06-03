@@ -6,6 +6,7 @@ import { downloadFile } from '../utils/download'
 import ThumbnailPreview from '../components/ThumbnailPreview.vue'
 import GradientContainer from './GradientContainer.vue'
 import GradientIconButton from './GradientIconButton.vue'
+import { DateTime } from 'luxon'
 
 interface Props {
   recording: Recording
@@ -18,7 +19,15 @@ const description = computed(
   () => props.recording?.description ?? `Recording ${props.recording.id}`
 )
 
-const duration = computed(() => '00:00:00')
+const duration = computed(() => {
+  const startDateTime = DateTime.fromJSDate(props.recording.startDateTime)
+  const finishDateTime = DateTime.fromJSDate(props.recording.finishDateTime)
+  return finishDateTime.diff(startDateTime).toFormat('hh:mm:ss')
+})
+const recordingDate = computed(() => {
+  const startDateTime = DateTime.fromJSDate(props.recording.startDateTime)
+  return startDateTime.setLocale(navigator.language).toLocaleString(DateTime.DATETIME_SHORT)
+})
 
 const onDownload = () => {
   downloadFile(props.recording.blob, description.value)
@@ -50,7 +59,7 @@ const onRename = async () => {
     </div>
     <div class="details">
       <p>{{ description }}</p>
-      <p><font-awesome-icon :icon="['fas', 'calendar-day']" /> {{ recording.finishDateTime }}</p>
+      <p><font-awesome-icon :icon="['fas', 'calendar-day']" /> {{ recordingDate }}</p>
       <p><font-awesome-icon :icon="['fas', 'stopwatch']" /> {{ duration }}</p>
       <GradientContainer class="actions">
         <GradientIconButton
