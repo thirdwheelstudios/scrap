@@ -4,8 +4,7 @@ import { useRouter } from 'vue-router'
 import ContentContainer from './ContentContainer.vue'
 import MonitorContainer from './MonitorContainer.vue'
 import RecordingPreview from './RecordingPreview.vue'
-import RecordingsList from './RecordingsList.vue'
-import GroupContainer from './GroupContainer.vue'
+import RecordingCardsList from './RecordingCardsList.vue'
 import { useRecordingStore, useSettingsStore } from '../store'
 
 const router = useRouter()
@@ -39,11 +38,11 @@ const onToggleRecording = async () => {
       ></button>
     </div>
   </MonitorContainer>
-  <ContentContainer title="My Screen Recordings">
+  <ContentContainer title="My Recording Scrapbook">
     <template #title-content>
       <button type="button" @click="onSettings">Go to Settings</button>
     </template>
-    <GroupContainer><RecordingsList /></GroupContainer>
+    <RecordingCardsList />
   </ContentContainer>
 </template>
 
