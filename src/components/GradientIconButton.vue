@@ -7,11 +7,13 @@ interface Props {
   title?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   size: 'lg',
+  text: undefined,
+  title: undefined,
 })
 
-const emits = defineEmits(['click'])
+defineEmits(['click'])
 </script>
 
 <template>
