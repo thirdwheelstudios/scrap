@@ -29,6 +29,10 @@ const onPlay = () => {
 const onDelete = async () => {
   modal.open('delete-recording-modal', { recording: props.recording })
 }
+
+const onRename = async () => {
+  modal.open('rename-recording-modal', { recording: props.recording })
+}
 </script>
 
 <template>
@@ -54,6 +58,11 @@ const onDelete = async () => {
           :icon="['fas', 'trash']"
           title="Delete"
           @click="onDelete"
+        />
+        <GradientIconButton
+          :icon="['fas', 'file-pen']"
+          title="Rename"
+          @click="onRename"
         />
       </GradientContainer>
     </div>

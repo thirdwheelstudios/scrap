@@ -3,19 +3,25 @@ import GroupContainer from '../GroupContainer.vue'
 
 interface Props {   
   titleText?: string
-  messageText: string
+  messageText?: string
   okayText?: string
   cancelText?: string
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  titleText: '',
+  messageText: undefined,
+  okayText: 'Okay',
+  cancelText: 'Cancel'
+})
 defineEmits(['okay', 'cancel'])
 </script>
 
 <template>
   <GroupContainer class="group-container">
     <h2 v-show="titleText">{{ titleText }}</h2>
-    <p>{{ messageText }}</p>
+    <p v-if="messageText">{{ messageText }}</p>
+    <slot v-else />
     <div>
       <button type="button" @click="$emit('okay')">{{ okayText }}</button>
       <button type="button" @click="$emit('cancel')">{{ cancelText }}</button>
