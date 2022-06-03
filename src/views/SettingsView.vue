@@ -86,22 +86,6 @@ onMounted(async () => {
         </div>
       </form>
     </GroupContainer>
-    <GroupContainer group-title="Recordings">
-      <form>
-        <p>
-          {{ recordingsCount }} screen recording{{
-            recordingsCount === 1 ? '' : 's'
-          }}
-        </p>
-        <button
-          type="button"
-          :disabled="recordingsCount === 0"
-          @click="onDeleteRecordings"
-        >
-          Delete all recordings
-        </button>
-      </form>
-    </GroupContainer>
     <GroupContainer group-title="Recording Quality">
       <form>
         <div>
@@ -116,6 +100,22 @@ onMounted(async () => {
             <option v-for="setting of audioSettings" :key="setting.value" :value="setting.value">{{ setting.name }}</option>
           </select>
         </div>
+      </form>
+    </GroupContainer>
+    <GroupContainer group-title="Recordings">
+      <form>
+        <p>
+          {{ recordingsCount }} screen recording{{
+            recordingsCount === 1 ? '' : 's'
+          }}
+        </p>
+        <button
+          type="button"
+          :disabled="recordingsCount === 0"
+          @click="onDeleteRecordings"
+        >
+          Delete all recordings
+        </button>
       </form>
     </GroupContainer>
   </ContentContainer>

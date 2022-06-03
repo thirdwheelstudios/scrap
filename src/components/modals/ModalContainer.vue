@@ -20,7 +20,7 @@ const onClose = () => modalStore.close()
 
 <style scoped lang="scss">
 .modal-container {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   right: 0;

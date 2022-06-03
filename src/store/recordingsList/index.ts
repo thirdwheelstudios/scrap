@@ -48,5 +48,18 @@ export const useRecordingsListStore = defineStore('recordingsList', {
 
       return recording
     },
+    async updateById(id: number, changes: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      [keyPath: string]: any;
+    }) {
+      await db.recordings.update(id, changes)
+
+      const index = this.savedRecordings.findIndex((x) => x.id === id)
+      if (!index) return 
+
+      const recording = this.savedRecordings[index]
+
+      this.savedRecordings[index] = {...recording, ...changes}
+    }
   },
 })

@@ -2,7 +2,8 @@
 import { computed, onMounted } from 'vue'
 import { Recording } from '../models'
 import { useRecordingsListStore } from '../store'
-import RecordingItem from './RecordingItem.vue'
+import RecordingCard from './RecordingCard.vue'
+import GroupContainer from './GroupContainer.vue'
 
 const recordingsList = useRecordingsListStore()
 
@@ -19,24 +20,21 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ul>
-    <li v-if="!hasRecordings">
-      <p>Your screen recordings will appear here</p>
-    </li>
-    <li v-else v-for="recording of recordings" :key="recording.id">
-      <RecordingItem :recording="recording"></RecordingItem>
-    </li>
-  </ul>
+  <div v-if="hasRecordings">
+    <RecordingCard 
+      v-for="recording of recordings" 
+      :key="recording.id" 
+      :recording="recording"
+    />
+  </div>
+  <GroupContainer v-else>
+    <p>Your screen recordings will appear here</p>
+  </GroupContainer>
 </template>
 
 <style scoped lang="scss">
-ul {
-  padding: 0;
-  margin: 0;
-
-  li {
-    list-style: none;
-    margin: 1rem 0;
-  }
+div {
+    display: flex;
+    flex-wrap: wrap;
 }
 </style>

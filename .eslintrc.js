@@ -10,7 +10,7 @@ module.exports = {
   },
   extends: [
     '@vue/typescript/recommended',
-    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
     'prettier',
   ],
@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    indent: ['error', 2],
+    '@typescript-eslint/indent': ['error', 2],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
     'vue/no-multiple-template-root': 'off',
