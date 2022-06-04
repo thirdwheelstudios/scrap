@@ -22,10 +22,10 @@ onBeforeMount(() => setTheme(appTheme.value))
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="svg-settings">
     <defs>
       <linearGradient id="linear" gradientTransform="rotate(-30)">
-        <stop class="linear-stop1" offset="0%"></stop>
-        <stop class="linear-stop2" offset="20%"></stop>
-        <stop class="linear-stop3" offset="40%"></stop>
-        <stop class="linear-stop4" offset="100%"></stop>
+        <stop class="linear-stop-1" offset="0%"></stop>
+        <stop class="linear-stop-2" offset="20%"></stop>
+        <stop class="linear-stop-3" offset="40%"></stop>
+        <stop class="linear-stop-4" offset="100%"></stop>
       </linearGradient>
     </defs>
   </svg>
@@ -48,20 +48,12 @@ onBeforeMount(() => setTheme(appTheme.value))
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
 
-  .linear-stop1 {
-    stop-color: $button-gradient-1;
-  }
+  $gradient-colors: $button-gradient-1 $button-gradient-2 $button-gradient-3 $button-gradient-4;
 
-  .linear-stop2 {
-    stop-color: $button-gradient-2;
-  }
-
-  .linear-stop3 {
-    stop-color: $button-gradient-3;
-  }
-
-  .linear-stop4 {
-    stop-color: $button-gradient-4;
+  @for $i from 1 through length($gradient-colors) {
+    .linear-stop-#{$i} {
+      stop-color: nth($gradient-colors, $i)
+    }
   }
 }
 
