@@ -29,7 +29,11 @@ onMounted(async () => {
     />
   </div>
   <GroupContainer v-else class="status-container">
-    <font-awesome-icon :icon="['fas', 'circle-notch']" spin size="3x" />
+    <font-awesome-icon 
+      :icon="['fas', isLoading ? 'circle-notch' : 'film']" 
+      :spin="isLoading"
+      size="3x"
+    />
     <p>{{ isLoading ? 'Loading your scrapbook, please wait...' : 'Your screen recording scrapbook will appear here' }}</p>
   </GroupContainer>
 </template>
