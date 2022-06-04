@@ -55,7 +55,7 @@ const onRename = async () => {
         class="thumbnail-image"
       />
       <div class="overlay">
-        <font-awesome-icon :icon="['fas', 'play']" size="3x" />
+        <font-awesome-icon :icon="['fas', 'play']" size="3x" class="fill-gradient-linear" />
       </div>
     </div>
     <div class="details">

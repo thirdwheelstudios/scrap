@@ -23,7 +23,7 @@ defineEmits(['click'])
     :title="title"
     @click="$emit('click')"
   >
-    <GradientIcon :icon="icon" :size="size" />{{ text }}
+    <GradientIcon :icon="icon" :size="size" class="fill-gradient-linear" />{{ text }}
   </button>
 </template>
 
@@ -34,6 +34,12 @@ button.gradient-button {
   min-height: initial;
   padding: 0.25rem;
   border-radius: 0;
+  opacity: 0.75;
+  transition: opacity 0.2s ease-in;
+}
+
+button.gradient-button:hover {
+  opacity: 1;
 }
 
 button.gradient-button:hover {
