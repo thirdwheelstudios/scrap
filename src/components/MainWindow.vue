@@ -38,7 +38,7 @@ const onToggleRecording = async () => {
       ></button>
     </div>
   </MonitorContainer>
-  <ContentContainer title="My Recording Scrapbook">
+  <ContentContainer title="My Scrapbook">
     <template #title-content>
       <button type="button" @click="onSettings">Go to Settings</button>
     </template>

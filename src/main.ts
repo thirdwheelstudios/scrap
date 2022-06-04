@@ -8,7 +8,8 @@ import {
   faPlay, 
   faFilePen, 
   faCalendarDay, 
-  faStopwatch 
+  faStopwatch,
+  faCircleNotch,
 } from '@fortawesome/free-solid-svg-icons'
 import DeleteRecordingModal from './components/modals/DeleteRecordingModal.vue'
 import DeleteAllRecordingsModal from './components/modals/DeleteAllRecordingsModal.vue'
@@ -19,7 +20,7 @@ import router from './router'
 
 const pinia = createPinia()
 
-library.add(faFileDownload, faTrash, faPlay, faFilePen, faCalendarDay, faStopwatch)
+library.add(faFileDownload, faTrash, faPlay, faFilePen, faCalendarDay, faStopwatch, faCircleNotch)
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)

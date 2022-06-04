@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
 import { Recording } from '../../models'
 import { db } from '../../persistence'
+import { promiseWithDelay } from '../../utils/promises'
 
 export const useRecordingsListStore = defineStore('recordingsList', {
   state: () => {
     const savedRecordings = [] as Recording[]
-    return { savedRecordings }
+    const isLoadingRecordings = false
+    return { savedRecordings, isLoadingRecordings }
   },
   getters: {
     recordings(state) {
@@ -14,12 +16,21 @@ export const useRecordingsListStore = defineStore('recordingsList', {
     totalCount(state) {
       return state.savedRecordings?.length ?? 0
     },
+    isLoading(state) {
+      return state.isLoadingRecordings
+    },
   },
   actions: {
-    async load() {
-      const recordings = await db.recordings.toArray()
+    async load(minDelayInMilliseconds?: number) {
+      try {
+        this.isLoadingRecordings = true
 
-      this.savedRecordings = recordings
+        const recordings = await promiseWithDelay(db.recordings.toArray(), minDelayInMilliseconds)
+
+        this.savedRecordings = recordings
+      } finally {
+        this.isLoadingRecordings = false
+      }
     },
     async add(recording: Recording) {
       await db.recordings.add(recording)
