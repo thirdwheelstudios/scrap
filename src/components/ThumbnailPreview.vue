@@ -19,8 +19,6 @@ const imageSrc = computed(() =>
 
 <style scoped lang="scss">
 img {
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
   width: 100%;
 }
 </style>

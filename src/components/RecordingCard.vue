@@ -52,6 +52,7 @@ const onRename = async () => {
       <ThumbnailPreview
         :thumbnail-blob="recording.thumbnailBlob"
         :alt-text="`Screen recording from ${recording.startDateTime}`"
+        class="thumbnail-image"
       />
       <div class="overlay">
         <font-awesome-icon :icon="['fas', 'play']" size="3x" />
@@ -98,10 +99,11 @@ const onRename = async () => {
     width: 248px;
 
     .thumbnail {
-        position: relative;
-        cursor: pointer;
+      position: relative;
+      cursor: pointer;
+      padding: 0.25rem;
 
-        .overlay {
+      .overlay {
         position: absolute;
         left: 0;
         top: 0;
@@ -112,7 +114,12 @@ const onRename = async () => {
         align-items: center;
         opacity: 0.5;
         transition: opacity 0.2s ease-in;
-        }
+      }
+
+      .thumbnail-image {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+      }
     }
 
     .thumbnail:hover {

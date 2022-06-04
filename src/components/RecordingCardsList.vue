@@ -28,11 +28,9 @@ onMounted(async () => {
       :recording="recording"
     />
   </div>
-  <GroupContainer v-else>
-    <div class="status-container">
-      <font-awesome-icon :icon="['fas', 'circle-notch']" spin size="3x" />
-      <p>{{ isLoading ? 'Loading your scrapbook, please wait...' : 'Your screen recording scrapbook will appear here' }}</p>
-    </div>
+  <GroupContainer v-else class="status-container">
+    <font-awesome-icon :icon="['fas', 'circle-notch']" spin size="3x" />
+    <p>{{ isLoading ? 'Loading your scrapbook, please wait...' : 'Your screen recording scrapbook will appear here' }}</p>
   </GroupContainer>
 </template>
 
@@ -45,6 +43,12 @@ div {
 .status-container {
   display: block;
   text-align: center;
-  margin: 1rem auto;
+  margin: 1rem;
+  margin-top: 1.5rem;
+  padding: 2rem;
+
+  p {
+    margin-bottom: 0;
+  }
 }
 </style>
