@@ -1,17 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import SettingsView from '../views/SettingsView.vue'
+
+const Home = () => import('../views/HomeView.vue')
+const Settings = () => import('../views/SettingsView.vue')
+const PrivacyPolicy = () => import('../views/PrivacyPolicy.vue')
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: Home,
   },
   {
     path: '/settings',
     name: 'settings',
-    component: SettingsView,
+    component: Settings,
+  },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: PrivacyPolicy
   },
 ] as RouteRecordRaw[]
 
