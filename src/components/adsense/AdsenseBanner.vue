@@ -23,7 +23,7 @@ onMounted(() => {
 <!-- Header -->
 <ins
   class="adsbygoogle"
-  style="display:block"
+  style="display:inline-block;width:728px;height:90px"
   :data-ad-client="client"
   :data-ad-slot="slot"
   data-ad-format="auto"
