@@ -28,6 +28,7 @@ const onToggleRecording = async () => {
 </script>
 
 <template>
+  <AdsenseBanner />
   <MonitorContainer :power-on="isRecording">
     <div class="monitor-screen">
       <RecordingPreview />
@@ -39,7 +40,6 @@ const onToggleRecording = async () => {
       ></button>
     </div>
   </MonitorContainer>
-  <AdsenseBanner />
   <ContentContainer title="My Scrapbook">
     <template #title-content>
       <button type="button" @click="onSettings">Go to Settings</button>
