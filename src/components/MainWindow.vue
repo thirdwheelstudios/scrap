@@ -6,7 +6,6 @@ import MonitorContainer from './MonitorContainer.vue'
 import RecordingPreview from './RecordingPreview.vue'
 import RecordingCardsList from './RecordingCardsList.vue'
 import { useRecordingStore, useSettingsStore } from '../store'
-import AdsenseBanner from './adsense/AdsenseBanner.vue'
 
 const router = useRouter()
 const recording = useRecordingStore()
@@ -28,7 +27,6 @@ const onToggleRecording = async () => {
 </script>
 
 <template>
-  <AdsenseBanner />
   <MonitorContainer :power-on="isRecording">
     <div class="monitor-screen">
       <RecordingPreview />
