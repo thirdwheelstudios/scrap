@@ -61,7 +61,7 @@ onBeforeMount(() => setTheme(appTheme.value))
   fill: url(#linear);
 }
 
-.fill-gradient-linear:hover {
+button .fill-gradient-linear:hover {
   filter: drop-shadow(3px 1px 5px $button-gradient-1);
 }
 </style>

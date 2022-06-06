@@ -9,8 +9,10 @@ import {
   faFilePen, 
   faCalendarDay, 
   faStopwatch,
+  faCircle,
   faCircleNotch,
   faFilm,
+  faQuestion,
 } from '@fortawesome/free-solid-svg-icons'
 import DeleteRecordingModal from './components/modals/DeleteRecordingModal.vue'
 import DeleteAllRecordingsModal from './components/modals/DeleteAllRecordingsModal.vue'
@@ -27,9 +29,11 @@ library.add(
   faPlay, 
   faFilePen, 
   faCalendarDay, 
-  faStopwatch, 
+  faStopwatch,
+  faCircle,
   faCircleNotch, 
-  faFilm)
+  faFilm,
+  faQuestion)
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
