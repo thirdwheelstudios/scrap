@@ -6,6 +6,7 @@ import MonitorContainer from './MonitorContainer.vue'
 import RecordingPreview from './RecordingPreview.vue'
 import RecordingCardsList from './RecordingCardsList.vue'
 import { useRecordingStore, useSettingsStore } from '../store'
+import InfoHeader from './InfoHeader.vue'
 
 const router = useRouter()
 const recording = useRecordingStore()
@@ -27,6 +28,7 @@ const onToggleRecording = async () => {
 </script>
 
 <template>
+  <InfoHeader />
   <MonitorContainer :power-on="isRecording">
     <div class="monitor-screen">
       <RecordingPreview />
