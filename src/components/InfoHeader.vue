@@ -1,7 +1,7 @@
 <template>
   <header>
-    <h1>Scrap <small>Screen Recording</small></h1>
-    <p>Screen recordings directly from your browser - No sign up or install required!</p>
+    <h1>Scrap <small>screen recording</small></h1>
+    <p>Screen recordings directly from your browser - No installation or sign up required!</p>
   </header>
 </template>
 
@@ -12,6 +12,10 @@ header {
 
   h1 {
     margin: 0;
+  }
+
+  p {
+    margin-top: 0.5rem;
   }
 }
 </style>
