@@ -13,6 +13,7 @@ import {
   faCircleNotch,
   faFilm,
   faQuestion,
+  faCopyright,
 } from '@fortawesome/free-solid-svg-icons'
 import DeleteRecordingModal from './components/modals/DeleteRecordingModal.vue'
 import DeleteAllRecordingsModal from './components/modals/DeleteAllRecordingsModal.vue'
@@ -33,7 +34,8 @@ library.add(
   faCircle,
   faCircleNotch, 
   faFilm,
-  faQuestion)
+  faQuestion,
+  faCopyright)
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)

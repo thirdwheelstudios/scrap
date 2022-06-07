@@ -50,7 +50,6 @@ div {
 .status-container {
   display: block;
   text-align: center;
-  margin: 1rem;
   margin-top: 1.5rem;
   padding: 2rem;
 

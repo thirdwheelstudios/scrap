@@ -7,6 +7,7 @@ import RecordingPreview from './RecordingPreview.vue'
 import RecordingCardsList from './RecordingCardsList.vue'
 import { useRecordingStore, useSettingsStore } from '../store'
 import InfoHeader from './InfoHeader.vue'
+import AboutScrap from './AboutScrap.vue'
 
 const router = useRouter()
 const recording = useRecordingStore()
@@ -28,6 +29,7 @@ const onToggleRecording = async () => {
 </script>
 
 <template>
+<div class="scrap-container">
   <InfoHeader />
   <MonitorContainer :power-on="isRecording">
     <div class="monitor-screen">
@@ -46,27 +48,34 @@ const onToggleRecording = async () => {
     </template>
     <RecordingCardsList />
   </ContentContainer>
+  <AboutScrap />
+</div>
 </template>
 
 <style scoped lang="scss">
-.monitor-screen {
-  display: flex;
-  width: 100%;
-  height: 100%;
 
-  button {
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    margin: auto;
-    z-index: 1;
-    transition: all 0.2s ease-in;
-  }
+.scrap-container {
+  margin: auto;
+  max-width: 800px;
+  .monitor-screen {
+    display: flex;
+    width: 100%;
+    height: 100%;
 
-  button.is-recording {
-    width: 65px;
-    height: 65px;
-    border-radius: 0.5rem;
+    button {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      margin: auto;
+      z-index: 1;
+      transition: all 0.2s ease-in;
+    }
+
+    button.is-recording {
+      width: 65px;
+      height: 65px;
+      border-radius: 0.5rem;
+    }
   }
 }
 </style>
