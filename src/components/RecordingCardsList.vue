@@ -36,7 +36,7 @@ onMounted(async () => {
     />
     <p>{{ isLoading ? 'Loading your scrapbook, please wait...' : 'Your screen recording scrapbook will appear here' }}</p>
     <p v-if="!isLoading && !hasRecordings">
-      Press the <font-awesome-icon :icon="['fas', 'circle']" class="fill-gradient-linear" /> button to create your first screen recording
+      Press the <font-awesome-icon :icon="['fas', 'circle']" class="fill-gradient-linear" /> button to get started with your first screen recording!
     </p>
   </GroupContainer>
 </template>
