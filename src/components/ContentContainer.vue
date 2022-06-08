@@ -14,9 +14,6 @@ defineProps<{ title: string }>()
 
 <style scoped lang="scss">
 .container {
-  margin: auto;
-  max-width: 800px;
-
   .title {
     display: flex;
     margin: 1rem 0.5rem;
