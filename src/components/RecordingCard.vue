@@ -59,7 +59,7 @@ const onRename = async () => {
       </div>
     </div>
     <div class="details">
-      <p>{{ description }}</p>
+      <p><strong>{{ description }}</strong></p>
       <p><font-awesome-icon :icon="['fas', 'calendar-day']" /> {{ recordingDate }}</p>
       <p><font-awesome-icon :icon="['fas', 'stopwatch']" /> {{ duration }}</p>
       <GradientContainer class="actions">
