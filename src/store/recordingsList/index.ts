@@ -66,7 +66,7 @@ export const useRecordingsListStore = defineStore('recordingsList', {
       await db.recordings.update(id, changes)
 
       const index = this.savedRecordings.findIndex((x) => x.id === id)
-      if (!index) return 
+      if (index === -1) return 
 
       const recording = this.savedRecordings[index]
 

@@ -34,7 +34,7 @@ button.gradient-button {
   min-height: initial;
   padding: 0.25rem;
   border-radius: 0;
-  opacity: 0.75;
+  opacity: 0.9;
   transition: opacity 0.2s ease-in;
 }
 

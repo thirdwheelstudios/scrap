@@ -20,12 +20,14 @@ defineEmits(['okay', 'cancel'])
 <template>
   <GroupContainer class="group-container">
     <h2 v-show="titleText">{{ titleText }}</h2>
-    <p v-if="messageText">{{ messageText }}</p>
-    <slot v-else />
-    <div>
-      <button type="button" @click="$emit('okay')">{{ okayText }}</button>
-      <button type="button" @click="$emit('cancel')">{{ cancelText }}</button>
-    </div>
+    <form @submit.prevent="$emit('okay')">
+      <p v-if="messageText">{{ messageText }}</p>
+      <slot v-else />
+      <div>
+        <button type="submit">{{ okayText }}</button>
+        <button type="button" @click="$emit('cancel')">{{ cancelText }}</button>
+      </div>
+    </form>
   </GroupContainer>
 </template>
 

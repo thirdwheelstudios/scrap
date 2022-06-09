@@ -48,7 +48,7 @@ const onRename = async () => {
 
 <template>
   <div class="card-container">
-    <div class="thumbnail" @click="onPlay">
+    <div class="thumbnail" title="Play Recording" @click="onPlay">
       <ThumbnailPreview
         :thumbnail-blob="recording.thumbnailBlob"
         :alt-text="`Screen recording from ${recording.startDateTime}`"
@@ -59,7 +59,7 @@ const onRename = async () => {
       </div>
     </div>
     <div class="details">
-      <p>{{ description }}</p>
+      <p><strong>{{ description }}</strong></p>
       <p><font-awesome-icon :icon="['fas', 'calendar-day']" /> {{ recordingDate }}</p>
       <p><font-awesome-icon :icon="['fas', 'stopwatch']" /> {{ duration }}</p>
       <GradientContainer class="actions">
