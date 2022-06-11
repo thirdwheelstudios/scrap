@@ -13,7 +13,12 @@ const onClose = () => modalStore.close()
 <template>
   <transition name="fade">
     <div v-if="modalComponent" class="modal-container" @click.self="onClose">
-      <component :is="modalComponent" class="modal-content" v-bind="modalProps" />
+      <component 
+        :is="modalComponent" 
+        class="modal-content" 
+        v-bind="modalProps" 
+        @cancel="onClose"
+      />
     </div>
   </transition>
 </template>
