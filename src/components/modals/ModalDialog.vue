@@ -22,7 +22,7 @@ defineEmits(['okay', 'cancel'])
     <h2 v-show="titleText">{{ titleText }}</h2>
     <form @submit.prevent="$emit('okay')">
       <p v-if="messageText">{{ messageText }}</p>
-      <slot v-else />
+      <slot v-else @cancel="$emit('cancel')" />
       <div>
         <button type="submit">{{ okayText }}</button>
         <button type="button" @click="$emit('cancel')">{{ cancelText }}</button>
