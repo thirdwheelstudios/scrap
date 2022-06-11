@@ -17,12 +17,13 @@ const videoSource = computed(() => URL.createObjectURL(props.recording.blob))
 
 <style scoped lang="scss">
 div {
-  max-width: 80vw;
-
+  max-height: 90vh;
+  
   video {
     width: 100%;
     height: 100%;
     border-radius: 0.5rem;
+    max-height: 90vh;
   }
 }
 </style>
