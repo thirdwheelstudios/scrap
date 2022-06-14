@@ -66,7 +66,7 @@ div {
     height: 100%;
     width: 100%;
     object-fit: contain;
-    background-color: #2b2b2b;
+    background-color: #404040;
   }
 
   canvas {
