@@ -19,6 +19,7 @@ const imageSrc = computed(() =>
 
 <style scoped lang="scss">
 img {
-  width: 100%;
+  width: 296px;
+  height: 166px;
 }
 </style>
