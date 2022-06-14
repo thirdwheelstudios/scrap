@@ -56,7 +56,8 @@ const onToggleRecording = async () => {
 
 .scrap-container {
   margin: auto;
-  max-width: 800px;
+  max-width: 960px;
+  
   .monitor-screen {
     display: flex;
     width: 100%;
