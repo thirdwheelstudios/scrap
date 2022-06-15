@@ -4,11 +4,19 @@ import { getValue, setValue } from '../../utils/localStorage'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => {
-    const appTheme = getValue<AppTheme>('theme') ?? AppTheme.auto
-    const audioBitsPerSecondSetting = getValue<number>('audioBitsPerSecond') ?? 128000
-    const videoBitsPerSecondSetting = getValue<number>('videoBitsPerSecond') ?? 2500000
+    const appTheme = getValue('theme', AppTheme.auto)
+    const audioBitsPerSecondSetting = getValue('audioBitsPerSecond', 128000)
+    const videoBitsPerSecondSetting = getValue('videoBitsPerSecond', 2500000)
+    const orderByFieldNameSetting = getValue<'startDateTime' | 'description'>('orderByFieldName', 'startDateTime')
+    const orderByDescendingSetting = getValue('orderByDescending', true)
 
-    return { appTheme, audioBitsPerSecondSetting, videoBitsPerSecondSetting }
+    return { 
+      appTheme, 
+      audioBitsPerSecondSetting,
+      videoBitsPerSecondSetting, 
+      orderByFieldNameSetting, 
+      orderByDescendingSetting,
+    }
   },
   getters: {
     theme(state) {
@@ -19,6 +27,12 @@ export const useSettingsStore = defineStore('settings', {
     },
     videoBitsPerSecond(state) {
       return state.videoBitsPerSecondSetting
+    },
+    orderByFieldName(state) {
+      return state.orderByFieldNameSetting
+    },
+    orderByDescending(state) {
+      return state.orderByDescendingSetting
     },
   },
   actions: {
@@ -33,6 +47,14 @@ export const useSettingsStore = defineStore('settings', {
     setVideoBitsPerSecond(bitsPerSecond: number) {
       this.videoBitsPerSecondSetting = bitsPerSecond
       setValue('videoBitsPerSecond', bitsPerSecond)
+    },
+    setOrderByFieldName(value: 'startDateTime') {
+      this.orderByFieldNameSetting = value
+      setValue('orderByFieldName', value)
+    },
+    setOrderByDescending(value: boolean) {
+      this.orderByDescendingSetting = value
+      setValue('orderByDescending', value)
     },
   },
 })

@@ -1,18 +1,24 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import { Recording } from '../models'
-import { useRecordingsListStore } from '../store'
+import { useRecordingsListStore, useSettingsStore } from '../store'
 import RecordingCard from './RecordingCard.vue'
 import GroupContainer from './GroupContainer.vue'
 
 const recordingsList = useRecordingsListStore()
+const settings = useSettingsStore()
 
 const isLoading = computed(() => recordingsList.isLoading)
 const hasRecordings = computed(() => recordingsList.recordings?.length > 0)
+const orderByField = computed(() => settings.orderByFieldName)
+const orderByDescending = computed(() => settings.orderByDescending)
 const recordings = computed(() => {
   const result = recordingsList.recordings ?? ([] as Recording[])
+  const field = orderByField.value
+  const compareA = orderByDescending.value ? -1 : 1
+  const compareB = orderByDescending.value ? 1 : -1
 
-  return result.sort((a, b) => (a.startDateTime > b.startDateTime ? -1 : 1))
+  return result.sort((a, b) => (a[field] > b[field] ? compareA : compareB))
 })
 
 onMounted(async () => {
