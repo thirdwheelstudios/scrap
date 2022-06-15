@@ -12,8 +12,8 @@ export function screenRecording() {
       .pop()
   )
 
-  const thumbnailWidth = ref(296)
-  const thumbnailHeight = ref(166)
+  const thumbnailWidth = ref(296 * 2)
+  const thumbnailHeight = ref(166 * 2)
   const thumbnailAspectRatio = computed(() => thumbnailWidth.value / thumbnailHeight.value)
 
   const resizeCoordsForThumbnail = (sourceHeight: number, sourceWidth: number) => {
