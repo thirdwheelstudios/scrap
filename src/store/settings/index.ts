@@ -48,7 +48,7 @@ export const useSettingsStore = defineStore('settings', {
       this.videoBitsPerSecondSetting = bitsPerSecond
       setValue('videoBitsPerSecond', bitsPerSecond)
     },
-    setOrderByFieldName(value: 'startDateTime') {
+    setOrderByFieldName(value: 'startDateTime' | 'description') {
       this.orderByFieldNameSetting = value
       setValue('orderByFieldName', value)
     },
