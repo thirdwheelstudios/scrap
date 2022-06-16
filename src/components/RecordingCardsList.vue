@@ -15,10 +15,23 @@ const orderByDescending = computed(() => settings.orderByDescending)
 const recordings = computed(() => {
   const result = recordingsList.recordings ?? ([] as Recording[])
   const field = orderByField.value
-  const compareA = orderByDescending.value ? -1 : 1
-  const compareB = orderByDescending.value ? 1 : -1
+  const descending = orderByDescending.value
 
-  return result.sort((a, b) => (a[field] > b[field] ? compareA : compareB))
+  return result.sort((a, b) => {
+
+    if (a[field] instanceof Date || a[field] instanceof Number) {
+      if (descending) return +b[field] - +a[field]
+
+      return +a[field] - +b[field]
+    }
+
+    const aValue = a[field]?.toString() ?? `Recording ${a.id}`
+    const bValue = b[field]?.toString() ?? `Recording ${b.id}`
+
+    if (descending) return bValue.localeCompare(aValue)
+
+    return aValue.localeCompare(bValue)
+  })
 })
 
 onMounted(async () => {
