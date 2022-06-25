@@ -31,7 +31,7 @@ $body-color: #ddd;
 $stand-color: #aeaeae;
 
 .monitor {
-  width: 16rem;
+  width: 13.6rem;
   margin: 1rem auto;
 
   .body {
