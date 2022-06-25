@@ -9,11 +9,11 @@ const aboutList = computed(() => {
     },
     { 
       title: 'No limitations', 
-      text: 'Videos you create in Scrap can be as long as you want, we won\'t cut you short.'
+      text: 'There\'s no time limit applied to your screen recordings in Scrap. Record for as long as you want.'
     },
     { 
-      title: 'Privacy by default', 
-      text: 'All of your recordings are stored locally in your browser, with nothing uploaded to any servers.'
+      title: 'Privacy as standard', 
+      text: 'All of your recordings are stored locally in your browser, nothing is shared outside of your browser.'
     },
   ]
 })
@@ -22,8 +22,8 @@ const aboutList = computed(() => {
 
 <template>
 <h1><font-awesome-icon :icon="['fas','question-circle']" /> What is Scrap?</h1>
-<p>Scrap is a completely free screen recording application. You can use it to record any screen on your computer, including specific windows or browser tabs.</p>
-<p>Unlike some other screen recording applications, Scrap doesn't need you to install any additional software or browser plug-ins. Everything is done using technology that is already built in to your web browser.</p>
+<p>Scrap is a free application for creating screen recordings. You can use it to record any screen or app on your computer, not just your browser tabs.</p>
+<p>Scrap doesn't require any additional software or browser plug-ins to work. Everything is done using features that are already in your browser.</p>
 <ul>
     <li v-for="about of aboutList" :key="about.title">
       <strong>{{ about.title }}</strong>

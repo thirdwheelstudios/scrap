@@ -1,21 +1,34 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { DateTime } from 'luxon'
 
 const date = ref(DateTime.now())
+const isMounted = ref(false)
 
 const year = computed(() => date.value.year)
+
+onMounted(() => isMounted.value = true)
 
 </script>
 
 <template>
   <footer>
-    <small><font-awesome-icon :icon="['fas','copyright']" /> {{ year }} thirdwheel studios</small>
+    <transition name="fade">
+      <small v-if="isMounted"><font-awesome-icon :icon="['fas','copyright']" /> {{ year }} thirdwheel studios</small>
+    </transition>
   </footer>
 </template>
 
 <style scoped lang="scss">
 footer {
   text-align: center;
+}
+
+.fade-enter-active {
+  transition: opacity 2s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
 }
 </style>
