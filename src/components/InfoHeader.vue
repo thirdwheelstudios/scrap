@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Scrap <small>online screen recorder</small></h1>
+    <h1>Scrap <small>online screen recording made easy</small></h1>
   </header>
 </template>
 
