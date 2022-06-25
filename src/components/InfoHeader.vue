@@ -9,9 +9,5 @@ header {
   h1 {
     margin: 0;
   }
-
-  p {
-    margin-top: 0.5rem;
-  }
 }
 </style>
