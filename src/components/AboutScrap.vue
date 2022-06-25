@@ -9,7 +9,7 @@ const aboutList = computed(() => {
     },
     { 
       title: 'No limitations', 
-      text: 'There\'s no time limits to your screen recordings in Scrap. Record for as long as you want.'
+      text: 'There\'s no time limit to your screen recordings in Scrap. Record for as long as you want.'
     },
     { 
       title: 'Privacy as standard', 
