@@ -11,6 +11,8 @@ export default defineConfig({
       manifest: {
         name: 'Scrap Screen Recorder',
         short_name: 'Scrap',
+        scope: '/',
+        start_url: '/',
         description: 'Use Scrap to record any screen or window directly from your browser',
         theme_color: '#3f3959',
         background_color: '#36314f',
@@ -24,12 +26,6 @@ export default defineConfig({
             src: 'icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-          },
-          {
-            src: 'icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable',
           }
         ]
       }
