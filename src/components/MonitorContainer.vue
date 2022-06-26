@@ -14,6 +14,7 @@ withDefaults(defineProps<Props>(), {
       <div class="screen">
         <div class="content">
           <slot></slot>
+          <div class="content-overlay"></div>
         </div>
       </div>
       <div class="power" :class="{ on: powerOn }"></div>
@@ -25,8 +26,9 @@ withDefaults(defineProps<Props>(), {
 <style scoped lang="scss">
 $power-button-off: #606060;
 $power-button-on: #67da63;
-$content-gradient-start: #404040;
-$content-gradient-end: #333333;
+$content-background: #423c5d;
+$content-gradient-start: #3f395950;
+$content-gradient-end: #29234585;
 $body-color: #ddd;
 $stand-color: #aeaeae;
 
@@ -54,11 +56,24 @@ $stand-color: #aeaeae;
       .content {
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(
-          155deg,
-          $content-gradient-start 60%,
-          $content-gradient-end 40%
-        );
+        position: relative;
+        background-color: $content-background;
+
+        .content-overlay {
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          background-image: linear-gradient(
+            155deg,
+            $content-gradient-start 55%,
+            $content-gradient-end 45%
+          );
+          z-index: 2;
+          pointer-events: none;
+          filter: blur(10px);
+        }
       }
     }
 
