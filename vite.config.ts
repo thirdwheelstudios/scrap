@@ -9,6 +9,7 @@ export default defineConfig({
     VitePWA({
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
+        id: '/',
         name: 'Scrap Screen Recorder',
         short_name: 'Scrap',
         scope: '/',
