@@ -20,13 +20,21 @@ onMounted(() => {
 </script>
 
 <template>
-<!-- Header -->
-<ins
-  class="adsbygoogle"
-  style="display:inline-block;width:728px;height:90px"
-  :data-ad-client="adClient"
-  :data-ad-slot="adSlot"
-  data-ad-format="auto"
-  data-full-width-responsive="true">
-</ins>
+  <div>
+    <ins
+      class="adsbygoogle"
+      style="display:inline-block;width:728px;height:90px"
+      :data-ad-client="adClient"
+      :data-ad-slot="adSlot"
+      data-ad-format="auto"
+      data-full-width-responsive="true">
+    </ins>
+  </div>
 </template>
+
+<style scoped lang="scss">
+div {
+  display: flex;
+  justify-content: center;
+}
+</style>
