@@ -2,13 +2,13 @@
 import { onMounted } from 'vue'
 
 interface Props {
-  client?: string,
-  slot?: string,
+  adClient?: string,
+  adSlot?: string,
 }
 
 withDefaults(defineProps<Props>(), {
-  client: 'ca-pub-1874401332613980',
-  slot: '3901181364',
+  adClient: 'ca-pub-1874401332613980',
+  adSlot: '3901181364',
 })
 
 onMounted(() => {
@@ -24,8 +24,8 @@ onMounted(() => {
 <ins
   class="adsbygoogle"
   style="display:inline-block;width:728px;height:90px"
-  :data-ad-client="client"
-  :data-ad-slot="slot"
+  :data-ad-client="adClient"
+  :data-ad-slot="adSlot"
   data-ad-format="auto"
   data-full-width-responsive="true">
 </ins>
