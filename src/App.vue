@@ -4,6 +4,7 @@ import { useSettingsStore } from './store'
 import { setTheme } from './utils/theme'
 import ModalContainer from './components/modals/ModalContainer.vue'
 import AppFooter from './components/AppFooter.vue'
+import UpdatePwa from './components/UpdatePwa.vue'
 
 const settings = useSettingsStore()
 
@@ -32,6 +33,7 @@ onBeforeMount(() => setTheme(appTheme.value))
   <router-view />
   <AppFooter />
   <ModalContainer />
+  <UpdatePwa />
 </template>
 
 <style lang="scss">
