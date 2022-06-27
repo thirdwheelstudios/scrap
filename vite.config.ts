@@ -23,6 +23,11 @@ const pwaOptions = {
         src: 'icon-512x512.png',
         sizes: '512x512',
         type: 'image/png',
+      },
+      {
+        src: 'maskable_icon.png',
+        type: 'image/png',
+        purpose: 'any maskable'
       }
     ]
   } as Partial<VitePWAOptions>
