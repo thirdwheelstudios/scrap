@@ -8,7 +8,6 @@ import RecordingCardsList from './RecordingCardsList.vue'
 import { useRecordingStore, useSettingsStore } from '../store'
 import InfoHeader from './InfoHeader.vue'
 import AboutScrap from './AboutScrap.vue'
-import AdsenseBanner from './adsense/AdsenseBanner.vue'
 
 const router = useRouter()
 const recording = useRecordingStore()
@@ -32,7 +31,6 @@ const onToggleRecording = async () => {
 <template>
 <div class="scrap-container">
   <InfoHeader />
-  <AdsenseBanner />
   <MonitorContainer :power-on="isRecording">
     <div class="monitor-screen">
       <RecordingPreview />
@@ -50,7 +48,6 @@ const onToggleRecording = async () => {
     </template>
     <RecordingCardsList />
   </ContentContainer>
-  <AdsenseBanner ad-slot="6221232109" />
   <AboutScrap />
 </div>
 </template>
