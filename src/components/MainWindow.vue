@@ -1,23 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import ContentContainer from './ContentContainer.vue'
 import MonitorContainer from './MonitorContainer.vue'
 import RecordingPreview from './RecordingPreview.vue'
-import RecordingCardsList from './RecordingCardsList.vue'
 import { useRecordingStore, useSettingsStore } from '../store'
 import InfoHeader from './InfoHeader.vue'
 import AboutScrap from './AboutScrap.vue'
 
-const router = useRouter()
 const recording = useRecordingStore()
 const settings = useSettingsStore()
 
 const isRecording = computed(() => recording.isRecording)
-
-const onSettings = () => {
-  router.push({ name: 'settings' })
-}
 
 const onToggleRecording = async () => {
   if (isRecording.value) {
@@ -42,12 +34,6 @@ const onToggleRecording = async () => {
       ></button>
     </div>
   </MonitorContainer>
-  <ContentContainer title="My Scrapbook">
-    <template #title-content>
-      <button type="button" @click="onSettings">Go to Settings</button>
-    </template>
-    <RecordingCardsList />
-  </ContentContainer>
   <AboutScrap />
 </div>
 </template>

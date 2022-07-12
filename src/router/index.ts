@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const Home = () => import('../views/HomeView.vue')
+const ScrapBook = () => import('../views/ScrapBookView.vue')
 const Settings = () => import('../views/SettingsView.vue')
 const PrivacyPolicy = () => import('../views/PrivacyPolicy.vue')
 
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+  },
+  { 
+    path: '/scrap-book', 
+    name: 'scrap-book', 
+    component: ScrapBook
   },
   {
     path: '/settings',
