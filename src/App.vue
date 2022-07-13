@@ -32,7 +32,7 @@ onBeforeMount(() => setTheme(appTheme.value))
     </defs>
   </svg>
   <NavBar />
-  <div>
+  <div class="main-content">
     <router-view />
     <AppFooter />
   </div>
@@ -70,5 +70,29 @@ onBeforeMount(() => setTheme(appTheme.value))
 
 button .fill-gradient-linear:hover {
   filter: drop-shadow(3px 1px 5px $button-gradient-1);
+}
+
+nav {
+  a {
+    color: $primary-color;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  a.is-active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.main-content {
+  margin: auto;
+  max-width: 960px;
+  padding: 1rem 2rem;
 }
 </style>
