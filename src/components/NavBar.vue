@@ -17,10 +17,12 @@ nav {
   box-shadow: 0 2px 5px $border-color;
   text-transform: uppercase;
   font-weight: 700;
-  text-underline-offset: 5px;
+  text-underline-offset: 0.25rem;
+  color: $button-text-color;
 
   ul {
-    margin: 0;
+    max-width: 960px;
+    margin: auto;
     padding: 0;
     li {
       list-style: none;
