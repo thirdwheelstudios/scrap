@@ -11,10 +11,10 @@ const routes = [
     name: 'home',
     component: Home,
   },
-  { 
-    path: '/scrap-book', 
-    name: 'scrap-book', 
-    component: ScrapBook
+  {
+    path: '/scrap-book',
+    name: 'scrap-book',
+    component: ScrapBook,
   },
   {
     path: '/settings',
@@ -24,13 +24,14 @@ const routes = [
   {
     path: '/privacy',
     name: 'privacy',
-    component: PrivacyPolicy
+    component: PrivacyPolicy,
   },
 ] as RouteRecordRaw[]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  linkActiveClass: 'is-active',
 })
 
 export default router
