@@ -1,63 +1,63 @@
 :root {
-    --bg-color: #36314f;
-    --primary-color: #ddd8f0;
-    --primary-shadow: #6f6f6f;
-    --bg-primary-gradient-start: #423c5d;
-    --bg-primary-gradient-end: #3f3959;
-    --border-color: #2c283e;
-    --button-text-color: #ddd8f0;
+  --bg-color: #371b58;
+  --primary-color: #ddd8f0;
+  --primary-shadow: #6f6f6f;
+  --bg-primary-gradient-start: #5b4b8a;
+  --bg-primary-gradient-end: #4c3575;
+  --border-color: #2c283e;
+  --button-text-color: #ddd8f0;
 
-    --bg-color-dark: #36314f;
-    --primary-color-dark: #ddd8f0;
-    --primary-shadow-dark: #6f6f6f;
-    --bg-primary-gradient-start-dark: #423c5d;
-    --bg-primary-gradient-end-dark: #3f3959;
-    --border-color-dark: #2c283e;
-    --button-text-color-dark: #ddd8f0;
+  --bg-color-dark: #371b58;
+  --primary-color-dark: #ddd8f0;
+  --primary-shadow-dark: #6f6f6f;
+  --bg-primary-gradient-start-dark: #5b4b8a;
+  --bg-primary-gradient-end-dark: #4c3575;
+  --border-color-dark: #2c283e;
+  --button-text-color-dark: #ddd8f0;
 
-    --bg-color-light: #f9f5f9;
-    --primary-color-light: #594e6a;
-    --primary-shadow-light: #e6e6e6;
-    --bg-primary-gradient-start-light: #f3ecf3;
-    --bg-primary-gradient-end-light: #e3d0e3;
-    --border-color-light: #ccbbcc;
-    --button-text-color-light: #ddd8f0;
+  --bg-color-light: #f9f5f9;
+  --primary-color-light: #594e6a;
+  --primary-shadow-light: #e6e6e6;
+  --bg-primary-gradient-start-light: #f3ecf3;
+  --bg-primary-gradient-end-light: #e3d0e3;
+  --border-color-light: #ccbbcc;
+  --button-text-color-light: #ddd8f0;
 
-    --button-gradient-1: #6a5acd;
-    --button-gradient-2: #8a2be2;
-    --button-gradient-3: #ba55d3;
-    --button-gradient-4: #da70d6;
+  --button-gradient-1: #6a5acd;
+  --button-gradient-2: #8a2be2;
+  --button-gradient-3: #ba55d3;
+  --button-gradient-4: #da70d6;
 
-    --link-color: #6a5acd;
-  }
-  
-  $bg-color: var(--bg-color);
-  $primary-color: var(--primary-color);
-  $primary-shadow: var(--primary-shadow);
-  $bg-primary-gradient-start: var(--bg-primary-gradient-start);
-  $bg-primary-gradient-end: var(--bg-primary-gradient-end);
-  $border-color: var(--border-color);
-  $button-text-color: var(--button-text-color);
+  --link-color: #6a5acd;
+}
 
-  $bg-color-dark: var(--bg-color-dark);
-  $primary-color-dark: var(--primary-color-dark);
-  $primary-shadow-dark: var(--primary-shadow-dark);
-  $bg-primary-gradient-start-dark: var(--bg-primary-gradient-start-dark);
-  $bg-primary-gradient-end-dark: var(--bg-primary-gradient-end-dark);
-  $border-color-dark: var(--border-color-dark);
-  $button-text-color-dark: var(--button-text-color-dark);
+$bg-color: var(--bg-color);
+$primary-color: var(--primary-color);
+$primary-shadow: var(--primary-shadow);
+$bg-primary-gradient-start: var(--bg-primary-gradient-start);
+$bg-primary-gradient-end: var(--bg-primary-gradient-end);
+$border-color: var(--border-color);
+$button-text-color: var(--button-text-color);
 
-  $bg-color-light: var(--bg-color-light);
-  $primary-color-light: var(--primary-color-light);
-  $primary-shadow-light: var(--primary-shadow-light);
-  $bg-primary-gradient-start-light: var(--bg-primary-gradient-start-light);
-  $bg-primary-gradient-end-light: var(--bg-primary-gradient-end-light);
-  $border-color-light: var(--border-color-light);
-  $button-text-color-light: var(--button-text-color-light);
+$bg-color-dark: var(--bg-color-dark);
+$primary-color-dark: var(--primary-color-dark);
+$primary-shadow-dark: var(--primary-shadow-dark);
+$bg-primary-gradient-start-dark: var(--bg-primary-gradient-start-dark);
+$bg-primary-gradient-end-dark: var(--bg-primary-gradient-end-dark);
+$border-color-dark: var(--border-color-dark);
+$button-text-color-dark: var(--button-text-color-dark);
 
-  $button-gradient-1: var(--button-gradient-1);
-  $button-gradient-2: var(--button-gradient-2);
-  $button-gradient-3: var(--button-gradient-3);
-  $button-gradient-4: var(--button-gradient-4);
+$bg-color-light: var(--bg-color-light);
+$primary-color-light: var(--primary-color-light);
+$primary-shadow-light: var(--primary-shadow-light);
+$bg-primary-gradient-start-light: var(--bg-primary-gradient-start-light);
+$bg-primary-gradient-end-light: var(--bg-primary-gradient-end-light);
+$border-color-light: var(--border-color-light);
+$button-text-color-light: var(--button-text-color-light);
 
-  $link-color: var(--link-color);
+$button-gradient-1: var(--button-gradient-1);
+$button-gradient-2: var(--button-gradient-2);
+$button-gradient-3: var(--button-gradient-3);
+$button-gradient-4: var(--button-gradient-4);
+
+$link-color: var(--link-color);
