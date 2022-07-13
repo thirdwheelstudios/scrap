@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref, watch, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { AppTheme } from '../enums'
 import ContentContainer from '../components/ContentContainer.vue'
 import GroupContainer from '../components/GroupContainer.vue'
@@ -10,7 +9,6 @@ import {
   useSettingsStore,
 } from '../store'
 
-const router = useRouter()
 const modal = useModalStore()
 const settings = useSettingsStore()
 const recordingsList = useRecordingsListStore()
@@ -41,10 +39,6 @@ const orderByFields = ref([
   { value: 'startDateTime', name: 'Recording Date' },
   { value: 'description', name: 'Description' },
 ])
-
-const onGoBack = () => {
-  router.back()
-}
 
 const onDeleteRecordings = async () => {
   modal.open('delete-all-recordings-modal')
@@ -92,9 +86,6 @@ onMounted(async () => {
 
 <template>
   <ContentContainer title="Settings">
-    <template #title-content
-      ><button type="button" @click="onGoBack">⬅ Go Back</button></template
-    >
     <GroupContainer group-title="Theme">
       <form>
         <div class="radio-button">
