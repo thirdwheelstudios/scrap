@@ -70,7 +70,7 @@ onMounted(async () => {
 div {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
 }
 
 .status-container {
