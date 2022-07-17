@@ -60,12 +60,8 @@ onMounted(async () => {
       }}
     </p>
     <p v-if="!isLoading && !hasRecordings">
-      Press the
-      <font-awesome-icon
-        :icon="['fas', 'circle']"
-        class="fill-gradient-linear"
-      />
-      button to get started with your first screen recording!
+      Go to <router-link to="/">Record</router-link> to get started with your
+      first screen recording!
     </p>
   </GroupContainer>
 </template>
