@@ -39,7 +39,7 @@ onBeforeMount(() => setTheme(appTheme.value))
     <NavBar />
     <div class="main-content">
       <router-view />
-      <AppFooter />
+      <AppFooter class="footer" />
     </div>
     <ModalContainer />
     <UpdatePwa />
@@ -102,9 +102,16 @@ nav {
 }
 
 .main-content {
+  display: flex;
+  flex-direction: column;
   margin: auto;
   max-width: 960px;
   padding: 1rem 2rem;
   padding-top: 0;
+  height: calc(100vh - 85px);
+
+  .footer {
+    flex-grow: 1;
+  }
 }
 </style>

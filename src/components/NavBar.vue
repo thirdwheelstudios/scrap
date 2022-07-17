@@ -20,6 +20,8 @@ nav {
   font-weight: 700;
   text-underline-offset: 0.25rem;
   color: $button-text-color;
+  white-space: nowrap;
+  overflow-x: auto;
 
   ul {
     max-width: 960px;

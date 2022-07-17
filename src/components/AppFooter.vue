@@ -24,6 +24,9 @@ onMounted(() => (isMounted.value = true))
 
 <style scoped lang="scss">
 footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
   text-align: center;
 }
 

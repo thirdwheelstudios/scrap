@@ -27,7 +27,7 @@ const onToggleRecording = async () => {
     <template #title-content>
       <h1>Scrap <small>online screen recording made easy</small></h1>
     </template>
-    <MonitorContainer :power-on="isRecording">
+    <MonitorContainer :power-on="isRecording" class="monitor">
       <div class="monitor-screen">
         <RecordingPreview />
         <button
@@ -52,11 +52,14 @@ const onToggleRecording = async () => {
 
 <style scoped lang="scss">
 .scrap-container {
-  margin: auto;
   max-width: 960px;
 
   h1 {
     margin: 0;
+  }
+
+  .monitor {
+    margin: 3rem auto;
   }
 
   .instruction-text {
