@@ -105,7 +105,7 @@ nav {
   display: flex;
   flex-direction: column;
   margin: auto;
-  max-width: 960px;
+  max-width: $max-width;
   padding: 1rem 2rem;
   padding-top: 0;
   height: calc(100vh - 85px);

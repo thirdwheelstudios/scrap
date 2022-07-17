@@ -95,7 +95,7 @@ const onRename = async () => {
     );
     display: flex;
     flex-direction: column;
-    margin: 0.25rem;
+    margin: 0.4rem;
 
     .thumbnail {
       position: relative;

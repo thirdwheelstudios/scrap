@@ -17,6 +17,7 @@ nav {
   padding: 1rem;
   box-shadow: 0 2px 5px $border-color;
   text-transform: uppercase;
+  text-align: center;
   font-weight: 700;
   text-underline-offset: 0.25rem;
   color: $button-text-color;
@@ -24,7 +25,7 @@ nav {
   overflow-x: auto;
 
   ul {
-    max-width: 960px;
+    max-width: $max-width;
     margin: auto;
     padding: 0;
     li {
