@@ -29,6 +29,8 @@
   --button-gradient-4: #da70d6;
 
   --link-color: #6a5acd;
+
+  --max-width: 960px;
 }
 
 $bg-color: var(--bg-color);
@@ -61,3 +63,5 @@ $button-gradient-3: var(--button-gradient-3);
 $button-gradient-4: var(--button-gradient-4);
 
 $link-color: var(--link-color);
+
+$max-width: var(--max-width);

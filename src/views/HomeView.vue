@@ -52,7 +52,7 @@ const onToggleRecording = async () => {
 
 <style scoped lang="scss">
 .scrap-container {
-  max-width: 960px;
+  max-width: $max-width;
 
   h1 {
     margin: 0;
