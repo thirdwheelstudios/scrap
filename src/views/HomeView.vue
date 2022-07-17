@@ -4,7 +4,6 @@ import MonitorContainer from '../components/MonitorContainer.vue'
 import ContentContainer from '../components/ContentContainer.vue'
 import RecordingPreview from '../components/RecordingPreview.vue'
 import { useRecordingStore, useSettingsStore } from '../store'
-import AboutScrap from '../components/AboutScrap.vue'
 
 const recording = useRecordingStore()
 const settings = useSettingsStore()
@@ -39,7 +38,15 @@ const onToggleRecording = async () => {
         ></button>
       </div>
     </MonitorContainer>
-    <AboutScrap />
+    <div class="instruction-text">
+      Press the
+      <font-awesome-icon
+        :icon="['fas', 'circle']"
+        class="fill-gradient-linear clickable"
+        @click="onToggleRecording"
+      />
+      button to create a screen recording!
+    </div>
   </ContentContainer>
 </template>
 
@@ -52,6 +59,15 @@ const onToggleRecording = async () => {
     margin: 0;
   }
 
+  .instruction-text {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 2rem;
+
+    .clickable {
+      cursor: pointer;
+    }
+  }
   .monitor-screen {
     display: flex;
     width: 100%;

@@ -4,6 +4,7 @@ const Home = () => import('../views/HomeView.vue')
 const ScrapBook = () => import('../views/ScrapBookView.vue')
 const Settings = () => import('../views/SettingsView.vue')
 const PrivacyPolicy = () => import('../views/PrivacyPolicy.vue')
+const About = () => import('../views/AboutView.vue')
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/privacy',
     name: 'privacy',
     component: PrivacyPolicy,
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About,
   },
 ] as RouteRecordRaw[]
 

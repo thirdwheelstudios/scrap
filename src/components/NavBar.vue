@@ -5,6 +5,7 @@
     <ul>
       <li><router-link to="/">Record</router-link></li>
       <li><router-link to="/scrap-book">My Scrapbook</router-link></li>
+      <li><router-link to="/about">About</router-link></li>
       <li><router-link to="/settings">Settings</router-link></li>
     </ul>
   </nav>
