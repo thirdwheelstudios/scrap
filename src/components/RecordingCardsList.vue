@@ -18,7 +18,6 @@ const recordings = computed(() => {
   const descending = orderByDescending.value
 
   return result.sort((a, b) => {
-
     if (a[field] instanceof Date || a[field] instanceof Number) {
       if (descending) return +b[field] - +a[field]
 
@@ -41,21 +40,28 @@ onMounted(async () => {
 
 <template>
   <div v-if="hasRecordings">
-    <RecordingCard 
-      v-for="recording of recordings" 
-      :key="recording.id" 
+    <RecordingCard
+      v-for="recording of recordings"
+      :key="recording.id"
       :recording="recording"
     />
   </div>
   <GroupContainer v-else class="status-container">
-    <font-awesome-icon 
-      :icon="['fas', isLoading ? 'circle-notch' : 'film']" 
+    <font-awesome-icon
+      :icon="['fas', isLoading ? 'circle-notch' : 'film']"
       :spin="isLoading"
       size="3x"
     />
-    <p>{{ isLoading ? 'Loading your scrapbook, please wait...' : 'Your screen recording scrapbook will appear here' }}</p>
+    <p>
+      {{
+        isLoading
+          ? 'Loading your scrapbook, please wait...'
+          : 'Your screen recording scrapbook will appear here'
+      }}
+    </p>
     <p v-if="!isLoading && !hasRecordings">
-      Press the <font-awesome-icon :icon="['fas', 'circle']" class="fill-gradient-linear" /> button to get started with your first screen recording!
+      Go to <router-link to="/">Record</router-link> to get started with your
+      first screen recording!
     </p>
   </GroupContainer>
 </template>
@@ -64,6 +70,7 @@ onMounted(async () => {
 div {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .status-container {

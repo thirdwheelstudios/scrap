@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref, watch, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { AppTheme } from '../enums'
 import ContentContainer from '../components/ContentContainer.vue'
 import GroupContainer from '../components/GroupContainer.vue'
-import { useModalStore, useRecordingsListStore, useSettingsStore } from '../store'
+import {
+  useModalStore,
+  useRecordingsListStore,
+  useSettingsStore,
+} from '../store'
 
-const router = useRouter()
 const modal = useModalStore()
 const settings = useSettingsStore()
 const recordingsList = useRecordingsListStore()
@@ -19,28 +21,24 @@ const orderByDescending = ref(settings.orderByDescending)
 const recordingsCount = computed(() => recordingsList.totalCount)
 
 const videoSettings = ref([
-  {value: 1000000, name: '360p'},
-  {value: 2500000, name: '480p'},
-  {value: 5000000, name: '720p'},
-  {value: 8000000, name: '1080p'},
-  {value: 16000000, name: '2k'},
-  {value: 40000000, name: '4k'},
+  { value: 1000000, name: '360p' },
+  { value: 2500000, name: '480p' },
+  { value: 5000000, name: '720p' },
+  { value: 8000000, name: '1080p' },
+  { value: 16000000, name: '2k' },
+  { value: 40000000, name: '4k' },
 ])
 
-const audioSettings = ref([ 
-  {value: 96000, name: 'Low - 96kbps'},
-  {value: 128000, name: 'Medium - 128kbps'},
-  {value: 160000, name: 'High - 160kbps'}
+const audioSettings = ref([
+  { value: 96000, name: 'Low - 96kbps' },
+  { value: 128000, name: 'Medium - 128kbps' },
+  { value: 160000, name: 'High - 160kbps' },
 ])
 
 const orderByFields = ref([
   { value: 'startDateTime', name: 'Recording Date' },
-  { value: 'description', name: 'Description' }
+  { value: 'description', name: 'Description' },
 ])
-
-const onBackToScrap = () => {
-  router.push({ name: 'home' })
-}
 
 const onDeleteRecordings = async () => {
   modal.open('delete-all-recordings-modal')
@@ -54,28 +52,32 @@ watch(
 )
 
 watch(
-  () => videoBitsPerSecond.value, 
+  () => videoBitsPerSecond.value,
   (bitsPerSecond) => {
     settings.setVideoBitsPerSecond(bitsPerSecond)
-  })
+  }
+)
 
 watch(
-  () => audioBitsPerSecond.value, 
+  () => audioBitsPerSecond.value,
   (bitsPerSecond) => {
     settings.setAudioBitsPerSecond(bitsPerSecond)
-  })
+  }
+)
 
 watch(
-  () => orderByFieldName.value, 
+  () => orderByFieldName.value,
   (field) => {
     settings.setOrderByFieldName(field)
-  })
+  }
+)
 
 watch(
-  () => orderByDescending.value, 
+  () => orderByDescending.value,
   (descending) => {
     settings.setOrderByDescending(descending)
-  })
+  }
+)
 
 onMounted(async () => {
   await recordingsList.load()
@@ -84,23 +86,33 @@ onMounted(async () => {
 
 <template>
   <ContentContainer title="Settings">
-    <template #title-content
-      ><button type="button" @click="onBackToScrap">
-        ⬅ Back to Scrap
-      </button></template
-    >
     <GroupContainer group-title="Theme">
       <form>
         <div class="radio-button">
-          <input id="autoTheme" v-model="appTheme" type="radio" :value="AppTheme.auto" />
+          <input
+            id="autoTheme"
+            v-model="appTheme"
+            type="radio"
+            :value="AppTheme.auto"
+          />
           <label for="autoTheme">Auto (System)</label>
         </div>
         <div class="radio-button">
-          <input id="darkTheme" v-model="appTheme" type="radio" :value="AppTheme.dark" />
+          <input
+            id="darkTheme"
+            v-model="appTheme"
+            type="radio"
+            :value="AppTheme.dark"
+          />
           <label for="darkTheme">Dark Theme</label>
         </div>
         <div class="radio-button">
-          <input id="lightTheme" v-model="appTheme" type="radio" :value="AppTheme.light" />
+          <input
+            id="lightTheme"
+            v-model="appTheme"
+            type="radio"
+            :value="AppTheme.light"
+          />
           <label for="lightTheme">Light Theme</label>
         </div>
       </form>
@@ -109,14 +121,34 @@ onMounted(async () => {
       <form>
         <div>
           <label for="videoBitsPerSecond">Video </label>
-          <select id="videoBitsPerSecond" v-model="videoBitsPerSecond" name="videoBitsPerSecond">
-            <option v-for="setting of videoSettings" :key="setting.value" :value="setting.value">{{ setting.name }}</option>
+          <select
+            id="videoBitsPerSecond"
+            v-model="videoBitsPerSecond"
+            name="videoBitsPerSecond"
+          >
+            <option
+              v-for="setting of videoSettings"
+              :key="setting.value"
+              :value="setting.value"
+            >
+              {{ setting.name }}
+            </option>
           </select>
         </div>
         <div>
           <label for="audioBitsPerSecond">Audio </label>
-          <select id="audioBitsPerSecond" v-model="audioBitsPerSecond" name="audioBitsPerSecond">
-            <option v-for="setting of audioSettings" :key="setting.value" :value="setting.value">{{ setting.name }}</option>
+          <select
+            id="audioBitsPerSecond"
+            v-model="audioBitsPerSecond"
+            name="audioBitsPerSecond"
+          >
+            <option
+              v-for="setting of audioSettings"
+              :key="setting.value"
+              :value="setting.value"
+            >
+              {{ setting.name }}
+            </option>
           </select>
         </div>
       </form>
@@ -125,12 +157,29 @@ onMounted(async () => {
       <form>
         <div>
           <label for="orderByFieldName">Order By Field </label>
-          <select id="orderByFieldName" v-model="orderByFieldName" name="orderByFieldName">
-            <option v-for="field of orderByFields" :key="field.value" :value="field.value">{{ field.name }}</option>
+          <select
+            id="orderByFieldName"
+            v-model="orderByFieldName"
+            name="orderByFieldName"
+          >
+            <option
+              v-for="field of orderByFields"
+              :key="field.value"
+              :value="field.value"
+            >
+              {{ field.name }}
+            </option>
           </select>
         </div>
         <div>
-          <label for="orderByDescending">Descending <input id="orderByDescending" v-model="orderByDescending" name="orderByDescending" type="checkbox" /></label>
+          <label for="orderByDescending"
+            >Descending
+            <input
+              id="orderByDescending"
+              v-model="orderByDescending"
+              name="orderByDescending"
+              type="checkbox"
+          /></label>
         </div>
       </form>
     </GroupContainer>
