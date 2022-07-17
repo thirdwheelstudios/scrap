@@ -6,6 +6,10 @@ import ModalContainer from './components/modals/ModalContainer.vue'
 import AppFooter from './components/AppFooter.vue'
 import UpdatePwa from './components/UpdatePwa.vue'
 import NavBar from './components/NavBar.vue'
+import BrowserNotSupported from './components/BrowserNotSupported.vue'
+import { screenRecording } from './composables/screenRecording'
+
+const { isSupported } = screenRecording()
 
 const settings = useSettingsStore()
 
@@ -31,13 +35,16 @@ onBeforeMount(() => setTheme(appTheme.value))
       </linearGradient>
     </defs>
   </svg>
-  <NavBar />
-  <div class="main-content">
-    <router-view />
-    <AppFooter />
-  </div>
-  <ModalContainer />
-  <UpdatePwa />
+  <template v-if="isSupported">
+    <NavBar />
+    <div class="main-content">
+      <router-view />
+      <AppFooter />
+    </div>
+    <ModalContainer />
+    <UpdatePwa />
+  </template>
+  <BrowserNotSupported v-else />
 </template>
 
 <style lang="scss">
@@ -72,19 +79,23 @@ button .fill-gradient-linear:hover {
   filter: drop-shadow(3px 1px 5px $button-gradient-1);
 }
 
+a {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 nav {
   a {
-    color: $primary-color;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    text-decoration: none;
   }
-
   a:hover {
-    text-decoration: underline;
     background-color: rgba(255, 255, 255, 0.15);
   }
-
   a.is-active {
     background-color: rgba(255, 255, 255, 0.3);
   }
@@ -94,5 +105,6 @@ nav {
   margin: auto;
   max-width: 960px;
   padding: 1rem 2rem;
+  padding-top: 0;
 }
 </style>
