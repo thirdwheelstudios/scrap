@@ -94,18 +94,32 @@ $stand-color: #aeaeae;
   }
 
   .stand {
-    width: 3rem;
-    height: 1.5rem;
+    width: 8rem;
+    height: 2.5rem;
     background: $stand-color;
-    border-left: 1.5rem solid $bg-primary-gradient-start;
-    border-right: 1.5rem solid $bg-primary-gradient-end;
-    border-bottom: 1.5rem solid #9b9b9b;
-    border-radius: 0.3rem;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    box-shadow: inset 0 -0.1rem 0 #bebebe;
+    clip-path: polygon(
+      2% 95%,
+      35% 85%,
+      35% 0%,
+      65% 0%,
+      65% 85%,
+      98% 95%,
+      100% 100%,
+      0% 100%
+    );
+    -webkit-clip-path: polygon(
+      2% 95%,
+      35% 85%,
+      35% 0%,
+      65% 0%,
+      65% 85%,
+      98% 95%,
+      100% 100%,
+      0% 100%
+    );
+    border-radius: 0.2rem;
+    box-shadow: inset 0 -0.4rem 0 rgba(0, 0, 0, 0.1);
     margin: 0 auto;
-    transition: border-left 0.2s ease-in, border-right 0.2s ease-in;
   }
 }
 </style>
