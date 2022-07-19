@@ -35,6 +35,7 @@ html {
     }
 
     button:hover {
+      background-color: $button-gradient-2;
       background-image: linear-gradient(
         50deg,
         $button-gradient-1 0%,
@@ -43,7 +44,6 @@ html {
         $button-gradient-4 100%
       );
       box-shadow: 0 0 5px $button-gradient-1;
-      transform: scale(1.005);
     }
   }
 }
