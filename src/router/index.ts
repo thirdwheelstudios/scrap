@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-const Home = () => import('../views/HomeView.vue')
+const Record = () => import('../views/RecordView.vue')
 const ScrapBook = () => import('../views/ScrapBookView.vue')
 const Settings = () => import('../views/SettingsView.vue')
 const PrivacyPolicy = () => import('../views/PrivacyPolicy.vue')
@@ -9,8 +9,8 @@ const About = () => import('../views/AboutView.vue')
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    name: 'record',
+    component: Record,
   },
   {
     path: '/scrap-book',
