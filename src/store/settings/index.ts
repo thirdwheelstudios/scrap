@@ -4,57 +4,69 @@ import { getValue, setValue } from '../../utils/localStorage'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => {
-    const appTheme = getValue('theme', AppTheme.auto)
-    const audioBitsPerSecondSetting = getValue('audioBitsPerSecond', 128000)
-    const videoBitsPerSecondSetting = getValue('videoBitsPerSecond', 2500000)
-    const orderByFieldNameSetting = getValue<'startDateTime' | 'description'>('orderByFieldName', 'startDateTime')
-    const orderByDescendingSetting = getValue('orderByDescending', true)
+    const _theme = getValue('theme', AppTheme.auto)
+    const _audioBitsPerSecond = getValue('audioBitsPerSecond', 128000)
+    const _videoBitsPerSecond = getValue('videoBitsPerSecond', 2500000)
+    const _orderByFieldName = getValue<'startDateTime' | 'description'>(
+      'orderByFieldName',
+      'startDateTime'
+    )
+    const _orderByDescending = getValue('orderByDescending', true)
+    const _cookiesAccepted = getValue('cookiesAccepted', false)
 
-    return { 
-      appTheme, 
-      audioBitsPerSecondSetting,
-      videoBitsPerSecondSetting, 
-      orderByFieldNameSetting, 
-      orderByDescendingSetting,
+    return {
+      _theme,
+      _audioBitsPerSecond,
+      _videoBitsPerSecond,
+      _orderByFieldName,
+      _orderByDescending,
+      _cookiesAccepted,
     }
   },
   getters: {
     theme(state) {
-      return state.appTheme
+      return state._theme
     },
     audioBitsPerSecond(state) {
-      return state.audioBitsPerSecondSetting
+      return state._audioBitsPerSecond
     },
     videoBitsPerSecond(state) {
-      return state.videoBitsPerSecondSetting
+      return state._videoBitsPerSecond
     },
     orderByFieldName(state) {
-      return state.orderByFieldNameSetting
+      return state._orderByFieldName
     },
     orderByDescending(state) {
-      return state.orderByDescendingSetting
+      return state._orderByDescending
+    },
+    cookiesAccepted(state) {
+      return state._cookiesAccepted
     },
   },
   actions: {
     setTheme(theme: AppTheme) {
-      this.appTheme = theme
+      this._theme = theme
       setValue('theme', theme)
     },
     setAudioBitsPerSecond(bitsPerSecond: number) {
-      this.audioBitsPerSecondSetting = bitsPerSecond
+      this._audioBitsPerSecond = bitsPerSecond
       setValue('audioBitsPerSecond', bitsPerSecond)
     },
     setVideoBitsPerSecond(bitsPerSecond: number) {
-      this.videoBitsPerSecondSetting = bitsPerSecond
+      this._videoBitsPerSecond = bitsPerSecond
       setValue('videoBitsPerSecond', bitsPerSecond)
     },
     setOrderByFieldName(value: 'startDateTime' | 'description') {
-      this.orderByFieldNameSetting = value
+      this._orderByFieldName = value
       setValue('orderByFieldName', value)
     },
     setOrderByDescending(value: boolean) {
-      this.orderByDescendingSetting = value
+      this._orderByDescending = value
       setValue('orderByDescending', value)
+    },
+    setCookiesAccepted(value: boolean) {
+      this._cookiesAccepted = value
+      setValue('cookiesAccepted', value)
     },
   },
 })
