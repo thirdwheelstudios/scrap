@@ -11,10 +11,10 @@ const aboutList = computed(() => {
     },
     {
       title: 'No limitations',
-      text: 'There\'s no time limit applied to your screen recordings in Scrap. Record for as long as you want.',
+      text: 'There\'s no time limit applied to your screen recordings in Scrap. You can record for as long as you want.',
     },
     {
-      title: 'Privacy as standard',
+      title: 'Privacy by default',
       text: 'All of your recordings are stored locally in your browser, nothing is shared outside of your browser.',
     },
   ]
