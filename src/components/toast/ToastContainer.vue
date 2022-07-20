@@ -11,7 +11,7 @@ const onClose = () => toastStore.close()
 </script>
 
 <template>
-  <transition name="fade">
+  <transition name="slide-fade">
     <div v-if="toastComponent" class="toast-container" @click.self="onClose">
       <component :is="toastComponent" v-bind="toastProps" @cancel="onClose" />
     </div>
@@ -29,12 +29,17 @@ const onClose = () => toastStore.close()
   z-index: 20;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s ease;
+.slide-fade-enter-active {
+  transition: all 0.8s ease-out;
 }
-.fade-enter-from,
-.fade-leave-to {
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(200px);
   opacity: 0;
 }
 </style>
