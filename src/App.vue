@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { watch, computed, onBeforeMount } from 'vue'
-import { useSettingsStore } from './store'
+import { watch, computed, onBeforeMount, onMounted } from 'vue'
+import { useSettingsStore, useToastStore } from './store'
 import { setTheme } from './utils/theme'
 import ModalContainer from './components/modals/ModalContainer.vue'
 import AppFooter from './components/AppFooter.vue'
@@ -8,10 +8,12 @@ import UpdatePwa from './components/UpdatePwa.vue'
 import NavBar from './components/NavBar.vue'
 import BrowserNotSupported from './components/BrowserNotSupported.vue'
 import { screenRecording } from './composables/screenRecording'
+import ToastContainer from './components/toast/ToastContainer.vue'
 
 const { isSupported } = screenRecording()
 
 const settings = useSettingsStore()
+const toast = useToastStore()
 
 const appTheme = computed(() => settings.theme)
 
@@ -23,6 +25,10 @@ watch(
 )
 
 onBeforeMount(() => setTheme(appTheme.value))
+
+onMounted(() => {
+  if (!settings.cookiesAccepted) toast.open('accept-cookies')
+})
 </script>
 
 <template>
@@ -41,6 +47,7 @@ onBeforeMount(() => setTheme(appTheme.value))
       <router-view />
       <AppFooter class="footer" />
     </div>
+    <ToastContainer />
     <ModalContainer />
     <UpdatePwa />
   </template>
