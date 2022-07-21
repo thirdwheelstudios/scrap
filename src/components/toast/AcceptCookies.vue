@@ -28,15 +28,19 @@ const onOkay = () => {
 <style scoped lang="scss">
 .cookie-container {
   margin: 1em;
-  padding: 0.5em;
+  padding: 1em;
 
-  h4,
+  h4 {
+    margin: 0;
+    margin-bottom: 0.5em;
+  }
+
   small {
-    margin: 0.5em;
+    margin: 0;
   }
 
   button {
-    margin-top: 0.5em;
+    margin-top: 1em;
     margin-right: 0.5em;
   }
 }
