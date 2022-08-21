@@ -15,6 +15,8 @@ import {
   faQuestionCircle,
   faCopyright,
   faXmark,
+  faMicrophone,
+  faMicrophoneSlash,
 } from '@fortawesome/free-solid-svg-icons'
 import DeleteRecordingModal from './components/modals/DeleteRecordingModal.vue'
 import DeleteAllRecordingsModal from './components/modals/DeleteAllRecordingsModal.vue'
@@ -38,7 +40,9 @@ library.add(
   faFilm,
   faQuestionCircle,
   faCopyright,
-  faXmark
+  faXmark,
+  faMicrophone,
+  faMicrophoneSlash
 )
 
 createApp(App)

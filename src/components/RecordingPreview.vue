@@ -4,13 +4,10 @@ import { screenRecording } from '../composables/screenRecording'
 import { useRecordingStore } from '../store'
 
 const recording = useRecordingStore()
-const { 
-  resizeCoordsForThumbnail, 
-  thumbnailHeight, 
-  thumbnailWidth,
-} = screenRecording()
+const { resizeCoordsForThumbnail, thumbnailHeight, thumbnailWidth } =
+  screenRecording()
 
-const mediaStream = computed(() => recording.mediaStream)
+const videoStream = computed(() => recording.videoStream)
 
 const videoEle = ref<HTMLVideoElement>()
 const canvasEle = ref<HTMLCanvasElement>()
@@ -31,14 +28,23 @@ watchEffect(() => {
     context.fillStyle = '#FFFFFF'
     context.fillRect(0, 0, canvas.width, canvas.height)
     context.drawImage(video, 0, 0, canvas.width, canvas.height)
-    
-    const { height, width } = resizeCoordsForThumbnail(video.videoHeight, video.videoWidth)
+
+    const { height, width } = resizeCoordsForThumbnail(
+      video.videoHeight,
+      video.videoWidth
+    )
 
     const xOffset = (thumbnailWidth.value - width) / 2
     const yOffset = (thumbnailHeight.value - height) / 2
 
     context.globalAlpha = 1
-    context.drawImage(video, xOffset, yOffset, canvas.width - (xOffset * 2), canvas.height - (yOffset * 2))
+    context.drawImage(
+      video,
+      xOffset,
+      yOffset,
+      canvas.width - xOffset * 2,
+      canvas.height - yOffset * 2
+    )
 
     canvas.toBlob((blob) => recording.setThumbnail(blob!))
   }, 500)
@@ -46,10 +52,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div v-if="mediaStream">
+  <div v-if="videoStream">
     <video
       ref="videoEle"
-      :src-object.prop.camel="mediaStream"
+      :src-object.prop.camel="videoStream"
       autoplay="true"
     ></video>
     <canvas ref="canvasEle"></canvas>

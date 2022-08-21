@@ -17,7 +17,10 @@ withDefaults(defineProps<Props>(), {
           <div class="content-overlay"></div>
         </div>
       </div>
-      <div class="power" :class="{ on: powerOn }"></div>
+      <div class="buttons">
+        <slot name="panel"></slot>
+        <div class="power" :class="{ on: powerOn }"></div>
+      </div>
     </div>
     <div class="stand" />
   </div>
@@ -77,19 +80,27 @@ $stand-color: #aeaeae;
       }
     }
 
-    .power {
-      background: $power-button-off;
-      width: 0.3rem;
-      height: 0.15rem;
-      float: right;
-      margin-right: 0.5rem;
-      margin-top: 1rem;
-      transition: background 0.2s;
-    }
+    .buttons {
+      display: flex;
 
-    .power.on {
-      background: $power-button-on;
-      box-shadow: 0 0 10px 1px $power-button-on;
+      :first-child {
+        flex-grow: 1;
+      }
+
+      .power {
+        background: $power-button-off;
+        width: 0.3rem;
+        height: 0.15rem;
+        float: right;
+        margin-right: 0.5rem;
+        margin-top: 1rem;
+        transition: background 0.2s;
+      }
+
+      .power.on {
+        background: $power-button-on;
+        box-shadow: 0 0 10px 1px $power-button-on;
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import ContentContainer from '../components/ContentContainer.vue'
 import GroupContainer from '../components/GroupContainer.vue'
 import MonitorContainer from '../components/MonitorContainer.vue'
@@ -9,6 +9,7 @@ import { useRecordingStore, useSettingsStore } from '../store'
 const recording = useRecordingStore()
 const settings = useSettingsStore()
 
+const captureAudio = ref(false)
 const isRecording = computed(() => recording.isRecording)
 
 const onToggleRecording = async () => {
@@ -21,6 +22,11 @@ const onToggleRecording = async () => {
     )
   }
 }
+
+watch(
+  () => captureAudio.value,
+  (value) => recording.setCaptureAudio(value)
+)
 </script>
 
 <template>
@@ -39,6 +45,17 @@ const onToggleRecording = async () => {
             @click="onToggleRecording"
           ></button>
         </div>
+        <template #panel>
+          <div class="buttons">
+            <font-awesome-icon
+              :icon="['fas', captureAudio ? 'microphone' : 'microphone-slash']"
+              class="fill-gradient-linear clickable"
+              :class="{ 'capture-audio': captureAudio }"
+              title="Include microphone audio"
+              @click="captureAudio = !captureAudio"
+            />
+          </div>
+        </template>
       </MonitorContainer>
       <div class="instruction-text">
         Press the
@@ -76,8 +93,10 @@ const onToggleRecording = async () => {
   }
   .monitor-screen {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
+    text-align: center;
 
     button {
       width: 75px;
@@ -92,6 +111,18 @@ const onToggleRecording = async () => {
       width: 65px;
       height: 65px;
       border-radius: 0.5rem;
+    }
+  }
+
+  .buttons {
+    margin: 0.25rem;
+
+    .capture-audio {
+      padding-left: 0.25em;
+    }
+
+    .clickable {
+      cursor: pointer;
     }
   }
 }

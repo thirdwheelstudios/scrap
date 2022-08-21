@@ -7,39 +7,49 @@ import { useRecordingsListStore } from '../recordingsList'
 
 export const useRecordingStore = defineStore('recording', {
   state: () => {
-    let recorder: MediaRecorder | undefined
-    let recorderStartTime: Date | undefined
-    let recorderThumbnailBlob: Blob | undefined
-    let recorderMediaStream: MediaStream | undefined
+    let _recorder: MediaRecorder | undefined
+    let _recorderStartTime: Date | undefined
+    let _recorderThumbnailBlob: Blob | undefined
+    let _recorderVideoStream: MediaStream | undefined
+    let _captureAudio: boolean | undefined
 
     return {
-      recorder,
-      recorderStartTime,
-      recorderThumbnailBlob,
-      recorderMediaStream,
+      _recorder,
+      _recorderStartTime,
+      _recorderThumbnailBlob,
+      _recorderVideoStream,
+      _captureAudio,
     }
   },
   getters: {
     isRecording(state) {
-      return state.recorder !== undefined
+      return state._recorder !== undefined
     },
     startTime(state) {
-      return state.recorderStartTime
+      return state._recorderStartTime
     },
     thumbnailBlob(state) {
-      return state.recorderThumbnailBlob
+      return state._recorderThumbnailBlob
     },
-    mediaStream(state) {
-      return state.recorderMediaStream
+    videoStream(state) {
+      return state._recorderVideoStream
+    },
+    captureAudio(state) {
+      return state._captureAudio ?? false
     },
   },
   actions: {
-    async startRecording(audioBitsPerSecond = 128000, videoBitsPerSecond = 1250000) {
+    async startRecording(
+      audioBitsPerSecond = 128000,
+      videoBitsPerSecond = 1250000
+    ) {
       const constraints = {
         video: true,
         audio: true,
       } as DisplayMediaStreamConstraints
-      const capture = await navigator.mediaDevices.getDisplayMedia(constraints)
+      const videoCapture = await navigator.mediaDevices.getDisplayMedia(
+        constraints
+      )
 
       const { supportedMimeType } = screenRecording()
 
@@ -48,7 +58,24 @@ export const useRecordingStore = defineStore('recording', {
         audioBitsPerSecond,
         videoBitsPerSecond,
       } as MediaRecorderOptions
-      const mediaRecorder = new MediaRecorder(capture, options)
+
+      let mediaRecorder: MediaRecorder
+
+      if (this._captureAudio) {
+        const audioStream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+          video: false,
+        })
+
+        const combined = new MediaStream([
+          ...videoCapture.getTracks(),
+          ...audioStream.getAudioTracks(),
+        ])
+
+        mediaRecorder = new MediaRecorder(combined, options)
+      } else {
+        mediaRecorder = new MediaRecorder(videoCapture, options)
+      }
 
       const chunks: BlobPart[] | undefined = []
 
@@ -57,10 +84,10 @@ export const useRecordingStore = defineStore('recording', {
       }
 
       const stopRecording = () => {
-        this.recorderMediaStream?.getTracks().forEach((track) => track.stop())
-        this.recorderMediaStream = undefined
-        this.recorderStartTime = undefined
-        this.recorder = undefined
+        this._recorderVideoStream?.getTracks().forEach((track) => track.stop())
+        this._recorderVideoStream = undefined
+        this._recorderStartTime = undefined
+        this._recorder = undefined
       }
 
       const startTime = DateTime.utc().toJSDate()
@@ -86,15 +113,18 @@ export const useRecordingStore = defineStore('recording', {
       }
 
       mediaRecorder.start()
-      this.recorder = mediaRecorder
-      this.recorderStartTime = startTime
-      this.recorderMediaStream = capture
+      this._recorder = mediaRecorder
+      this._recorderStartTime = startTime
+      this._recorderVideoStream = videoCapture
     },
     stopRecording() {
-      this.recorder?.stop()
+      this._recorder?.stop()
     },
     setThumbnail(thumbnailBlob: Blob) {
-      this.recorderThumbnailBlob = thumbnailBlob
+      this._recorderThumbnailBlob = thumbnailBlob
+    },
+    setCaptureAudio(value: boolean) {
+      this._captureAudio = value
     },
   },
 })
