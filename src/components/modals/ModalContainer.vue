@@ -5,7 +5,7 @@ import { useModalStore } from '../../store'
 const modalStore = useModalStore()
 
 const modalComponent = computed(() => modalStore.current)
-const modalProps = computed(() => modalStore.props)
+const modalProps = computed<any>(() => modalStore.props)
 
 const onClose = () => modalStore.close()
 </script>

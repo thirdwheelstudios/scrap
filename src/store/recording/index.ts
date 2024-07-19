@@ -45,7 +45,7 @@ export const useRecordingStore = defineStore('recording', {
       const constraints = {
         video: true,
         audio: true,
-      } as DisplayMediaStreamConstraints
+      } as MediaStreamConstraints
       const videoCapture = await navigator.mediaDevices.getDisplayMedia(
         constraints
       )
