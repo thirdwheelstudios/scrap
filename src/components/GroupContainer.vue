@@ -19,10 +19,6 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped lang="scss">
 .group {
-  h3 {
-    margin: 0;
-  }
-
   border-radius: 0.5rem;
   border: 1px solid $border-color;
   box-shadow: 3px 3px 5px $border-color;
@@ -34,5 +30,9 @@ withDefaults(defineProps<Props>(), {
   padding: 1rem;
   margin: 0;
   margin-bottom: 1rem;
+
+  h3 {
+    margin: 0;
+  }
 }
 </style>
