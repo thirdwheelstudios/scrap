@@ -1,6 +1,5 @@
 import { DateTime } from 'luxon'
 import { defineStore } from 'pinia'
-import fixWebmDuration from 'webm-duration-fix'
 import { screenRecording } from '../../composables/screenRecording'
 import { Recording } from '../../models'
 import { useRecordingsListStore } from '../recordingsList'
@@ -94,12 +93,9 @@ export const useRecordingStore = defineStore('recording', {
       const piniaContext = this
 
       mediaRecorder.onstop = async function () {
-        const blob = new Blob(chunks, { type: options.mimeType })
-
-        const seekableBlob = await fixWebmDuration(blob)
-
         const recording = {
-          blob: seekableBlob,
+          chunks,
+          mimeType: options.mimeType,
           thumbnailBlob: piniaContext.thumbnailBlob,
           startDateTime: startTime,
           finishDateTime: DateTime.utc().toJSDate(),
