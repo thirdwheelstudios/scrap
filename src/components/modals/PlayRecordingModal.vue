@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, onUnmounted } from 'vue'
+import { onUnmounted, ref, onMounted } from 'vue'
 import { Recording } from '../../models'
+import fixWebmDuration from 'webm-duration-fix'
 
 interface Props {
   recording: Recording
@@ -9,15 +10,31 @@ interface Props {
 defineEmits(['cancel'])
 const props = defineProps<Props>()
 
-const videoSource = computed(() => URL.createObjectURL(props.recording.blob))
+const blobUrl = ref<string>()
 
-onUnmounted(() => URL.revokeObjectURL(videoSource.value))
+onMounted(async () => {
+  const isWebmVideo = props.recording.mimeType === 'video/webm'
+
+  const blob = new Blob(props.recording.chunks, {
+    type: props.recording.mimeType,
+  })
+
+  const seekableBlob = isWebmVideo ? await fixWebmDuration(blob) : blob
+
+  blobUrl.value = URL.createObjectURL(seekableBlob)
+})
+
+onUnmounted(() => {
+  if (blobUrl.value) URL.revokeObjectURL(blobUrl.value)
+})
 </script>
 
 <template>
   <div class="video-preview-container">
-    <video :src="videoSource" controls autoplay />
-    <button title="Close" @click="$emit('cancel')"><font-awesome-icon :icon="['fas','xmark']" size="2x" /></button>
+    <video :src="blobUrl" controls autoplay />
+    <button title="Close" @click="$emit('cancel')">
+      <font-awesome-icon :icon="['fas', 'xmark']" size="2x" />
+    </button>
   </div>
 </template>
 
@@ -25,7 +42,7 @@ onUnmounted(() => URL.revokeObjectURL(videoSource.value))
 .video-preview-container {
   max-height: 90vh;
   position: relative;
-  
+
   video {
     width: 100%;
     height: 100%;

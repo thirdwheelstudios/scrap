@@ -5,7 +5,7 @@ import { useToastStore } from '../../store'
 const toastStore = useToastStore()
 
 const toastComponent = computed(() => toastStore.current)
-const toastProps = computed(() => toastStore.props)
+const toastProps = computed<any>(() => toastStore.props)
 
 const onClose = () => toastStore.close()
 </script>

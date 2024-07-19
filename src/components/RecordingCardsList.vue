@@ -18,7 +18,7 @@ const recordings = computed(() => {
   const descending = orderByDescending.value
 
   return result.sort((a, b) => {
-    if (a[field] instanceof Date || a[field] instanceof Number) {
+    if (a[field] instanceof Date || (a[field] as any) instanceof Number) {
       if (descending) return +b[field] - +a[field]
 
       return +a[field] - +b[field]
